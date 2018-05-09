@@ -2,6 +2,8 @@ package com.bill.billdemo;
 
 import android.os.Bundle;
 
+import com.example.lib.BaseActivity;
+
 public class MainActivity extends BaseActivity {
 
     @Override
