@@ -2,7 +2,7 @@ package com.bill.billdemo;
 
 import android.os.Bundle;
 
-import com.example.lib.BaseActivity;
+import com.arsenal.bill.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

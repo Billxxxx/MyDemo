@@ -1,1 +1,1 @@
-include ':app', ':bill_lib', ':lib'
+include ':app', ':arsenal'
