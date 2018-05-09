@@ -2,9 +2,9 @@ package com.bill.billdemo;
 
 import android.os.Bundle;
 
-import com.arsenal.bill.BaseActivity;
+import com.arsenal.bill.ArsenalBaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivityArsenal extends ArsenalBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,7 +9,7 @@ import me.imid.swipebacklayout.lib.Utils
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
-abstract class BaseActivity : AppCompatActivity(), SwipeBackActivityBase {
+abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase {
     private var mHelper: SwipeBackActivityHelper? = null
     private var mSwipeBackLayout: SwipeBackLayout? = null
 
