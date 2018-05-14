@@ -8,6 +8,7 @@ import com.arsenal.bill.ArsenalBaseActivity
 import com.bill.billdemo.MultipleItem
 import com.bill.billdemo.MultipleItemQuickAdapter
 import com.bill.billdemo.R
+import com.bill.billdemo.entity.VHType
 import kotlinx.android.synthetic.main.ac_list.*
 import java.util.*
 
@@ -21,7 +22,7 @@ class ListActivity : ArsenalBaseActivity() {
         mRecyclerView.setHasFixedSize(true);
 
         val data = getMultipleItemData()
-        val multipleItemAdapter = MultipleItemQuickAdapter(this, data)
+        val multipleItemAdapter = MultipleItemQuickAdapter(this, data, VHType.TEXT, VHType.IMAGE, VHType.IMAGE_TEXT)
         val manager = GridLayoutManager(this, 4)
         mRecyclerView.layoutManager = manager
         multipleItemAdapter.setSpanSizeLookup { _, position -> data.get(position).getSpanSize() }
@@ -33,7 +34,7 @@ class ListActivity : ArsenalBaseActivity() {
         return false
     }
 
-    fun getMultipleItemData(): List<MultipleItem> {
+    fun getMultipleItemData(): MutableList<MultipleItem> {
         val list = ArrayList<MultipleItem>()
         for (i in 0..4) {
             list.add(MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE))
