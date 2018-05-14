@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         ARouter.init(application); // 尽可能早，推荐在Application中初始化
 
         list_btn.setOnClickListener {
-            ARouter.getInstance().build("/test/testactivity").navigation();
+            ARouter.getInstance().build("/bill/testactivity").navigation();
         }
     }
 }
