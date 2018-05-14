@@ -1,14 +1,11 @@
 package com.bill.billdemo.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bill.billdemo.R;
 
-@Route(path = "/test/main2")
 public class Main2Activity extends AppCompatActivity {
 
     @Override
@@ -18,7 +15,7 @@ public class Main2Activity extends AppCompatActivity {
         findViewById(R.id.text_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build("/test/testactivity").navigation();
+//                ARouter.getInstance().build("/test/testactivity").navigation();
             }
         });
     }

@@ -1,12 +1,11 @@
 package com.bill.billdemo.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bill.billdemo.R;
 
-@Route(path = "/test/testactivity")
+//@Route(path = "/test/testactivity")
 public class testActivity extends AppCompatActivity {
 
     @Override

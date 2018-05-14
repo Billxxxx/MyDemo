@@ -3,7 +3,6 @@ package com.bill.billdemo.activity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.arsenal.bill.ArsenalBaseActivity
 import com.bill.billdemo.MultipleItem
 import com.bill.billdemo.MultipleItemQuickAdapter
@@ -11,7 +10,7 @@ import com.bill.billdemo.R
 import kotlinx.android.synthetic.main.ac_list.*
 import java.util.*
 
-@Route(path = "/base/list")
+//@Route(path = "/base/list")
 class ListActivity : ArsenalBaseActivity() {
     lateinit var mRecyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
