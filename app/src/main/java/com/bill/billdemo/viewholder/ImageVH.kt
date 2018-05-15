@@ -1,7 +1,8 @@
 package com.bill.billdemo.viewholder
 
-import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.bill.billdemo.R
 
-class ImageVH(view: View) : BaseVH(view) {
-
+class ImageVH(i: LayoutInflater, p: ViewGroup) : BaseVH(R.layout.item_image_view, i, p) {
 }

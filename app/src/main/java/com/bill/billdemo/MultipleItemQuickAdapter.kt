@@ -1,33 +1,34 @@
 package com.bill.billdemo
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
-
 import com.bill.billdemo.entity.VHType
+import com.bill.billdemo.viewholder.BaseVH
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
 
-class MultipleItemQuickAdapter : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder> {
+class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultipleItem>, vararg vhTypes: VHType) : BaseMultiItemQuickAdapter<MultipleItem, BaseVH>(data) {
+    lateinit var enableVHTypes: List<VHType>
 
-    constructor(context: Context, data: MutableList<MultipleItem>, vararg vhTypes: VHType) : super(data) {
+    init {
+        enableVHTypes = vhTypes.asList()
         vhTypes.forEach {
-            addItemType(it.itemType, it.layoutId)
+            addItemType(it.itemType, 0)
         }
     }
 
-    override fun convert(helper: BaseViewHolder, item: MultipleItem) {
-        when (helper.itemViewType) {
-            MultipleItem.TEXT -> helper.setText(R.id.tv, item.content)
-            MultipleItem.IMG_TEXT -> when (helper.layoutPosition % 2) {
-                0 -> helper.setImageResource(R.id.iv, R.drawable.animation_img1)
-                1 -> helper.setImageResource(R.id.iv, R.drawable.animation_img2)
+    override fun convert(helper: BaseVH, item: MultipleItem) {
+        helper.setData(item)
+    }
+
+    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
+        enableVHTypes.forEach {
+            if (it.itemType == viewType) {
+                val constructor = Class.forName(it.vhClass.name).getDeclaredConstructor(LayoutInflater::class.java, ViewGroup::class.java)
+                //根据构造函数，传入值生成实例
+                return constructor.newInstance(mLayoutInflater, parent) as BaseVH
             }
         }
-    }
-
-
-
-    override fun onCreateDefViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder {
         return super.onCreateDefViewHolder(parent, viewType)
     }
 }

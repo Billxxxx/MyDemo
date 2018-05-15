@@ -1,10 +1,9 @@
 package com.bill.billdemo.viewholder
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import com.chad.library.adapter.base.BaseViewHolder
 
-open class BaseVH(view:View) : RecyclerView.ViewHolder(view) {
-
+open class BaseVH(layoutId: Int, i: LayoutInflater, p: ViewGroup) : BaseViewHolder(i.inflate(layoutId, p, false)) {
+    open fun setData(data: Any) {}
 }
