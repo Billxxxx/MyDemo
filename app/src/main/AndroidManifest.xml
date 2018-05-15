@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.bill.billdemo">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -19,6 +21,8 @@
         </activity>
         <activity android:name=".activity.ListActivity"/>
         <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.RetrofitActivity">
+        </activity>
     </application>
 
 </manifest>

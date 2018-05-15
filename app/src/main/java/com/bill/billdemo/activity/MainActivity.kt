@@ -6,8 +6,18 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import kotlinx.android.synthetic.main.ac_main.*
+import com.bill.billdemo.http.GitHubClient
+import com.bill.billdemo.http.GitHubRepo
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ac_main)
@@ -20,6 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         list_btn.setOnClickListener {
             ARouter.getInstance().build("/bill/list").navigation();
+        }
+        retrofit_tv.setOnClickListener {
+            ARouter.getInstance().build("/bill/retrofit").navigation();
         }
     }
 }
