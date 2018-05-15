@@ -4,5 +4,6 @@ import com.arsenal.bill.BaseVH
 
 interface IVHType {
     fun getItemType(): Int
-    fun getVHClass():Class<out BaseVH>
+    fun getVHClass(): Class<out BaseVH>
+    fun getLayoutId(): Int
 }
