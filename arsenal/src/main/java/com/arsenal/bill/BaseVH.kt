@@ -1,4 +1,4 @@
-package com.bill.billdemo.viewholder
+package com.arsenal.bill
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

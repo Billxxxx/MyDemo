@@ -1,4 +1,4 @@
-package com.bill.billdemo;
+package com.arsenal.bill.entity;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 

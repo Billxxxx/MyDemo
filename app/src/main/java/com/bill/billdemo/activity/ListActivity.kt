@@ -5,8 +5,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.arsenal.bill.ArsenalBaseActivity
-import com.bill.billdemo.MultipleItem
-import com.bill.billdemo.MultipleItemQuickAdapter
+import com.arsenal.bill.entity.MultipleItem
+import com.arsenal.bill.MultipleItemQuickAdapter
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.VHType
 import kotlinx.android.synthetic.main.ac_list.*

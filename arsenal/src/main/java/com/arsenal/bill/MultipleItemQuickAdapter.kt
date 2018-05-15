@@ -1,19 +1,19 @@
-package com.bill.billdemo
+package com.arsenal.bill
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bill.billdemo.entity.VHType
-import com.bill.billdemo.viewholder.BaseVH
+import com.arsenal.bill.entity.IVHType
+import com.arsenal.bill.entity.MultipleItem
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 
-class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultipleItem>, vararg vhTypes: VHType) : BaseMultiItemQuickAdapter<MultipleItem, BaseVH>(data) {
-    lateinit var enableVHTypes: List<VHType>
+class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultipleItem>, vararg vhTypes: IVHType) : BaseMultiItemQuickAdapter<MultipleItem, BaseVH>(data) {
+    lateinit var enableVHTypes: List<IVHType>
 
     init {
         enableVHTypes = vhTypes.asList()
         vhTypes.forEach {
-            addItemType(it.itemType, 0)
+            addItemType(it.getItemType(), 0)
         }
     }
 
@@ -23,8 +23,8 @@ class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultipleI
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
         enableVHTypes.forEach {
-            if (it.itemType == viewType) {
-                val constructor = Class.forName(it.vhClass.name).getDeclaredConstructor(LayoutInflater::class.java, ViewGroup::class.java)
+            if (it.getItemType() == viewType) {
+                val constructor = Class.forName(it.getVHClass().name).getDeclaredConstructor(LayoutInflater::class.java, ViewGroup::class.java)
                 //根据构造函数，传入值生成实例
                 return constructor.newInstance(mLayoutInflater, parent) as BaseVH
             }
