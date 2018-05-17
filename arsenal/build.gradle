@@ -44,8 +44,8 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
 
     //retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.4.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
 repositories {
     mavenCentral()
