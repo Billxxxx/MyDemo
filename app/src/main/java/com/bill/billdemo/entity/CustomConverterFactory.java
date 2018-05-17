@@ -22,18 +22,10 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 
 public class CustomConverterFactory extends Converter.Factory {
-    /**
-     * Create an instance using a default {@link Gson} instance for conversion. Encoding to JSON and
-     * decoding from JSON (when no charset is specified by a header) will use UTF-8.
-     */
     public static CustomConverterFactory create() {
         return create(new Gson());
     }
 
-    /**
-     * Create an instance using {@code gson} for conversion. Encoding to JSON and
-     * decoding from JSON (when no charset is specified by a header) will use UTF-8.
-     */
     public static CustomConverterFactory create(Gson gson) {
         return new CustomConverterFactory(gson);
     }
@@ -70,17 +62,17 @@ class CustomResponseBodyConverter<T> implements Converter<ResponseBody, T> {
 
     @Override
     public T convert(ResponseBody value) throws IOException {
+        String response = value.string();
         try {
             //解密
-            String response = value.string();
             Log.d("TAG", "================" + response);
             try {
 //                mResult = DecodeUtil.decodeResponse(response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.d("TAG", "--------------------------" + mResult);
-            return adapter.fromJson(mResult);
+            Log.d("TAG", "--------------------------" + response);
+            return adapter.fromJson(response);
         } finally {
             value.close();
         }
