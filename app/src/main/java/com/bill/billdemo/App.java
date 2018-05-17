@@ -24,6 +24,7 @@ public class App extends Application {
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                         .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                         .build());
+        Thread.setDefaultUncaughtExceptionHandler(new UnCatchExceptionHandler(this));
     }
 
     public static App getInstance() {
