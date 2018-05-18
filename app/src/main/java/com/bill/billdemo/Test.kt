@@ -1,6 +1,6 @@
-//package com.bill.billdemo
-//
-//import com.alibaba.android.arouter.facade.annotation.Route
-//
-//@Route(path = "test")
-//class Test
+package com.bill.billdemo
+
+class Test {
+    @Transient
+    internal var m: String? = null
+}

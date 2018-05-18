@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BillDemo</string>
+    <string name="IS_ENCRYPTION_VALUE">"en01"</string>
+    <string name="KEY">"nXcwxNJA"</string>
 </resources>

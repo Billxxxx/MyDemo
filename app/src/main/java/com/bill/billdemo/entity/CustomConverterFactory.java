@@ -2,6 +2,8 @@ package com.bill.billdemo.entity;
 
 import android.util.Log;
 
+import com.bill.billdemo.DesEncrypt;
+import com.bill.billdemo.activity.RequestBaseJson;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
@@ -13,6 +15,7 @@ import java.io.Writer;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -67,7 +70,9 @@ class CustomResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             //解密
             Log.d("TAG", "================" + response);
             try {
+//                mResult = DesEncrypt.getEncString(response);
 //                mResult = DecodeUtil.decodeResponse(response);
+//                return adapter.fromJson(mResult);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,7 +82,6 @@ class CustomResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             value.close();
         }
     }
-
 }
 
 class CustomRequestBodyConverter<T> implements Converter<T, RequestBody> {
@@ -94,6 +98,16 @@ class CustomRequestBodyConverter<T> implements Converter<T, RequestBody> {
 
     @Override
     public RequestBody convert(T value) throws IOException {
+        if (value instanceof RequestBaseJson) {
+            HashMap map = ((RequestBaseJson) value).getData();
+            try {
+                String encrypt = DesEncrypt.getEncString(map.toString());
+                ((RequestBaseJson) value) .setM(encrypt);
+                Log.d("encrypt", encrypt);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         Buffer buffer = new Buffer();
         Writer writer = new OutputStreamWriter(buffer.outputStream(), UTF_8);
         JsonWriter jsonWriter = gson.newJsonWriter(writer);
