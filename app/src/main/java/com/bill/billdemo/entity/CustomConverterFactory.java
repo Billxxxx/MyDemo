@@ -2,12 +2,19 @@ package com.bill.billdemo.entity;
 
 import android.util.Log;
 
+import com.bill.billdemo.App;
 import com.bill.billdemo.DesEncrypt;
+import com.bill.billdemo.R;
 import com.bill.billdemo.activity.RequestBaseJson;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonWriter;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -41,10 +48,9 @@ public class CustomConverterFactory extends Converter.Factory {
     }
 
     @Override
-    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
-                                                            Retrofit retrofit) {
-        TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
-        return new CustomResponseBodyConverter<>(adapter);
+    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+//        TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
+        return new CustomResponseBodyConverter(type);
     }
 
     @Override
@@ -55,35 +61,12 @@ public class CustomConverterFactory extends Converter.Factory {
     }
 }
 
-class CustomResponseBodyConverter<T> implements Converter<ResponseBody, T> {
-    private final TypeAdapter<T> adapter;
-    private String mResult;
 
-    CustomResponseBodyConverter(TypeAdapter<T> adapter) {
-        this.adapter = adapter;
-    }
-
-    @Override
-    public T convert(ResponseBody value) throws IOException {
-        String response = value.string();
-        try {
-            //解密
-            Log.d("TAG", "================" + response);
-            try {
-//                mResult = DesEncrypt.getEncString(response);
-//                mResult = DecodeUtil.decodeResponse(response);
-//                return adapter.fromJson(mResult);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Log.d("TAG", "--------------------------" + response);
-            return adapter.fromJson(response);
-        } finally {
-            value.close();
-        }
-    }
-}
-
+/**
+ * 加密
+ *
+ * @param <T>
+ */
 class CustomRequestBodyConverter<T> implements Converter<T, RequestBody> {
     private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
     private static final Charset UTF_8 = Charset.forName("UTF-8");
@@ -98,21 +81,20 @@ class CustomRequestBodyConverter<T> implements Converter<T, RequestBody> {
 
     @Override
     public RequestBody convert(T value) throws IOException {
+        String valueStr = "";
         if (value instanceof RequestBaseJson) {
-            HashMap map = ((RequestBaseJson) value).getData();
+            RequestBaseJson requestBaseJson = (RequestBaseJson) value;
+            HashMap map = requestBaseJson.getData();
             try {
                 String encrypt = DesEncrypt.getEncString(map.toString());
-                ((RequestBaseJson) value) .setM(encrypt);
+                requestBaseJson.setMessage(encrypt);
                 Log.d("encrypt", encrypt);
+                valueStr = "message=" + encrypt + "&isEncryption=" + App.Companion.getContext().getString(R.string.IS_ENCRYPTION_VALUE);
+//                valueStr = "message=%2FtFHDaYuvcwk%2FSCL5hIyx0CSHkM07O%2FY7A%2FMx0iPfKCsWpodFL3I0NcTvF9HXcvbVBj2qFaEnBxWuVSibt9KW33kqtfHyKdWNgMM144DYJaes07F2kO5UZERyvP7BcHy9GwaEmC3RZaW8fisUe8AVv7FOl%2FMDoaLoOhF6Qn5KsAvv1%2BvqAaY1tX8AvEZ%2BitkDAXKoS05klhv%2F%2BNKtQZY8INRFY1gu%2BOhZJB7jxwpEymd7xZZLvUQSFLOv5tozXjS5kwJ3tZsrFDY7RwanO2LsnzL0M3gMRdA2owHGvKGn58FyhUHl6EsryzKZ%2FTlpNjLKA4%2Bpb2gWkTe%2BCep1YpPWqaLx5MhMJHTa9%2F20YQ9n7lStCfmH74aG6s1G%2BI6fJx9&isEncryption=EN02&";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        Buffer buffer = new Buffer();
-        Writer writer = new OutputStreamWriter(buffer.outputStream(), UTF_8);
-        JsonWriter jsonWriter = gson.newJsonWriter(writer);
-        adapter.write(jsonWriter, value);
-        jsonWriter.close();
-        return RequestBody.create(MEDIA_TYPE, buffer.readByteString());
+        return RequestBody.create(MEDIA_TYPE, valueStr);
     }
 }

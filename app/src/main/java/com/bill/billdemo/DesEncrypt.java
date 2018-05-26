@@ -31,10 +31,10 @@ public class DesEncrypt {
 
         strMing = new String(byteMi, "UTF8");
         Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-        DESKeySpec desKeySpec = new DESKeySpec(App.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
+        DESKeySpec desKeySpec = new DESKeySpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
         SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
-        IvParameterSpec iv = new IvParameterSpec(App.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
+        IvParameterSpec iv = new IvParameterSpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
 
         cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
         byteMing = cipher.doFinal(byteMi);
@@ -55,16 +55,15 @@ public class DesEncrypt {
         byte[] byteMi = null;
         byte[] byteMing = null;
         String strMi = "";
-//        BASE64Encoder base64en = new BASE64Encoder();
         byteMing = message.getBytes("UTF8");
 
         Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
 
-        DESKeySpec desKeySpec = new DESKeySpec(App.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
+        DESKeySpec desKeySpec = new DESKeySpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
 
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
         SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
-        IvParameterSpec iv = new IvParameterSpec(App.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
+        IvParameterSpec iv = new IvParameterSpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 
         byteMi = cipher.doFinal(byteMing);

@@ -1,4 +1,4 @@
-package com.bill.billdemo.http;
+package com.bill.billdemo.net;
 
 public class GitHubRepo {
     private int id;
