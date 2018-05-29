@@ -26,5 +26,8 @@ class MainActivity : AppCompatActivity() {
         retrofit_tv.setOnClickListener {
             ARouter.getInstance().build("/bill/retrofit").navigation();
         }
+        constraint_tv.setOnClickListener {
+            ARouter.getInstance().build("/bill/retrofit").navigation();
+        }
     }
 }
