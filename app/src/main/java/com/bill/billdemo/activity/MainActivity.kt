@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             ARouter.getInstance().build("/bill/retrofit").navigation();
         }
         constraint_tv.setOnClickListener {
-            ARouter.getInstance().build("/bill/retrofit").navigation();
+            ARouter.getInstance().build("/bill/cl").navigation();
         }
     }
 }

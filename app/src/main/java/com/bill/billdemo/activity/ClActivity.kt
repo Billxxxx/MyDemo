@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bill.billdemo.R
 import com.bill.billdemo.net.CaidouApi
 
-@Route(path = "/bill/retrofit")
+@Route(path = "/bill/cl")
 class ClActivity : AppCompatActivity() {
     lateinit var textView: TextView
 
