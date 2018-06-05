@@ -19,9 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ListActivity"/>
-        <activity android:name=".activity.ClActivity"/>
+        <activity android:name=".activity.SampleListActivity"/>
+        <activity android:name=".activity.BaseListActivity"/>
         <activity android:name=".activity.RetrofitActivity"/>
     </application>
-
 </manifest>

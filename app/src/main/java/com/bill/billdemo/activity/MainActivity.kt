@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         }
         ARouter.init(application); // 尽可能早，推荐在Application中初始化
 
-        list_btn.setOnClickListener {
-            ARouter.getInstance().build("/bill/list").navigation();
+        sample_list_btn.setOnClickListener {
+            ARouter.getInstance().build("/bill/sample_list").navigation();
+        }
+        base_list_btn.setOnClickListener {
+            ARouter.getInstance().build("/bill/base_list").navigation();
         }
         retrofit_tv.setOnClickListener {
             ARouter.getInstance().build("/bill/retrofit").navigation();
-        }
-        constraint_tv.setOnClickListener {
-            ARouter.getInstance().build("/bill/cl").navigation();
         }
     }
 }

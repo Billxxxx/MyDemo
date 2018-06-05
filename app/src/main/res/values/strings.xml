@@ -4,4 +4,5 @@
     <string name="KEY">"x9kDGT7P"</string>
     <string name="debug_url">"http://testapi.caidoukeji.com/"</string>
     <string name="release_url">"https://caidoukeji.com/"</string>
+    <string name="en_key">EN02</string>
 </resources>

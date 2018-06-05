@@ -10,10 +10,15 @@
     tools:context=".activity.MainActivity">
 
     <Button
-        android:id="@+id/list_btn"
+        android:id="@+id/sample_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="list"/>
+        android:text="sample_list"/>
+    <Button
+        android:id="@+id/base_list_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="base_list"/>
     <Button
         android:id="@+id/retrofit_tv"
         android:layout_width="wrap_content"

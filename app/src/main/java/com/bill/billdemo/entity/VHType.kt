@@ -4,6 +4,7 @@ import com.arsenal.bill.BaseVH
 import com.arsenal.bill.entity.IVHType
 import com.bill.billdemo.R
 import com.bill.billdemo.viewholder.ImageTextVH
+import com.bill.billdemo.viewholder.UserVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
 enum class VHType(var vhClass: Class<out BaseVH>, var sameVHType: VHType? = null)
@@ -12,6 +13,7 @@ enum class VHType(var vhClass: Class<out BaseVH>, var sameVHType: VHType? = null
     TEXT(R.layout.vh_text_view),
     IMAGE(R.layout.item_image_view),
     IMAGE_TEXT(ImageTextVH::class.java),
+    USER_TYPE(UserVH::class.java)
     ;
 
     var layout: Int = -1

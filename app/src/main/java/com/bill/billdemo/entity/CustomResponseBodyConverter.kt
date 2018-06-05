@@ -2,13 +2,15 @@ package com.bill.billdemo.entity
 
 import com.bill.billdemo.DesEncrypt
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.orhanobut.logger.Logger
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import java.io.IOException
 import java.lang.reflect.Type
 
-internal class CustomResponseBodyConverter(private val type: Type) : Converter<ResponseBody, BaseResp> {
+internal class CustomResponseBodyConverter<T>(private val type: Type) : Converter<ResponseBody, T> {
     private val mResult: String? = null
     var jsonParser = JsonParser()
 
@@ -17,7 +19,7 @@ internal class CustomResponseBodyConverter(private val type: Type) : Converter<R
     }
 
     @Throws(IOException::class)
-    override fun convert(value: ResponseBody): BaseResp? {
+    override fun convert(value: ResponseBody): T? {
         val response = value.string()
         try {
             //解密
@@ -25,10 +27,9 @@ internal class CustomResponseBodyConverter(private val type: Type) : Converter<R
                 //加密过的字符串
                 val enjsonStr = jsonParser.parse(response).asJsonObject.get("json").asString
                 val desString = DesEncrypt.getDesString(enjsonStr)
-                val deScriptedJsonObject = jsonParser.parse(desString).asJsonObject;
-                val result = Gson().fromJson<BaseResp>(deScriptedJsonObject, type)
-                result.jsonStr = desString
-                return result
+                Logger.json(desString)
+                val result = Gson().fromJson<BaseResp>(desString, type)
+                return result as T
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -42,11 +43,11 @@ internal class CustomResponseBodyConverter(private val type: Type) : Converter<R
 
 interface CaidouApiCallBack<T> {
     fun onSuccess(data: T);
-    fun onFailure();
+    fun onFailure(t: Throwable);
     fun onComplete();
 }
 
 open class BaseResp {
     var code: Int = -1
-    var jsonStr: String? = null
+    var json: JsonObject? = null
 }

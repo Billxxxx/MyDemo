@@ -6,14 +6,15 @@ import com.arsenal.bill.BaseListActivity
 import com.arsenal.bill.entity.IVHType
 import com.arsenal.bill.entity.MultipleItem
 import com.bill.billdemo.entity.VHType
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import java.util.*
 
-@Route(path = "/bill/list")
-class ListActivity : BaseListActivity() {
+@Route(path = "/bill/sample_list")
+class SampleListActivity : BaseListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mAdapter.setNewData(getMultipleItemData())
+        mAdapter.setNewData(getMultipleItemData() as List<MultiItemEntity>?)
     }
 
     override fun getVHTypes(): List<IVHType> {

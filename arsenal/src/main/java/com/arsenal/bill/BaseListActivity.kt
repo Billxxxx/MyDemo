@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.arsenal.bill.entity.IVHType
+import com.arsenal.bill.entity.MultipleItem
 
 abstract class BaseListActivity : ArsenalBaseActivity() {
     lateinit var mRecyclerView: RecyclerView
@@ -17,7 +18,14 @@ abstract class BaseListActivity : ArsenalBaseActivity() {
         mAdapter = MultipleItemQuickAdapter(this, null, getVHTypes())
         val manager = GridLayoutManager(this, 4)
         mRecyclerView.layoutManager = manager
-        mAdapter.setSpanSizeLookup { _, position -> mAdapter.data.get(position).spanSize }
+        mAdapter.setSpanSizeLookup { _, position ->
+            var data = mAdapter.data.get(position);
+            if (data is MultipleItem) {
+                data.spanSize
+            } else {
+                4
+            }
+        }
         mRecyclerView.adapter = mAdapter
     }
 

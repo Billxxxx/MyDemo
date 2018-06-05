@@ -7,8 +7,9 @@ import com.arsenal.bill.entity.IVHType
 import com.arsenal.bill.entity.MultipleItem
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.entity.MultiItemEntity
 
-class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultipleItem>?, var enableVHTypes: List<IVHType>) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
+class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultiItemEntity>?, var enableVHTypes: List<IVHType>) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(data) {
 
     init {
         enableVHTypes.forEach {
@@ -16,7 +17,7 @@ class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultipleI
         }
     }
 
-    override fun convert(helper: BaseViewHolder, item: MultipleItem) {
+    override fun convert(helper: BaseViewHolder, item: MultiItemEntity) {
         if (helper is BaseVH)
             helper.setData(item)
     }
