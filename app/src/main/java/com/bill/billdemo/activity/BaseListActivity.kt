@@ -17,7 +17,7 @@ class BaseListActivity : BaseListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CaidouApi.startRequest("v3_app_index_hj", object : CaidouApiCallBack<RecommendExpertListResp> {
+        CaidouApi(RecommendExpertListResp::class.java).startRequest("v3_app_index_hj", object : CaidouApiCallBack<RecommendExpertListResp> {
             override fun onFailure(t: Throwable) {
                 Log.d("TAG", "onFailure")
             }
@@ -26,15 +26,15 @@ class BaseListActivity : BaseListActivity() {
                 Log.d("TAG", "onComplete")
             }
 
-            override fun onSuccess(data: RecommendExpertListResp) {
+            override fun onSuccess(data: RecommendExpertListResp?) {
                 Log.d("TAG", "onSuccess")
 
                 val list = ArrayList<MultiItemEntity>()
-                if (data.datas != null)
+                if (data?.datas != null)
                     list.addAll(data.datas!!)
-                if (data.newProfessional != null)
+                if (data?.newProfessional != null)
                     list.addAll(data.newProfessional!!)
-                if (data.jigouUsers != null)
+                if (data?.jigouUsers != null)
                     list.addAll(data.jigouUsers!!)
                 mAdapter.setNewData(list as List<MultiItemEntity>?)
             }

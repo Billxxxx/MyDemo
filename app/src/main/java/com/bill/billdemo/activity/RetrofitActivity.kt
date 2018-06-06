@@ -23,18 +23,18 @@ class RetrofitActivity : AppCompatActivity() {
     }
 
     private fun refresh() {
-        CaidouApi.startRequest("v3_app_index_hj", object : CaidouApiCallBack<RecommendExpertListResp> {
-            override fun onFailure(t: Throwable) {
-                Log.d("TAG", "onFailure")
-            }
-
-            override fun onComplete() {
-                Log.d("TAG", "onComplete")
-            }
-
-            override fun onSuccess(data: RecommendExpertListResp) {
-                Log.d("TAG", "onSuccess")
-            }
-        })
+//        CaidouApi.startRequest("v3_app_index_hj", object : CaidouApiCallBack<RecommendExpertListResp> {
+//            override fun onFailure(t: Throwable) {
+//                Log.d("TAG", "onFailure")
+//            }
+//
+//            override fun onComplete() {
+//                Log.d("TAG", "onComplete")
+//            }
+//
+//            override fun onSuccess(data: RecommendExpertListResp) {
+//                Log.d("TAG", "onSuccess")
+//            }
+//        })
     }
 }
