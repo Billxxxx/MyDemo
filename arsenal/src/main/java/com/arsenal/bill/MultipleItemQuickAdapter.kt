@@ -9,11 +9,12 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
-class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultiItemEntity>?, var enableVHTypes: List<IVHType>) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(data) {
+class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultiItemEntity>?, var enableVHTypes: List<IVHType?>) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(data) {
 
     init {
         enableVHTypes.forEach {
-            addItemType(it.getItemType(), it.getLayoutId())
+            if (it != null)
+                addItemType(it.getItemType(), it.getLayoutId())
         }
     }
 
@@ -24,7 +25,7 @@ class MultipleItemQuickAdapter(val context: Context, data: MutableList<MultiItem
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         enableVHTypes.forEach {
-            if (it.getItemType() == viewType && it.getLayoutId() <= 0) {
+            if (it != null && it.getItemType() == viewType && it.getLayoutId() <= 0) {
                 val constructor = Class.forName(it.getVHClass().name).getDeclaredConstructor(LayoutInflater::class.java, ViewGroup::class.java)
                 //根据构造函数，传入值生成实例
                 return constructor.newInstance(mLayoutInflater, parent) as BaseViewHolder

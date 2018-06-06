@@ -29,5 +29,5 @@ abstract class BaseListActivity : ArsenalBaseActivity() {
         mRecyclerView.adapter = mAdapter
     }
 
-    abstract fun getVHTypes(): List<IVHType>
+    abstract fun getVHTypes(): List<IVHType?>
 }

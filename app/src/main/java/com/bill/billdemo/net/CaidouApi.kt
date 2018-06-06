@@ -12,29 +12,31 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CaidouApi<T : IResp>(var c: T, callback: CaidouApiCallBack<IResp>) {
+class CaidouApi<T : IResp>(var c: T?, callback: CaidouApiCallBack<IResp>) {
     init {
-        val call = getCall(c.getCommand())
+        if (c != null) {
+            val call = getCall(c!!.getCommand())
 
-        // Execute the call asynchronously. Get a positive or negative callback.
-        call?.enqueue(object : Callback<BaseResp> {
-            override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {
-                if (response != null) {
-                    if (response.body()?.code == 0)
-                        callback.onSuccess(Gson().fromJson(response.body()?.json, c.javaClass))
-                    else {
-                        callback.onFailure(Throwable("not success"))
+            // Execute the call asynchronously. Get a positive or negative callback.
+            call?.enqueue(object : Callback<BaseResp> {
+                override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {
+                    if (response != null) {
+                        if (response.body()?.code == 0)
+                            callback.onSuccess(Gson().fromJson(response.body()?.json, c!!.javaClass))
+                        else {
+                            callback.onFailure(Throwable("not success"))
+                        }
                     }
+                    callback.onComplete()
                 }
-                callback.onComplete()
-            }
 
-            override fun onFailure(call: Call<BaseResp>, t: Throwable) {
-                t.printStackTrace()
-                callback.onFailure(t)
-                callback.onComplete()
-            }
-        })
+                override fun onFailure(call: Call<BaseResp>, t: Throwable) {
+                    t.printStackTrace()
+                    callback.onFailure(t)
+                    callback.onComplete()
+                }
+            })
+        }
     }
 
     private fun getCall(commend: String): Call<BaseResp>? {

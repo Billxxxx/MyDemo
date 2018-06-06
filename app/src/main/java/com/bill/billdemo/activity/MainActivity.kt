@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
+import com.bill.billdemo.entity.RecommendExpertListResp
+import com.bill.billdemo.entity.VHType
 import kotlinx.android.synthetic.main.ac_main.*
 
 
@@ -24,7 +26,10 @@ class MainActivity : AppCompatActivity() {
             ARouter.getInstance().build("/bill/sample_list").navigation();
         }
         base_list_btn.setOnClickListener {
-            ARouter.getInstance().build("/bill/base_list").navigation();
+            ARouter.getInstance().build("/bill/base_list")
+                    .withObject("vh_types", VHType.USER_TYPE)
+                    .withObject("resp", RecommendExpertListResp())
+                    .navigation();
         }
         retrofit_tv.setOnClickListener {
             ARouter.getInstance().build("/bill/retrofit").navigation();
