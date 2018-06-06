@@ -9,15 +9,15 @@ import com.bill.billdemo.entity.CaidouApiCallBack
 import com.bill.billdemo.entity.RecommendExpertListResp
 import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.CaidouApi
-import com.chad.library.adapter.base.entity.MultiItemEntity
-import java.util.*
+import com.bill.billdemo.net.IListResp
+import com.bill.billdemo.net.IResp
 
 @Route(path = "/bill/base_list")
 class BaseListActivity : BaseListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CaidouApi(RecommendExpertListResp::class.java).startRequest("v3_app_index_hj", object : CaidouApiCallBack<RecommendExpertListResp> {
+        CaidouApi(RecommendExpertListResp(), object : CaidouApiCallBack<IResp> {
             override fun onFailure(t: Throwable) {
                 Log.d("TAG", "onFailure")
             }
@@ -26,17 +26,10 @@ class BaseListActivity : BaseListActivity() {
                 Log.d("TAG", "onComplete")
             }
 
-            override fun onSuccess(data: RecommendExpertListResp?) {
+            override fun onSuccess(data: IResp?) {
                 Log.d("TAG", "onSuccess")
-
-                val list = ArrayList<MultiItemEntity>()
-                if (data?.datas != null)
-                    list.addAll(data.datas!!)
-                if (data?.newProfessional != null)
-                    list.addAll(data.newProfessional!!)
-                if (data?.jigouUsers != null)
-                    list.addAll(data.jigouUsers!!)
-                mAdapter.setNewData(list as List<MultiItemEntity>?)
+                if (data is IListResp)
+                    mAdapter.setNewData(data.getList())
             }
         })
     }
