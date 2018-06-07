@@ -1,6 +1,5 @@
-package com.arsenal.bill
+package com.arsenal.bill.recyclerview
 
-import android.databinding.ViewDataBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

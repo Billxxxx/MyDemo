@@ -5,8 +5,8 @@ import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.arsenal.bill.BaseListActivity
-import com.arsenal.bill.entity.IVHType
+import com.arsenal.bill.activity.BaseListActivity
+import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.entity.CaidouApiCallBack
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.CaidouApi

@@ -1,4 +1,4 @@
-package com.arsenal.bill
+package com.arsenal.bill.recyclerview
 
 import android.databinding.ViewDataBinding
 

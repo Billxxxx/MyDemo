@@ -1,6 +1,5 @@
-package com.arsenal.bill.entity
+package com.arsenal.bill.recyclerview
 
-import com.arsenal.bill.BaseVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
 interface IVHType {

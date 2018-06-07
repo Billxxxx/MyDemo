@@ -1,4 +1,4 @@
-package com.arsenal.bill
+package com.arsenal.bill.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

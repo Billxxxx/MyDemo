@@ -1,7 +1,7 @@
 package com.bill.billdemo.entity
 
-import com.arsenal.bill.BaseVH
-import com.arsenal.bill.entity.IVHType
+import com.arsenal.bill.recyclerview.BaseVH
+import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.R
 import com.bill.billdemo.viewholder.ImageTextVH
 import com.bill.billdemo.viewholder.UserVH

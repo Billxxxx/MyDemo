@@ -2,7 +2,7 @@ package com.bill.billdemo.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.arsenal.bill.BaseDataBindingVH
+import com.arsenal.bill.recyclerview.BaseDataBindingVH
 import com.bill.billdemo.databinding.VhUserBinding
 import com.bill.billdemo.entity.UserBean
 

@@ -1,4 +1,4 @@
-package com.arsenal.bill
+package com.arsenal.bill.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,8 +28,8 @@ class RetrofitHelper(url: String, converter: Converter.Factory) {
     init {
         val builder = Retrofit.Builder()
                 .baseUrl(url).apply {
-                addConverterFactory(converter)
-        }
+                    addConverterFactory(converter)
+                }
         retrofit = builder.client(OkHttpClient.Builder().apply {
             //声明日志类
             addInterceptor(HttpLoggingInterceptor().apply {

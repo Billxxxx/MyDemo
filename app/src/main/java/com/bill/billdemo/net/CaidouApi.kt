@@ -1,6 +1,6 @@
 package com.bill.billdemo.net
 
-import com.arsenal.bill.RetrofitHelper
+import com.arsenal.bill.retrofit.RetrofitHelper
 import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.DesEncrypt

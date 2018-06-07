@@ -2,7 +2,7 @@ package com.bill.billdemo.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.arsenal.bill.BaseVH
+import com.arsenal.bill.recyclerview.BaseVH
 import com.bill.billdemo.R
 import com.chad.library.adapter.base.entity.MultiItemEntity
 

@@ -1,9 +1,8 @@
-package com.arsenal.bill
+package com.arsenal.bill.recyclerview
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.arsenal.bill.entity.IVHType
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
 

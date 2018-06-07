@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 
 import com.alibaba.android.arouter.launcher.ARouter
-import com.arsenal.bill.RetrofitHelper
+import com.arsenal.bill.retrofit.RetrofitHelper
 import com.bill.billdemo.entity.CustomConverterFactory
 import com.facebook.stetho.Stetho
 import com.orhanobut.logger.AndroidLogAdapter

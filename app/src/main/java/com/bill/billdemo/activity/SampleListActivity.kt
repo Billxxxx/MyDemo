@@ -2,9 +2,9 @@ package com.bill.billdemo.activity
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.arsenal.bill.BaseListActivity
-import com.arsenal.bill.entity.IVHType
-import com.arsenal.bill.entity.MultipleItem
+import com.arsenal.bill.activity.BaseListActivity
+import com.arsenal.bill.recyclerview.IVHType
+import com.arsenal.bill.recyclerview.MultipleItem
 import com.bill.billdemo.entity.ViewHolderType
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import java.util.*

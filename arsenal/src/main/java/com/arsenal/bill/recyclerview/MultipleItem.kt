@@ -1,4 +1,4 @@
-package com.arsenal.bill.entity
+package com.arsenal.bill.recyclerview
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
