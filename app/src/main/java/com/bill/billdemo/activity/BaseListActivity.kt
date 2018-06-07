@@ -8,11 +8,11 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.BaseListActivity
 import com.arsenal.bill.entity.IVHType
 import com.bill.billdemo.entity.CaidouApiCallBack
-import com.bill.billdemo.entity.RecommendExpertListResp
 import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.CaidouApi
 import com.bill.billdemo.net.IListResp
 import com.bill.billdemo.net.IResp
+import com.bill.billdemo.net.RequestInfo
 
 
 @Route(path = "/bill/base_list")
@@ -22,12 +22,12 @@ class BaseListActivity : BaseListActivity() {
     var vh_types: VHType? = null    // 支持解析自定义对象，URL中使用json传递
     @Autowired(name = "resp")
     @JvmField
-    var resp: IResp? = null    // 支持解析自定义对象，URL中使用json传递
+    var resp: RequestInfo? = null    // 支持解析自定义对象，URL中使用json传递
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this);
         super.onCreate(savedInstanceState)
-        CaidouApi(RecommendExpertListResp(), object : CaidouApiCallBack<IResp> {
+        CaidouApi(resp, object : CaidouApiCallBack<IResp> {
             override fun onFailure(t: Throwable) {
                 Log.d("TAG", "onFailure")
             }

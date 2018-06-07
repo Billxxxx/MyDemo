@@ -5,9 +5,6 @@ import com.bill.billdemo.net.IResp
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
 class RecommendExpertListResp : IResp(), IListResp {
-    override fun getCommand(): String {
-        return "v3_app_index_hj"
-    }
 
     override fun getList(): ArrayList<MultiItemEntity> {
         val list = java.util.ArrayList<MultiItemEntity>()

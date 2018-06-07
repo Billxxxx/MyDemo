@@ -12,17 +12,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CaidouApi<T : IResp>(var c: T?, callback: CaidouApiCallBack<IResp>) {
+class CaidouApi<T : RequestInfo>(var c: T?, callback: CaidouApiCallBack<IResp>) {
     init {
         if (c != null) {
-            val call = getCall(c!!.getCommand())
+            val call = getCall(c!!.command)
 
             // Execute the call asynchronously. Get a positive or negative callback.
             call?.enqueue(object : Callback<BaseResp> {
                 override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {
                     if (response != null) {
                         if (response.body()?.code == 0)
-                            callback.onSuccess(Gson().fromJson(response.body()?.json, c!!.javaClass))
+                            callback.onSuccess(Gson().fromJson(response.body()?.json, c!!.clazz))
                         else {
                             callback.onFailure(Throwable("not success"))
                         }
