@@ -2,14 +2,10 @@ package com.bill.billdemo.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bill.billdemo.R
-import com.bill.billdemo.entity.CaidouApiCallBack
-import com.bill.billdemo.entity.RecommendExpertListResp
-import com.bill.billdemo.net.CaidouApi
 
 @Route(path = "/bill/retrofit")
 class RetrofitActivity : AppCompatActivity() {

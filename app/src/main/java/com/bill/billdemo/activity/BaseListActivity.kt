@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.BaseListActivity
 import com.arsenal.bill.entity.IVHType
 import com.bill.billdemo.entity.CaidouApiCallBack
-import com.bill.billdemo.entity.VHType
+import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.CaidouApi
 import com.bill.billdemo.net.IListResp
 import com.bill.billdemo.net.IResp
@@ -19,7 +19,7 @@ import com.bill.billdemo.net.RequestInfo
 class BaseListActivity : BaseListActivity() {
     @Autowired(name = "vh_types")
     @JvmField
-    var vh_types: VHType? = null    // 支持解析自定义对象，URL中使用json传递
+    var vh_types: ViewHolderType? = null    // 支持解析自定义对象，URL中使用json传递
     @Autowired(name = "resp")
     @JvmField
     var resp: RequestInfo? = null    // 支持解析自定义对象，URL中使用json传递

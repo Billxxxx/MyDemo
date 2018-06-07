@@ -20,6 +20,9 @@ android {
             storePassword '123456'
         }
     }
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.bill.billdemo"
         minSdkVersion 21

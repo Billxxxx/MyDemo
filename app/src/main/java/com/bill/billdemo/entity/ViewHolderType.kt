@@ -7,7 +7,7 @@ import com.bill.billdemo.viewholder.ImageTextVH
 import com.bill.billdemo.viewholder.UserVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
-enum class VHType(var vhClass: Class<out BaseVH>, var sameVHType: VHType? = null)
+enum class ViewHolderType(var vhClass: Class<out BaseVH<out MultiItemEntity>>, var sameVHType: ViewHolderType? = null)
     : MultiItemEntity, IVHType {
     DEFAULT(R.layout.vh_default),
     TEXT(R.layout.vh_text_view),
@@ -21,7 +21,7 @@ enum class VHType(var vhClass: Class<out BaseVH>, var sameVHType: VHType? = null
     /**
      * 简单的ViewHolder 之传入布局进行初始化
      */
-    constructor(layout: Int, sameVHType: VHType? = null) {
+    constructor(layout: Int, sameVHType: ViewHolderType? = null) {
         this.layout = layout
         this.sameVHType = sameVHType
     }
@@ -34,7 +34,7 @@ enum class VHType(var vhClass: Class<out BaseVH>, var sameVHType: VHType? = null
             return ordinal
     }
 
-    override fun getVHClass(): Class<out BaseVH> {
+    override fun getVHClass(): Class<out BaseVH<out MultiItemEntity>> {
         return vhClass
     }
 
