@@ -1,7 +1,7 @@
 package com.bill.billdemo.entity
 
-import com.bill.billdemo.net.IListResp
-import com.bill.billdemo.net.IResp
+import com.arsenal.bill.net.IListResp
+import com.arsenal.bill.net.IResp
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
 class RecommendExpertListResp : IResp(), IListResp {

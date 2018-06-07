@@ -1,5 +1,6 @@
 package com.bill.billdemo.net
 
+import com.arsenal.bill.net.IResp
 import com.arsenal.bill.retrofit.RetrofitHelper
 import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig

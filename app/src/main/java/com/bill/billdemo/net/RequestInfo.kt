@@ -1,5 +1,6 @@
 package com.bill.billdemo.net
 
+import com.arsenal.bill.net.IResp
 import com.bill.billdemo.entity.RecommendExpertListResp
 
 enum class RequestInfo(var command: String, var clazz: Class<out IResp>) {

@@ -10,8 +10,8 @@ import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.entity.CaidouApiCallBack
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.CaidouApi
-import com.bill.billdemo.net.IListResp
-import com.bill.billdemo.net.IResp
+import com.arsenal.bill.net.IListResp
+import com.arsenal.bill.net.IResp
 import com.bill.billdemo.net.RequestInfo
 
 
