@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 class RecommendExpertListResp : IResp(), IListResp {
 
     override fun getList(): ArrayList<MultiItemEntity> {
-        val list = java.util.ArrayList<MultiItemEntity>()
+        val list =  ArrayList<MultiItemEntity>()
         if (datas != null)
             list.addAll(datas!!)
         if (newProfessional != null)

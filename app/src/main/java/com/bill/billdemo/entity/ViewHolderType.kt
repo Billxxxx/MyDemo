@@ -3,6 +3,7 @@ package com.bill.billdemo.entity
 import com.arsenal.bill.recyclerview.BaseVH
 import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.R
+import com.bill.billdemo.viewholder.CommunityVH
 import com.bill.billdemo.viewholder.ImageTextVH
 import com.bill.billdemo.viewholder.UserVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
@@ -13,7 +14,8 @@ enum class ViewHolderType(var vhClass: Class<out BaseVH<out MultiItemEntity>>, v
     TEXT(R.layout.vh_text_view),
     IMAGE(R.layout.item_image_view),
     IMAGE_TEXT(ImageTextVH::class.java),
-    USER_TYPE(UserVH::class.java)
+    USER_TYPE(UserVH::class.java),
+    COMMUNITY_TYPE(CommunityVH::class.java)
     ;
 
     var layout: Int = -1

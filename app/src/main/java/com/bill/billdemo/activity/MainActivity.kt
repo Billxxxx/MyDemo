@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         }
         base_list_btn.setOnClickListener {
             ARouter.getInstance().build("/bill/base_list")
-                    .withObject("vh_types", ViewHolderType.USER_TYPE)
-                    .withObject("resp", RequestInfo.Expert_List)
+                    .withObject("vh_types", ViewHolderType.COMMUNITY_TYPE)
+                    .withObject("resp", RequestInfo.Community_List)
                     .navigation();
         }
         retrofit_tv.setOnClickListener {
