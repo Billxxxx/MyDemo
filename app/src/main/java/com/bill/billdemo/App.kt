@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 
 import com.alibaba.android.arouter.launcher.ARouter
+import com.arsenal.bill.ArsenalApp
 import com.arsenal.bill.retrofit.RetrofitHelper
 import com.bill.billdemo.entity.CustomConverterFactory
 import com.facebook.stetho.Stetho
@@ -17,6 +18,8 @@ class App : Application() {
         super.onCreate()
         instance = this
         context = this
+
+        ArsenalApp.context = this
         //初始化Stetho调试工具
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
