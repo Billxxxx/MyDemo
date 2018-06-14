@@ -22,5 +22,6 @@
         <activity android:name=".activity.SampleListActivity"/>
         <activity android:name=".activity.BaseListActivity"/>
         <activity android:name=".activity.RetrofitActivity"/>
+        <activity android:name=".activity.ExpertMainActivity"/>
     </application>
 </manifest>

@@ -21,19 +21,3 @@ fun getScreenDensity(): Float {
     }
     return screenDensity
 }
-
-fun Int.dpToPx(): Int {
-    val scale = getScreenDensity()
-    return (this * scale + 0.5f).toInt()
-}
-
-fun Float.dpToPx(): Float {
-    val scale = getScreenDensity()
-    return this * scale + 0.5f
-}
-
-//
-fun Double.dpToPx(): Double {
-    val scale = getScreenDensity()
-    return this * scale + 0.5f
-}

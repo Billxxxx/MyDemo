@@ -19,13 +19,17 @@ import com.bill.billdemo.net.RequestInfo
 class BaseListActivity : BaseListActivity() {
     @Autowired(name = "vh_types")
     @JvmField
-    var vh_types: ViewHolderType? = null    // 支持解析自定义对象，URL中使用json传递
+    var vh_types: ViewHolderType? = null
     @Autowired(name = "resp")
     @JvmField
-    var resp: RequestInfo? = null    // 支持解析自定义对象，URL中使用json传递
+    var resp: RequestInfo? = null
+    @Autowired(name = "list_page_auth")
+    @JvmField
+    var list_page_auth: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this);
+        listPageAuthority = list_page_auth
         super.onCreate(savedInstanceState)
         CaidouApi(resp, object : CaidouApiCallBack<IResp> {
             override fun onFailure(t: Throwable) {
