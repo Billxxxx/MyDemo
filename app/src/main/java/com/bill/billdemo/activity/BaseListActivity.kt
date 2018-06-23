@@ -12,20 +12,21 @@ import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.CaidouApi
 import com.arsenal.bill.net.IListResp
 import com.arsenal.bill.net.IResp
+import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.bill.billdemo.net.RequestInfo
 
 
-@Route(path = "/bill/base_list")
+//@Route(path = "/bill/base_list")
 class BaseListActivity : BaseListActivity() {
-    @Autowired(name = "vh_types")
-    @JvmField
-    var vh_types: ViewHolderType? = null
-    @Autowired(name = "resp")
-    @JvmField
-    var resp: RequestInfo? = null
-    @Autowired(name = "list_page_auth")
-    @JvmField
-    var list_page_auth: Int = 0
+//    @Autowired(name = "vh_types")
+//    @JvmField
+//    var vh_types: IVHType? = null
+//    @Autowired(name = "resp")
+//    @JvmField
+//    var resp: BaseRequestInfo? = null
+//    @Autowired(name = "list_page_auth")
+//    @JvmField
+//    var list_page_auth: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this);
@@ -48,7 +49,7 @@ class BaseListActivity : BaseListActivity() {
         })
     }
 
-    override fun getVHTypes(): List<IVHType?> {
-        return listOf(vh_types)
-    }
+//    override fun getVHTypes(): List<IVHType?> {
+//        return listOf(vh_types)
+//    }
 }

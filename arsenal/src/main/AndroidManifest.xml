@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.arsenal.bill"/>
+          package="com.arsenal.bill">
+
+    <application>
+        <activity android:name=".activity.BaseListActivity"/>
+    </application>
+</manifest>

@@ -17,9 +17,9 @@ class SampleListActivity : BaseListActivity() {
         mAdapter.setNewData(getMultipleItemData() as List<MultiItemEntity>?)
     }
 
-    override fun getVHTypes(): List<IVHType> {
-        return listOf(ViewHolderType.TEXT, ViewHolderType.IMAGE, ViewHolderType.IMAGE_TEXT)
-    }
+//    override fun getVHTypes(): List<IVHType> {
+//        return listOf(ViewHolderType.TEXT, ViewHolderType.IMAGE, ViewHolderType.IMAGE_TEXT)
+//    }
 
     fun getMultipleItemData(): MutableList<MultipleItem> {
         val list = ArrayList<MultipleItem>()

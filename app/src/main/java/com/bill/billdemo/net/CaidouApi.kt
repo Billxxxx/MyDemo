@@ -1,6 +1,7 @@
 package com.bill.billdemo.net
 
 import com.arsenal.bill.net.IResp
+import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.retrofit.RetrofitHelper
 import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig
@@ -13,17 +14,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CaidouApi<T : RequestInfo>(var c: T?, callback: CaidouApiCallBack<IResp>) {
+class CaidouApi<T : BaseRequestInfo>(var c: T?, callback: CaidouApiCallBack<IResp>) {
     init {
         if (c != null) {
-            val call = getCall(c!!.command)
+            val call = getCall(c!!.getCommand())
 
             // Execute the call asynchronously. Get a positive or negative callback.
             call?.enqueue(object : Callback<BaseResp> {
                 override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {
                     if (response != null) {
                         if (response.body()?.code == 0)
-                            callback.onSuccess(Gson().fromJson(response.body()?.json, c!!.clazz))
+                            callback.onSuccess(Gson().fromJson(response.body()?.json, c!!.getClazz()))
                         else {
                             callback.onFailure(Throwable("not success"))
                         }

@@ -6,22 +6,37 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.arsenal.bill.R
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.recyclerview.MultipleItem
 import com.arsenal.bill.recyclerview.MultipleItemQuickAdapter
+import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.util.checkAuth
 import com.arsenal.bill.util.dpToPx
 import com.yqritc.recyclerviewflexibledivider.FlexibleDividerDecoration
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import java.io.Serializable
 
-abstract class BaseListActivity :
+@Route(path = "/base/base_list")
+
+open class BaseListActivity :
         ArsenalBaseActivity(),
         FlexibleDividerDecoration.PaintProvider,//分割线的画笔
         FlexibleDividerDecoration.VisibilityProvider,//分割线是否显示
         HorizontalDividerItemDecoration.MarginProvider //分割线左右间距
 {
+
+//    @Autowired(name = "vh_types")
+//    @JvmField
+    var vh_types: IVHType? = null
+//    @Autowired(name = "resp")
+//    @JvmField
+    var resp: BaseRequestInfo? = null
+//    @Autowired(name = "list_page_auth")
+//    @JvmField
+    var list_page_auth: Int = 0
 
     lateinit var mRecyclerView: RecyclerView
     var mSwipeRefreshLayout: SwipeRefreshLayout? = null
@@ -87,7 +102,9 @@ abstract class BaseListActivity :
     /**
      * 本页启用的ViewHolder
      */
-    abstract fun getVHTypes(): List<IVHType?>
+    fun getVHTypes(): List<IVHType?> {
+        return listOf(vh_types)
+    }
 
     /**
      * 设置分割线画笔
