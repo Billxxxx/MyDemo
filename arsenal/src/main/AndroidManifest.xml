@@ -2,6 +2,5 @@
           package="com.arsenal.bill">
 
     <application>
-        <activity android:name=".activity.BaseListActivity"/>
     </application>
 </manifest>
