@@ -3,10 +3,12 @@ package com.arsenal.bill.controller
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.Paint
+import android.support.v4.app.FragmentActivity
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.R
 import com.arsenal.bill.net.CaidouApiCallBack
@@ -23,7 +25,7 @@ import com.arsenal.bill.util.dpToPx
 import com.yqritc.recyclerviewflexibledivider.FlexibleDividerDecoration
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 
-open class BaseListControl(var mIBaseListControl: IBaseListControl) :
+open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseListControl) :
         FlexibleDividerDecoration.PaintProvider,//分割线的画笔
         FlexibleDividerDecoration.VisibilityProvider,//分割线是否显示
         HorizontalDividerItemDecoration.MarginProvider //分割线左右间距
@@ -31,14 +33,20 @@ open class BaseListControl(var mIBaseListControl: IBaseListControl) :
     lateinit var mRecyclerView: RecyclerView
     open lateinit var mAdapter: MultipleItemQuickAdapter
     var mSwipeRefreshLayout: SwipeRefreshLayout? = null
+    lateinit var mRootView: View
 
-    constructor(mIBaseListControl: IBaseListControl, activity: Activity) : this(mIBaseListControl) {   //不可以用kotlinX getLayout()可能被重写
+    init {
         ARouter.getInstance().inject(activity);
-        initView(activity)
-        initData(activity)
+        mRootView = activity.layoutInflater.inflate(mIBaseListControl.getLayoutID(), null)
+
     }
 
-    private fun initData(activity: Activity) {
+    public fun init() {
+        initView()
+        initData()
+    }
+
+    private fun initData() {
         mRecyclerView.setHasFixedSize(true)
 
         mAdapter = MultipleItemQuickAdapter(activity, null, mIBaseListControl.getVHTypes())
@@ -77,9 +85,9 @@ open class BaseListControl(var mIBaseListControl: IBaseListControl) :
         })
     }
 
-    private fun initView(activity: Activity) {
-        mRecyclerView = activity.findViewById(R.id.rv_list)
-        mSwipeRefreshLayout = activity.findViewById(R.id.swipe_layout)
+    private fun initView() {
+        mRecyclerView = mRootView.findViewById(R.id.rv_list)
+        mSwipeRefreshLayout = mRootView.findViewById(R.id.swipe_layout)
         mSwipeRefreshLayout?.isEnabled = !mIBaseListControl.getListPageAuthority().checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
     }
 
@@ -113,6 +121,7 @@ open class BaseListControl(var mIBaseListControl: IBaseListControl) :
     override fun shouldHideDivider(position: Int, parent: RecyclerView?): Boolean {
         return false
     }
+
     /**
      * 是否自动初始化,默认：true
      */

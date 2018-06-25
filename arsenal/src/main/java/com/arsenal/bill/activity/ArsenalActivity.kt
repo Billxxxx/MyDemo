@@ -13,7 +13,8 @@ abstract class ArsenalListActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutID())
         baseListControl = BaseListControl(this, this)
+        setContentView(baseListControl.mRootView)
+        baseListControl.init()
     }
 }

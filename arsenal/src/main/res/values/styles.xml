@@ -1,10 +1,15 @@
 <resources>
-
-
     <style name="bg">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">#f0f0f0</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <!--灰色分割线-->
+    <style name="HorizontalLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/line_color</item>
+        <item name="android:layout_height">@dimen/horizontal_line_height</item>
     </style>
 </resources>

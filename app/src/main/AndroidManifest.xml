@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.ExpertSayMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,6 +22,6 @@
         <activity android:name=".activity.SampleListActivity"/>
         <activity android:name=".activity.BaseListActivity"/>
         <activity android:name=".activity.RetrofitActivity"/>
-        <activity android:name=".activity.ExpertMainActivity"/>
+        <!--<activity android:name=".activity.ExpertSayMainActivity"/>-->
     </application>
 </manifest>

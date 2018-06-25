@@ -12,7 +12,7 @@
         android:id="@+id/sample_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sample_list"/>
+        android:text="expert_main"/>
 
     <Button
         android:id="@+id/base_list_btn"
