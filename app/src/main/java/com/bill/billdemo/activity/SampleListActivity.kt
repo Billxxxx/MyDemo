@@ -17,8 +17,7 @@ class SampleListActivity : ArsenalListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mAdapter.setNewData(getMultipleItemData() as List<MultiItemEntity>?)
+        baseListControl.mAdapter.setNewData(getMultipleItemData() as List<MultiItemEntity>?)
     }
 
     override fun getVHTypes(): List<IVHType> {

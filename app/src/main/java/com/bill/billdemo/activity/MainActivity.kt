@@ -3,7 +3,7 @@ package com.bill.billdemo.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
-import com.arsenal.bill.activity.BaseListAuth
+import com.arsenal.bill.recyclerview.BaseListAuth
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.ViewHolderType
