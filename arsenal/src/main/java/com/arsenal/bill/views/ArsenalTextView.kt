@@ -2,7 +2,6 @@ package com.arsenal.bill.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.TextView
 
 class ArsenalTextView : android.support.v7.widget.AppCompatTextView {
     constructor(context: Context) : super(context) {}

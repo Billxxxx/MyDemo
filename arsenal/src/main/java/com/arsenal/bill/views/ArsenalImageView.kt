@@ -2,7 +2,6 @@ package com.arsenal.bill.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
 
 class ArsenalImageView : android.support.v7.widget.AppCompatImageView {
     constructor(context: Context) : super(context) {}

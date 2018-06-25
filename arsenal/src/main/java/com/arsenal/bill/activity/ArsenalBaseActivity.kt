@@ -1,14 +1,8 @@
 package com.arsenal.bill.activity
 
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.arsenal.bill.util.dpToPx
-import com.yqritc.recyclerviewflexibledivider.FlexibleDividerDecoration
-
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.Utils
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase

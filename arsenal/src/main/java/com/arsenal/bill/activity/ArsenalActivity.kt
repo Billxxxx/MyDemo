@@ -23,7 +23,7 @@ import com.yqritc.recyclerviewflexibledivider.FlexibleDividerDecoration
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import java.io.Serializable
 
-abstract class ArsenalActivity :
+abstract class ArsenalListActivity :
         ArsenalBaseActivity(),
         FlexibleDividerDecoration.PaintProvider,//分割线的画笔
         FlexibleDividerDecoration.VisibilityProvider,//分割线是否显示
