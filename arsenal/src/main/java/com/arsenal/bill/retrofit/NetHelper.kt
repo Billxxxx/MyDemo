@@ -3,12 +3,15 @@ package com.arsenal.bill.retrofit
 import com.arsenal.bill.net.BaseResp
 import com.arsenal.bill.net.CaidouApiCallBack
 import com.arsenal.bill.net.IResp
-import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
 
-class NetHelper(url: String, converter: Converter.Factory, var getCall: (String) -> Call<BaseResp>?) {
+class NetHelper(url: String,
+                converter: Converter.Factory,
+                var getCall: (String) -> Call<BaseResp>?,
+                var onRequestResponse: (requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) -> Unit
+) {
     var retrofit: Retrofit
 
     companion object {
@@ -17,9 +20,13 @@ class NetHelper(url: String, converter: Converter.Factory, var getCall: (String)
                 return field
             }
 
-        fun init(url: String, converter: Converter.Factory, getCall: (String) -> Call<BaseResp>?): NetHelper {
+        fun init(url: String,
+                 converter: Converter.Factory,
+                 getCall: (String) -> Call<BaseResp>?,
+                 onRequestResponse: (requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) -> Unit
+        ): NetHelper {
             if (helper == null) {
-                helper = NetHelper(url, converter, getCall)
+                helper = NetHelper(url, converter, getCall, onRequestResponse)
             }
 
             return helper!!
@@ -32,29 +39,20 @@ class NetHelper(url: String, converter: Converter.Factory, var getCall: (String)
     }
 
     fun startRequest(requestInfo: BaseRequestInfo?, callback: CaidouApiCallBack<IResp>) {
-        if (requestInfo != null) {
-            val call = getCall(requestInfo.getCommand())
-            if (call != null) {
-                call.enqueue(object : Callback<BaseResp> {
-                    override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {
-                        if (response != null) {
-                            if (response.body()?.code == 0)
-                                callback.onSuccess(Gson().fromJson(response.body()?.json, requestInfo.getClazz()))
-                            else {
-                                callback.onFailure(Throwable("not success"))
-                            }
-                        }
-                        callback.onComplete()
-                    }
-
-                    override fun onFailure(call: Call<BaseResp>, t: Throwable) {
-                        t.printStackTrace()
-                        callback.onFailure(t)
-                        callback.onComplete()
-                    }
-                })
+        if (requestInfo == null) return
+        val call = getCall(requestInfo.getCommand())
+        if (call == null) return
+        call.enqueue(object : Callback<BaseResp> {
+            override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {
+                onRequestResponse(requestInfo, response, callback)
             }
-        }
+
+            override fun onFailure(call: Call<BaseResp>, t: Throwable) {
+                t.printStackTrace()
+                callback.onFailure(t)
+                callback.onComplete()
+            }
+        })
     }
 
     init {

@@ -25,8 +25,8 @@ public class ConstantUtils {
 
 
     /*
-    * api---天气
-    * */
+     * api---天气
+     * */
     public static final String BASE_URL = "http://tianqi.2345.com/";
 
 }

@@ -6,7 +6,12 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.R
+import com.arsenal.bill.net.CaidouApiCallBack
+import com.arsenal.bill.net.IListResp
+import com.arsenal.bill.net.IResp
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.recyclerview.MultipleItem
 import com.arsenal.bill.recyclerview.MultipleItemQuickAdapter
@@ -44,6 +49,7 @@ abstract class ArsenalActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutID())
+        ARouter.getInstance().inject(this);
         if (isAutoInit())
             initListActivity()
     }
@@ -73,7 +79,21 @@ abstract class ArsenalActivity :
                 .marginProvider(this)
                 .build())
 
-        NetHelper.helper?.startRequest(getRequestInfo())
+        NetHelper.helper?.startRequest(getRequestInfo(), object : CaidouApiCallBack<IResp> {
+            override fun onFailure(t: Throwable) {
+                Log.d("TAG", "onFailure")
+            }
+
+            override fun onComplete() {
+                Log.d("TAG", "onComplete")
+            }
+
+            override fun onSuccess(data: IResp?) {
+                Log.d("TAG", "onSuccess")
+                if (data is IListResp)
+                    mAdapter.setNewData(data.getList())
+            }
+        })
     }
 
     //不可以用kotlinX getLayout()可能被重写

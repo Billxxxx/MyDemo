@@ -4,11 +4,9 @@ import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.arsenal.bill.recyclerview.BaseDataBindingVH
-import com.arsenal.bill.util.loadUrl
 import com.bill.billdemo.R
 import com.bill.billdemo.databinding.VhCommunityBinding
 import com.bill.billdemo.entity.CommunityBean
-import kotlinx.android.synthetic.main.vh_community.view.*
 
 class CommunityVH(
         i: LayoutInflater,

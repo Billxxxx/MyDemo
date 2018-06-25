@@ -6,14 +6,19 @@ import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.ArsenalApp
 import com.arsenal.bill.net.BaseResp
+import com.arsenal.bill.net.CaidouApiCallBack
+import com.arsenal.bill.net.IResp
+import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.retrofit.NetHelper
 import com.bill.billdemo.entity.CustomConverterFactory
 import com.bill.billdemo.net.CDApiClient
 import com.facebook.stetho.Stetho
+import com.google.gson.Gson
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import retrofit2.Call
+import retrofit2.Response
 
 class App : Application() {
     lateinit var context: Context
@@ -41,9 +46,7 @@ class App : Application() {
             url = getString(R.string.release_url)
         }
 
-        NetHelper.init(url, CustomConverterFactory.create()) {
-            getCall(it)
-        }
+        NetHelper.init(url, CustomConverterFactory.create(), ::getCall, ::onRequestResponse)
 
         val formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
@@ -55,6 +58,16 @@ class App : Application() {
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
     }
 
+    private fun onRequestResponse(requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) {
+        if (response != null) {
+            if (response.body()?.code == 0)
+                callback.onSuccess(Gson().fromJson(response.body()?.json, requestInfo.getClazz()))
+            else {
+                callback.onFailure(Throwable("not success"))
+            }
+        }
+        callback.onComplete()
+    }
 
     private fun getCall(commend: String): Call<BaseResp>? {
 

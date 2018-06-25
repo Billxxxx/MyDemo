@@ -28,7 +28,7 @@ internal class CustomResponseBodyConverter<T>(private val type: Type) : Converte
                 val enjsonStr = jsonParser.parse(response).asJsonObject.get("json").asString
                 val desString = DesEncrypt.getDesString(enjsonStr)
                 Logger.json(desString)
-                val jsonObject =jsonParser.parse(desString).asJsonObject
+                val jsonObject = jsonParser.parse(desString).asJsonObject
                 val result = Gson().fromJson<BaseResp>(desString, type)
                 return result as T
             } catch (e: Exception) {
