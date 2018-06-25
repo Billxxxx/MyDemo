@@ -1,6 +1,6 @@
 package com.bill.billdemo.net;
 
-import com.bill.billdemo.entity.BaseResp;
+import com.arsenal.bill.net.BaseResp;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

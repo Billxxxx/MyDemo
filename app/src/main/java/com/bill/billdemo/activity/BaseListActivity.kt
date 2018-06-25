@@ -6,12 +6,13 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.activity.ArsenalActivity
+import com.arsenal.bill.net.CaidouApiCallBack
 import com.arsenal.bill.net.IListResp
 import com.arsenal.bill.net.IResp
 import com.arsenal.bill.recyclerview.IVHType
-import com.bill.billdemo.entity.CaidouApiCallBack
+import com.arsenal.bill.retrofit.BaseRequestInfo
+import com.arsenal.bill.retrofit.NetHelper
 import com.bill.billdemo.entity.ViewHolderType
-import com.bill.billdemo.net.CaidouApi
 import com.bill.billdemo.net.RequestInfo
 
 
@@ -30,6 +31,10 @@ class BaseListActivity : ArsenalActivity() {
     @JvmField
     var resp: RequestInfo? = null
 
+    override fun getRequestInfo(): BaseRequestInfo? {
+        return resp
+    }
+
     @Autowired(name = "list_page_auth")
     @JvmField
     var list_page_auth: Int = 0
@@ -41,7 +46,7 @@ class BaseListActivity : ArsenalActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this);
         super.onCreate(savedInstanceState)
-        CaidouApi(resp, object : CaidouApiCallBack<IResp> {
+        NetHelper.helper?.startRequest(resp, object : CaidouApiCallBack<IResp> {
             override fun onFailure(t: Throwable) {
                 Log.d("TAG", "onFailure")
             }
@@ -57,5 +62,4 @@ class BaseListActivity : ArsenalActivity() {
             }
         })
     }
-
 }

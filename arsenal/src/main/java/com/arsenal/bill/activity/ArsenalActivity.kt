@@ -10,6 +10,8 @@ import com.arsenal.bill.R
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.recyclerview.MultipleItem
 import com.arsenal.bill.recyclerview.MultipleItemQuickAdapter
+import com.arsenal.bill.retrofit.BaseRequestInfo
+import com.arsenal.bill.retrofit.NetHelper
 import com.arsenal.bill.util.checkAuth
 import com.arsenal.bill.util.dpToPx
 import com.yqritc.recyclerviewflexibledivider.FlexibleDividerDecoration
@@ -34,6 +36,10 @@ abstract class ArsenalActivity :
     abstract fun getVHTypes(): List<IVHType?>
 
     abstract fun getListPageAuthority(): Int
+
+    open fun getRequestInfo(): BaseRequestInfo? {
+        return null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +72,8 @@ abstract class ArsenalActivity :
                 .visibilityProvider(this)
                 .marginProvider(this)
                 .build())
+
+        NetHelper.helper?.startRequest(getRequestInfo())
     }
 
     //不可以用kotlinX getLayout()可能被重写

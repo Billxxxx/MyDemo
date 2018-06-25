@@ -1,8 +1,8 @@
 package com.bill.billdemo.entity
 
+import com.arsenal.bill.net.BaseResp
 import com.bill.billdemo.DesEncrypt
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.orhanobut.logger.Logger
 import okhttp3.ResponseBody
@@ -40,15 +40,4 @@ internal class CustomResponseBodyConverter<T>(private val type: Type) : Converte
             value.close()
         }
     }
-}
-
-interface CaidouApiCallBack<T> {
-    fun onSuccess(data: T?);
-    fun onFailure(t: Throwable);
-    fun onComplete();
-}
-
-open class BaseResp {
-    var code: Int = -1
-    var json: JsonObject? = null
 }

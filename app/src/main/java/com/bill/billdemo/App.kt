@@ -5,12 +5,15 @@ import android.content.Context
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.ArsenalApp
-import com.arsenal.bill.retrofit.RetrofitHelper
+import com.arsenal.bill.net.BaseResp
+import com.arsenal.bill.retrofit.NetHelper
 import com.bill.billdemo.entity.CustomConverterFactory
+import com.bill.billdemo.net.CDApiClient
 import com.facebook.stetho.Stetho
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import retrofit2.Call
 
 class App : Application() {
     lateinit var context: Context
@@ -37,7 +40,10 @@ class App : Application() {
         } else {
             url = getString(R.string.release_url)
         }
-        RetrofitHelper.init(url, CustomConverterFactory.create())
+
+        NetHelper.init(url, CustomConverterFactory.create()) {
+            getCall(it)
+        }
 
         val formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
@@ -47,6 +53,23 @@ class App : Application() {
                 //                .tag("")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build()
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
+    }
+
+
+    private fun getCall(commend: String): Call<BaseResp>? {
+
+        val client: CDApiClient = NetHelper.getRetrofit().create(CDApiClient::class.java)
+
+        val encrypt = DesEncrypt.getEncString(
+                """{command:"${commend}",json:{
+                                |"clienttype":"android",
+                                |"imei":"9069635a-c252-48cb-8e3c-74f8be553ca11526866250425",
+                                |"userId":"14938006781030000",
+                                |"clientversion":"${BuildConfig.VERSION_CODE}",
+                                |"limit":"20",
+                                |"loadType":"0"}}""".trimMargin())
+
+        return client.home_recommendForm(encrypt, App.getContext().getString(R.string.en_key))
     }
 
     companion object {
