@@ -2,7 +2,7 @@ package com.bill.billdemo.activity
 
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.arsenal.bill.activity.ArsenalActivity
+import com.arsenal.bill.activity.ArsenalListActivity
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.bill.billdemo.entity.ViewHolderType
@@ -10,7 +10,7 @@ import com.bill.billdemo.net.RequestInfo
 
 
 @Route(path = "/bill/base_list")
-class BaseListActivity : ArsenalActivity() {
+class BaseListActivity : ArsenalListActivity() {
 
     @Autowired(name = "vh_types")
     @JvmField

@@ -2,7 +2,7 @@ package com.bill.billdemo.activity
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.arsenal.bill.activity.ArsenalActivity
+import com.arsenal.bill.activity.ArsenalListActivity
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.recyclerview.MultipleItem
 import com.bill.billdemo.entity.ViewHolderType
@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import java.util.*
 
 @Route(path = "/bill/sample_list")
-class SampleListActivity : ArsenalActivity() {
+class SampleListActivity : ArsenalListActivity() {
     override fun getListPageAuthority(): Int {
         return 0
     }

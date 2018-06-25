@@ -8,6 +8,7 @@ import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
+import kotlinx.android.synthetic.main.ac_main.*
 
 class MainActivity : AppCompatActivity() {
 
