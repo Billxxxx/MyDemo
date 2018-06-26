@@ -8,7 +8,7 @@ import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
 
-@Route(path = "/bill/base_list")
+@Route(path = "/bill/base_list_activity")
 class BaseListActivity : ArsenalListActivity() {
 
     @Autowired(name = "vh_types")

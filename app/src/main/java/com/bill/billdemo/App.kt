@@ -22,10 +22,12 @@ import retrofit2.Response
 
 class App : Application() {
     lateinit var context: Context
+    lateinit var application: Application
     override fun onCreate() {
         super.onCreate()
         instance = this
         context = this
+        application = this
 
         ArsenalApp.context = this
         //初始化Stetho调试工具
@@ -56,6 +58,7 @@ class App : Application() {
                 //                .tag("")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build()
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
+        ARouter.init(application); // 尽可能早，推荐在Application中初始化
     }
 
     private fun onRequestResponse(requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) {

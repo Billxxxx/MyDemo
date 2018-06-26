@@ -7,17 +7,23 @@ import android.widget.TabHost
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.arsenal.bill.activity.ArsenalBaseActivity
 import com.bill.billdemo.R
-import java.util.ArrayList
+import com.bill.billdemo.entity.ViewHolderType
+import com.bill.billdemo.net.RequestInfo
+import com.google.gson.Gson
+import java.util.*
 
 @Route(path = "/bill/expert_main")
-class ExpertSayMainActivity : ArsenalBaseActivity() {
-    var testIcon = R.mipmap.ic_launcher
-    var testIconSelected = R.mipmap.ic_launcher_round
-    internal var title = arrayOf("主页", "发现", "消息", "我")
-    internal var nameIDs = intArrayOf(R.string.home_tab1, R.string.home_tab2, R.string.home_tab3, R.string.home_tab4)
-    internal var tabIds = intArrayOf(R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4)
-    internal var normalIDs = intArrayOf(testIconSelected, testIconSelected, testIconSelected, testIconSelected)
-    internal var selectedIDs = intArrayOf(testIcon, testIcon, testIcon, testIcon)
+class ExpertSayMainActivity : ArsenalBaseActivity(), TabHost.OnTabChangeListener {
+
+    class TabHostBean(var titleId: Int, var normal: Int, var selected: Int, var id: Int) {}
+
+    var currentTag: String? = null
+
+    var tabHosts = arrayOf(
+            TabHostBean(R.string.home_tab1, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.id.tab1),
+            TabHostBean(R.string.home_tab2, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.id.tab2),
+            TabHostBean(R.string.home_tab3, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.id.tab3),
+            TabHostBean(R.string.home_tab4, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.id.tab4))
 
     lateinit var mTabHost: TabHost
 
@@ -30,17 +36,49 @@ class ExpertSayMainActivity : ArsenalBaseActivity() {
 
         val fragments: MutableList<Fragment>
         fragments = ArrayList()
-        fragments.add(Fragment())
-        fragments.add(Fragment())
-        fragments.add(Fragment())
-        fragments.add(Fragment())
+        fragments.add(Test2Fragment())
+        fragments.add(BaseListFragment.newInstance(Bundle().apply {
+            putString("resp", Gson().toJson(RequestInfo.Community_List))
+            putString("vh_types", Gson().toJson(ViewHolderType.COMMUNITY_TYPE))
+        }))
+        fragments.add(Test1Fragment())
+        fragments.add(Test2Fragment())
         val bottomViews = ArrayList<MainBottomView>()
         // 生成底部自定义样式的按钮
         var i = 0
-        while (i < title.size && i < tabIds.size) {
-            bottomViews.add(MainBottomView(this, nameIDs[i], i, normalIDs[i], selectedIDs[i], R.color.black_selected_text, R.color.black_un_select_text, fragments[i]))
-            mTabHost.addTab(mTabHost.newTabSpec(title[i]).setIndicator(bottomViews[i]).setContent(tabIds[i]))
+        while (i < tabHosts.size) {
+            bottomViews.add(MainBottomView(this, tabHosts[i].titleId, i, tabHosts[i].normal, tabHosts[i].selected, R.color.black_selected_text, R.color.black_un_select_text, fragments[i]))
+            mTabHost.addTab(mTabHost.newTabSpec(getString(tabHosts[i].titleId)).setIndicator(bottomViews[i]).setContent(tabHosts[i].id))
             i++
+        }
+        mTabHost.setOnTabChangedListener(this)
+        onTabChanged("主页")
+    }
+
+    override fun onTabChanged(tag: String?) {
+        var frag: Fragment? = null
+        currentTag = tag
+        var index = 0
+        tabHosts.forEachIndexed { i, tabHostBean ->
+            if (getString(tabHostBean.titleId) == tag) {
+                index = i
+            }
+        }
+
+        val view = mTabHost.tabWidget.getChildTabViewAt(index)
+        if (view is MainBottomView) {
+            view.isSelected = true
+            frag = view.fragment
+        }
+        if (frag == null) {
+            return
+        }
+        val manager = this.supportFragmentManager
+
+        if (manager.findFragmentByTag(tag) == null) {
+            val trans = manager.beginTransaction()
+            trans.replace(tabHosts[index].id, frag, tag)
+            trans.commit()
         }
     }
 

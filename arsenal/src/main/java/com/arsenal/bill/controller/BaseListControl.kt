@@ -33,12 +33,11 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     lateinit var mRecyclerView: RecyclerView
     open lateinit var mAdapter: MultipleItemQuickAdapter
     var mSwipeRefreshLayout: SwipeRefreshLayout? = null
-    lateinit var mRootView: View
+    var mRootView: View
 
     init {
         ARouter.getInstance().inject(activity);
         mRootView = activity.layoutInflater.inflate(mIBaseListControl.getLayoutID(), null)
-
     }
 
     public fun init() {
