@@ -1,9 +1,7 @@
 package com.arsenal.bill.controller
 
 import android.app.Activity
-import android.graphics.Color
 import android.graphics.Paint
-import android.support.v4.app.FragmentActivity
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -11,6 +9,7 @@ import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.R
+import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.net.CaidouApiCallBack
 import com.arsenal.bill.net.IListResp
 import com.arsenal.bill.net.IResp
@@ -45,6 +44,17 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
         initData()
     }
 
+    private fun initView() {
+        mRecyclerView = mRootView.findViewById(R.id.rv_list)
+        mSwipeRefreshLayout = mRootView.findViewById(R.id.swipe_layout)
+        if (mSwipeRefreshLayout != null) {
+            mSwipeRefreshLayout!!.isEnabled = !mIBaseListControl.getListPageAuthority().checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
+            mSwipeRefreshLayout!!.setOnRefreshListener {
+                setRefresh()
+            }
+        }
+    }
+
     private fun initData() {
         mRecyclerView.setHasFixedSize(true)
 
@@ -66,6 +76,11 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
                 .marginProvider(this)
                 .build())
 
+        setRefresh()
+    }
+
+    private fun setRefresh() {
+        mSwipeRefreshLayout?.isRefreshing = true
         NetHelper.helper?.startRequest(mIBaseListControl.getRequestInfo(), object : CaidouApiCallBack<IResp> {
             override fun onFailure(t: Throwable) {
                 Log.d("TAG", "onFailure")
@@ -73,6 +88,7 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
 
             override fun onComplete() {
                 Log.d("TAG", "onComplete")
+                mSwipeRefreshLayout?.isRefreshing = false
             }
 
             override fun onSuccess(data: IResp?) {
@@ -84,19 +100,13 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
         })
     }
 
-    private fun initView() {
-        mRecyclerView = mRootView.findViewById(R.id.rv_list)
-        mSwipeRefreshLayout = mRootView.findViewById(R.id.swipe_layout)
-        mSwipeRefreshLayout?.isEnabled = !mIBaseListControl.getListPageAuthority().checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
-    }
-
     /**
      * 设置分割线画笔
      */
     override fun dividerPaint(position: Int, parent: RecyclerView?): Paint {
         val paint = Paint()
-        paint.setColor(Color.LTGRAY)
-        paint.setStrokeWidth(0.5f.dpToPx())
+        paint.setColor(mIBaseListControl.getListDividerBean().color)
+        paint.setStrokeWidth(mIBaseListControl.getListDividerBean().height.dpToPx())
         return paint
     }
 
@@ -104,14 +114,14 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
      * 分割线左间距
      */
     override fun dividerLeftMargin(position: Int, parent: RecyclerView?): Int {
-        return 10.dpToPx()
+        return mIBaseListControl.getListDividerBean().left.toInt()
     }
 
     /**
      * 分割线右间距
      */
     override fun dividerRightMargin(position: Int, parent: RecyclerView?): Int {
-        return 10.dpToPx()
+        return mIBaseListControl.getListDividerBean().right.toInt()
     }
 
     /**
@@ -142,6 +152,10 @@ interface IBaseListControl {
      */
     fun getLayoutID(): Int {
         return R.layout.ac_list
+    }
+
+    fun getListDividerBean(): ListDividerBean {
+        return ListDividerBean()
     }
 
     open fun getRequestInfo(): BaseRequestInfo? {

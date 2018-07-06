@@ -12,4 +12,9 @@ class CommunityBean : MultiItemEntity {
     var name: String? = null
     var logo: String? = null
     var id: String? = null
+    var topTopic: TopTopic? = null
+}
+
+class TopTopic {
+    var title: String? = null
 }

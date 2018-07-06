@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.widget.TabHost
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.arsenal.bill.activity.ArsenalBaseActivity
+import com.arsenal.bill.entity.ListDividerBean
+import com.arsenal.bill.recyclerview.BaseListAuth
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
@@ -40,6 +42,7 @@ class ExpertSayMainActivity : ArsenalBaseActivity(), TabHost.OnTabChangeListener
         fragments.add(BaseListFragment.newInstance(Bundle().apply {
             putString("resp", Gson().toJson(RequestInfo.Community_List))
             putString("vh_types", Gson().toJson(ViewHolderType.COMMUNITY_TYPE))
+            putString("divider", Gson().toJson(ListDividerBean()))
         }))
         fragments.add(Test1Fragment())
         fragments.add(Test2Fragment())
@@ -53,6 +56,10 @@ class ExpertSayMainActivity : ArsenalBaseActivity(), TabHost.OnTabChangeListener
         }
         mTabHost.setOnTabChangedListener(this)
         onTabChanged("主页")
+    }
+
+    fun getDividerLeft() {
+
     }
 
     override fun onTabChanged(tag: String?) {
