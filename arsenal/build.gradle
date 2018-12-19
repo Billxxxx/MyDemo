@@ -46,9 +46,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //google框架
-    api 'com.android.support:appcompat-v7:27.1.1'
-    api 'com.android.support:recyclerview-v7:27.1.1'
-    api 'com.android.support:design:27.1.1'
+    api("com.android.support:appcompat-v7:$rootProject.ext.androidSupportVersion")
+    api("com.android.support:recyclerview-v7:$rootProject.ext.androidSupportVersion")
+    api("com.android.support:design:$rootProject.ext.androidSupportVersion")
     api 'me.imid.swipebacklayout.lib:library:1.1.0'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
@@ -75,7 +75,7 @@ dependencies {
     //logger
     api 'com.orhanobut:logger:2.2.0'
     //圆形或圆角图片
-    api 'com.makeramen:roundedimageview:2.2.1'
+    api 'com.makeramen:roundedimageview:2.3.0'
     //glide图片加载
     api 'com.github.bumptech.glide:glide:3.8.0'
     //recycler分割线
