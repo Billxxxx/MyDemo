@@ -1,4 +1,4 @@
-package com.bill.billdemo.activity;
+package com.bill.billdemo.page;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.bill.billdemo.activity
+package com.bill.billdemo.page
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.widget.TabHost
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.arsenal.bill.activity.ArsenalBaseActivity
 import com.arsenal.bill.entity.ListDividerBean
-import com.arsenal.bill.recyclerview.BaseListAuth
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo

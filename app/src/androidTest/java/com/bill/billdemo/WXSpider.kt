@@ -1,9 +1,8 @@
 package com.bill.billdemo
 
 import android.content.Intent
-import android.support.test.espresso.Espresso
 import android.support.test.rule.ActivityTestRule
-import com.bill.billdemo.activity.MainActivity
+import com.bill.billdemo.page.AroutersActivity
 import org.junit.Rule
 import org.junit.Test
 
@@ -11,7 +10,7 @@ class WXSpider : TestBase() {
 
     @Rule
     @JvmField
-    val brandListActivity: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java, true, true)
+    val brandListActivity: ActivityTestRule<AroutersActivity> = ActivityTestRule(AroutersActivity::class.java, true, true)
 
 
     @Test

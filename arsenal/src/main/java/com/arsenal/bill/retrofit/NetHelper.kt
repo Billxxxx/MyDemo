@@ -3,6 +3,7 @@ package com.arsenal.bill.retrofit
 import com.arsenal.bill.net.BaseResp
 import com.arsenal.bill.net.CaidouApiCallBack
 import com.arsenal.bill.net.IResp
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
@@ -61,6 +62,7 @@ class NetHelper(url: String,
                     addConverterFactory(converter)
                 }
         retrofit = builder.client(OkHttpClient.Builder().apply {
+//            addNetworkInterceptor(StethoInterceptor())
             //声明日志类
             addInterceptor(HttpLoggingInterceptor().apply {
                 //设定日志级别

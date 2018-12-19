@@ -8,7 +8,10 @@ import com.bill.billdemo.viewholder.ImageTextVH
 import com.bill.billdemo.viewholder.UserVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
-enum class ViewHolderType(var vhClass: Class<out BaseVH<out MultiItemEntity>>, var sameVHType: ViewHolderType? = null)
+
+enum class ViewHolderType(
+        var vhClass: Class<out BaseVH<out MultiItemEntity>>,
+        var sameVHType: ViewHolderType? = null)
     : MultiItemEntity, IVHType {
     DEFAULT(R.layout.vh_default),
     TEXT(R.layout.vh_text_view),

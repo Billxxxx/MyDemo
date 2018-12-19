@@ -1,6 +1,9 @@
 package com.arsenal.bill.util
 
+import android.os.Parcelable
+import com.alibaba.android.arouter.facade.Postcard
 import com.arsenal.bill.ArsenalApp
+import com.arsenal.bill.recyclerview.IVHType
 
 
 private var screenDensity: Float = 0.toFloat()
@@ -20,4 +23,9 @@ fun getScreenDensity(): Float {
         initScreenParameter()
     }
     return screenDensity
+}
+
+fun Postcard.setVHTypes(vararg vhTypes: IVHType): Postcard {
+//    withParcelableArray(Companion.VH_TYPES, vhTypes)
+    return this
 }

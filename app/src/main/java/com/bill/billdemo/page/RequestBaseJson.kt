@@ -1,4 +1,4 @@
-package com.bill.billdemo.activity
+package com.bill.billdemo.page
 
 class RequestBaseJson(
         @Transient

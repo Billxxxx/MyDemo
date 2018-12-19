@@ -1,4 +1,4 @@
-package com.bill.billdemo.activity
+package com.bill.billdemo.page
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route

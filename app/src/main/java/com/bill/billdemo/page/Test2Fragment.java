@@ -1,4 +1,4 @@
-package com.bill.billdemo.activity;
+package com.bill.billdemo.page;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 import com.bill.billdemo.R;
 
-public class Test1Fragment extends Fragment {
+public class Test2Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.test_1, null);
+        return inflater.inflate(R.layout.test_2, null);
     }
 }

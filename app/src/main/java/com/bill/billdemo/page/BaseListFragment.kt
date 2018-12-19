@@ -1,4 +1,4 @@
-package com.bill.billdemo.activity
+package com.bill.billdemo.page
 
 import android.os.Bundle
 import android.view.LayoutInflater
