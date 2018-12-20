@@ -26,11 +26,15 @@ class AroutersActivity : AppCompatActivity() {
             ARouter.getInstance().build("/bill/expert_main").navigation();
         }
         base_list_btn.setOnClickListener {
-            ARouter.getInstance().build("/bill/base_list_activity")
-                    .setVHTypes(ViewHolderType.COMMUNITY_TYPE)
-                    .withObject("resp", RequestInfo.Community_List)
-                    .withInt("list_page_auth", BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
-                    .navigation();
+            try {
+                ARouter.getInstance().build("/bill/base_list_activity")
+                        .withObject("vh_types", ViewHolderType.COMMUNITY_TYPE)
+                        .withObject("resp", RequestInfo.Community_List)
+                        .withInt("list_page_auth", BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
+                        .navigation();
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
         retrofit_tv.setOnClickListener {
             ARouter.getInstance().build("/bill/retrofit").navigation();

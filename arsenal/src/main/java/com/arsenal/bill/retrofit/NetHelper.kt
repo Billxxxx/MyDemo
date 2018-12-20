@@ -40,7 +40,10 @@ class NetHelper(url: String,
     }
 
     fun startRequest(requestInfo: BaseRequestInfo?, callback: CaidouApiCallBack<IResp>) {
-        if (requestInfo == null) return
+        if (requestInfo == null) {
+            callback.onComplete()
+            return
+        }
         val call = getCall(requestInfo.getCommand())
         if (call == null) return
         call.enqueue(object : Callback<BaseResp> {
@@ -62,7 +65,7 @@ class NetHelper(url: String,
                     addConverterFactory(converter)
                 }
         retrofit = builder.client(OkHttpClient.Builder().apply {
-//            addNetworkInterceptor(StethoInterceptor())
+            //            addNetworkInterceptor(StethoInterceptor())
             //声明日志类
             addInterceptor(HttpLoggingInterceptor().apply {
                 //设定日志级别
