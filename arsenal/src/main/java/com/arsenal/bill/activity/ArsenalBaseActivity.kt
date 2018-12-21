@@ -1,6 +1,7 @@
 package com.arsenal.bill.activity
 
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import me.imid.swipebacklayout.lib.SwipeBackLayout
@@ -8,7 +9,7 @@ import me.imid.swipebacklayout.lib.Utils
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
-abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase{
+abstract class ArsenalBaseActivity : FragmentActivity(), SwipeBackActivityBase{
     private var mHelper: SwipeBackActivityHelper? = null
     private var mSwipeBackLayout: SwipeBackLayout? = null
 

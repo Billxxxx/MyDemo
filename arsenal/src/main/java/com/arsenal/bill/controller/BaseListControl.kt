@@ -35,7 +35,6 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     var mRootView: View
 
     init {
-        ARouter.getInstance().inject(activity);
         mRootView = activity.layoutInflater.inflate(mIBaseListControl.getLayoutID(), null)
     }
 
@@ -144,7 +143,7 @@ interface IBaseListControl {
     /**
      * 本页启用的ViewHolder
      */
-    fun getVHTypes(): List<IVHType?>
+    fun getVHTypes(): List<IVHType?>?
 
     fun getListPageAuthority(): Int
     /**

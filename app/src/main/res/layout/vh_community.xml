@@ -13,41 +13,42 @@
             type="CommunityBean"/>
     </data>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:background="@android:color/white">
 
-        <com.makeramen.roundedimageview.RoundedImageView
+
+        <ImageView
             android:id="@+id/icon_iv"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:riv_oval="true"
-            />
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:text="@{community.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_iv"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center|top"
-                android:text="@{community.name}"
-                tools:text="user name"/>
-
-            <TextView
-                android:id="@+id/phone_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{community.topTopic.title}"/>
-        </LinearLayout>
-
-    </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_left_right"
+            android:layout_marginRight="@dimen/common_left_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/arrow_next"/>
+    </android.support.constraint.ConstraintLayout>
 </layout>

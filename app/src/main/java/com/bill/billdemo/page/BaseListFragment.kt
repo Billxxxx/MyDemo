@@ -11,35 +11,44 @@ import com.arsenal.bill.activity.ArsenalListFragment
 import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
+import com.arsenal.bill.util.RouterUtil
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
+import com.bill.billdemo.page.PageUtil.Companion.BASE_LIST_FRAGMENT
 
 /**
  * Created by yu on 2016/11/11.
  */
 
-@Route(path = "/bill/base_list_fragment")
-class BaseListFragment : ArsenalListFragment() {
+@Route(path = BASE_LIST_FRAGMENT)
+class BaseListFragment() : ArsenalListFragment() {
 
-    @Autowired(name = "vh_types")
+    @Autowired(name = RouterUtil.VALUE_VH_TYPES)
     @JvmField
-    var vh_types: ViewHolderType? = null
-
-    override fun getVHTypes(): List<IVHType?> {
-        return listOf(vh_types)
+    var vh_types: Array<ViewHolderType>? = null
+    override fun getVHTypes(): List<IVHType?>? {
+        return ArrayList<IVHType>().apply {
+            vh_types?.forEach {
+                this.add(it)
+            }
+        }
     }
 
-    @Autowired(name = "list_page_auth")
+    @Autowired(name = RouterUtil.VALUE_API_INFO)
+    @JvmField
+    var resp: RequestInfo? = null
+
+    override fun getRequestInfo(): BaseRequestInfo? {
+        return resp
+    }
+
+    @Autowired(name = RouterUtil.VALUE_PAGE_AUTH)
     @JvmField
     var list_page_auth: Int = 0
 
     override fun getListPageAuthority(): Int {
         return list_page_auth
     }
-
-    @Autowired(name = "resp")
-    @JvmField
-    var resp: RequestInfo? = null
 
     @Autowired(name = "dividerBean")
     @JvmField
@@ -50,10 +59,6 @@ class BaseListFragment : ArsenalListFragment() {
             return super.getListDividerBean()
         else
             return dividerBean!!
-    }
-
-    override fun getRequestInfo(): BaseRequestInfo? {
-        return resp
     }
 
     companion object {

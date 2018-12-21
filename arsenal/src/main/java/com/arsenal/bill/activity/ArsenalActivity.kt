@@ -6,15 +6,7 @@ import com.arsenal.bill.controller.BaseListControl
 import com.arsenal.bill.controller.IBaseListControl
 
 abstract class ArsenalListActivity :
-        ArsenalBaseActivity(),
-        IBaseListControl {
+        ArsenalBaseActivity() {
 
-    lateinit var baseListControl: BaseListControl
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        baseListControl = BaseListControl(this, this)
-        setContentView(baseListControl.mRootView)
-        baseListControl.init()
-    }
 }

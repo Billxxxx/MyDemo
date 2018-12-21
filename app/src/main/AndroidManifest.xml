@@ -23,5 +23,6 @@
         <activity android:name=".page.BaseListActivity"/>
         <activity android:name=".page.RetrofitActivity"/>
         <activity android:name=".page.ExpertSayMainActivity"/>
+        <activity android:name=".page.TempActivity"/>
     </application>
 </manifest>

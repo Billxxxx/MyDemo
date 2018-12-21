@@ -12,13 +12,13 @@
         android:id="@+id/sample_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="expert_main"/>
+        android:text="首页"/>
 
     <Button
         android:id="@+id/base_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="行家说"/>
+        android:text="圈子列表"/>
 
     <Button
         android:id="@+id/retrofit_tv"

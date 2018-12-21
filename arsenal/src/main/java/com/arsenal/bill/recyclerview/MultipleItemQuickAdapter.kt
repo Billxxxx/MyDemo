@@ -9,10 +9,10 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 class MultipleItemQuickAdapter(
         val context: Context,
         data: MutableList<MultiItemEntity>?,
-        var enableVHTypes: List<IVHType?>) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseVH<MultiItemEntity>>(data) {
+        var enableVHTypes: List<IVHType?>?) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseVH<MultiItemEntity>>(data) {
 
     init {
-        enableVHTypes.forEach {
+        enableVHTypes?.forEach {
             if (it != null)
                 addItemType(it.getItemType(), it.getLayoutId())
         }
@@ -23,7 +23,7 @@ class MultipleItemQuickAdapter(
     }
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseVH<MultiItemEntity> {
-        enableVHTypes.forEach {
+        enableVHTypes?.forEach {
             if (it != null && it.getItemType() == viewType && it.getLayoutId() <= 0) {
                 val constructor = Class.forName(it.getVHClass().name).getDeclaredConstructor(LayoutInflater::class.java, ViewGroup::class.java)
                 //根据构造函数，传入值生成实例

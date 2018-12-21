@@ -7,8 +7,9 @@ import com.bill.billdemo.viewholder.CommunityVH
 import com.bill.billdemo.viewholder.ImageTextVH
 import com.bill.billdemo.viewholder.UserVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 enum class ViewHolderType(
         var vhClass: Class<out BaseVH<out MultiItemEntity>>,
         var sameVHType: ViewHolderType? = null)
