@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.activity.ArsenalBaseActivity
 import com.arsenal.bill.recyclerview.BaseListAuth
+import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.util.RouterUtil
 import com.arsenal.bill.util.setApi
 import com.arsenal.bill.util.setAuth
@@ -14,9 +15,8 @@ import com.arsenal.bill.util.setVHTypes
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
-import com.bill.billdemo.page.PageUtil.Companion.BASE_LIST_ACTIVITY
 
-@Route(path = BASE_LIST_ACTIVITY)
+@Route(path = RouterUtil.PAGE_BASE_LIST_ACTIVITY)
 class BaseListActivity : ArsenalBaseActivity() {
 
     @Autowired(name = RouterUtil.VALUE_VH_TYPES)
@@ -26,7 +26,7 @@ class BaseListActivity : ArsenalBaseActivity() {
 
     @Autowired(name = RouterUtil.VALUE_API_INFO)
     @JvmField
-    var resp: RequestInfo? = null
+    var resp: BaseRequestInfo? = null
 
     @Autowired(name = RouterUtil.VALUE_PAGE_AUTH)
     @JvmField
@@ -36,7 +36,7 @@ class BaseListActivity : ArsenalBaseActivity() {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this);
         setContentView(R.layout.activity_fragment)
-        val result = ARouter.getInstance().build(PageUtil.BASE_LIST_FRAGMENT)
+        val result = ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                 .setVHTypes(ViewHolderType.COMMUNITY_TYPE)
                 .setApi(resp)
                 .setAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH)

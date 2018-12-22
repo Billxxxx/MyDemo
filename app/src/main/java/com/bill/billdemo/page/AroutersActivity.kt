@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.recyclerview.BaseListAuth
+import com.arsenal.bill.util.RouterUtil
 import com.arsenal.bill.util.setApi
 import com.arsenal.bill.util.setAuth
 import com.arsenal.bill.util.setVHTypes
@@ -28,7 +29,7 @@ class AroutersActivity : AppCompatActivity() {
         }
         base_list_btn.setOnClickListener {
             try {
-                ARouter.getInstance().build(PageUtil.BASE_LIST_ACTIVITY)
+                ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_ACTIVITY)
                         .setVHTypes(ViewHolderType.COMMUNITY_TYPE)
                         .setApi(RequestInfo.Community_List)
                         .setAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH)

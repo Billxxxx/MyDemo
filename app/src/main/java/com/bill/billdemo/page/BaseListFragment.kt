@@ -14,18 +14,14 @@ import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.util.RouterUtil
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
-import com.bill.billdemo.page.PageUtil.Companion.BASE_LIST_FRAGMENT
 
-/**
- * Created by yu on 2016/11/11.
- */
-
-@Route(path = BASE_LIST_FRAGMENT)
+@Route(path = RouterUtil.PAGE_BASE_LIST_FRAGMENT)
 class BaseListFragment() : ArsenalListFragment() {
 
     @Autowired(name = RouterUtil.VALUE_VH_TYPES)
     @JvmField
     var vh_types: Array<ViewHolderType>? = null
+
     override fun getVHTypes(): List<IVHType?>? {
         return ArrayList<IVHType>().apply {
             vh_types?.forEach {

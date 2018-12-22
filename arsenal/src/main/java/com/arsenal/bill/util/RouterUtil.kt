@@ -11,6 +11,8 @@ class RouterUtil {
         const val VALUE_VH_TYPES = "vh_types"
         const val VALUE_API_INFO = "api_info"
         const val VALUE_PAGE_AUTH = "page_auth"
+        const val PAGE_BASE_LIST_ACTIVITY = "/bill/base_list_activity"
+        const val PAGE_BASE_LIST_FRAGMENT = "/bill/base_list_fragment"
     }
 }
 

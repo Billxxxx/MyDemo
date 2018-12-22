@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.controller.BaseListControl
 import com.arsenal.bill.controller.IBaseListControl
 
-abstract class ArsenalListActivity :
+class ArsenalListActivity :
         ArsenalBaseActivity() {
 
 
