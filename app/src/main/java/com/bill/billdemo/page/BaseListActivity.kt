@@ -7,7 +7,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.activity.ArsenalBaseActivity
 import com.arsenal.bill.recyclerview.BaseListAuth
-import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.util.RouterUtil
 import com.arsenal.bill.util.setApi
 import com.arsenal.bill.util.setAuth
@@ -26,7 +25,7 @@ class BaseListActivity : ArsenalBaseActivity() {
 
     @Autowired(name = RouterUtil.VALUE_API_INFO)
     @JvmField
-    var resp: BaseRequestInfo? = null
+    var resp: RequestInfo? = null
 
     @Autowired(name = RouterUtil.VALUE_PAGE_AUTH)
     @JvmField

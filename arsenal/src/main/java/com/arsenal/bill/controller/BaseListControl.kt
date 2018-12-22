@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
-import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.R
 import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.net.CaidouApiCallBack
@@ -157,7 +156,7 @@ interface IBaseListControl {
         return ListDividerBean()
     }
 
-    open fun getRequestInfo(): BaseRequestInfo? {
+    fun getRequestInfo(): BaseRequestInfo? {
         return null
     }
 }

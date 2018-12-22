@@ -4,14 +4,16 @@ import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.facade.service.SerializationService
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import java.lang.reflect.Type
+
 /**ARoute 传递参数需要使用的类*/
 @Route(path = "/service/json")
 class CacheServiceImpl : SerializationService {
     lateinit var gson: Gson
 
     override fun init(context: Context) {
-        gson = Gson()
+        gson = GsonBuilder().create()
     }
 
     override fun object2Json(instance: Any): String {

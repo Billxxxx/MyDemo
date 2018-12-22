@@ -2,7 +2,6 @@ package com.arsenal.bill.activity
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.Utils
@@ -60,5 +59,4 @@ abstract class ArsenalBaseActivity : FragmentActivity(), SwipeBackActivityBase{
         Utils.convertActivityToTranslucent(this)
         swipeBackLayout.scrollToFinishActivity()
     }
-
 }

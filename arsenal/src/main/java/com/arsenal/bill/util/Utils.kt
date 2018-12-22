@@ -1,8 +1,6 @@
 package com.arsenal.bill.util
 
-import com.alibaba.android.arouter.facade.Postcard
 import com.arsenal.bill.ArsenalApp
-import com.arsenal.bill.recyclerview.IVHType
 
 
 private var screenDensity: Float = 0.toFloat()

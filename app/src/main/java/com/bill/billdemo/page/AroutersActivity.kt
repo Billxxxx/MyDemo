@@ -31,7 +31,7 @@ class AroutersActivity : AppCompatActivity() {
             try {
                 ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_ACTIVITY)
                         .setVHTypes(ViewHolderType.COMMUNITY_TYPE)
-                        .setApi(RequestInfo.Community_List)
+                        .setApi(RequestInfo.V3_COMMUNITY_LIST)
                         .setAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH)
                         .navigation();
             } catch (e: Exception) {

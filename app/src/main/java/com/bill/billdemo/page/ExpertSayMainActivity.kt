@@ -39,7 +39,7 @@ class ExpertSayMainActivity : ArsenalBaseActivity(), TabHost.OnTabChangeListener
         fragments = ArrayList()
         fragments.add(Test2Fragment())
         fragments.add(BaseListFragment.newInstance(Bundle().apply {
-            putString("resp", Gson().toJson(RequestInfo.Community_List))
+            putString("resp", Gson().toJson(RequestInfo.V3_COMMUNITY_LIST))
             putString("vh_types", Gson().toJson(ViewHolderType.COMMUNITY_TYPE))
             putString("divider", Gson().toJson(ListDividerBean()))
         }))

@@ -3,14 +3,13 @@ package com.arsenal.bill.retrofit
 import com.arsenal.bill.net.BaseResp
 import com.arsenal.bill.net.CaidouApiCallBack
 import com.arsenal.bill.net.IResp
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
 
 class NetHelper(url: String,
                 converter: Converter.Factory,
-                var getCall: (String) -> Call<BaseResp>?,
+                var getCall: (String?) -> Call<BaseResp>?,
                 var onRequestResponse: (requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) -> Unit
 ) {
     var retrofit: Retrofit
@@ -23,7 +22,7 @@ class NetHelper(url: String,
 
         fun init(url: String,
                  converter: Converter.Factory,
-                 getCall: (String) -> Call<BaseResp>?,
+                 getCall: (String?) -> Call<BaseResp>?,
                  onRequestResponse: (requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) -> Unit
         ): NetHelper {
             if (helper == null) {
@@ -44,7 +43,7 @@ class NetHelper(url: String,
             callback.onComplete()
             return
         }
-        val call = getCall(requestInfo.getCommand())
+        val call = getCall(requestInfo.getApiCommand())
         if (call == null) return
         call.enqueue(object : Callback<BaseResp> {
             override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {

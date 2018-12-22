@@ -46,7 +46,7 @@ class RetrofitImpl {
     private fun onRequestResponse(requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) {
         if (response != null) {
             if (response.body()?.code == 0)
-                callback.onSuccess(Gson().fromJson(response.body()?.json, requestInfo.getClazz()))
+                callback.onSuccess(Gson().fromJson(response.body()?.json, requestInfo.getApiClazz()))
             else {
                 callback.onFailure(Throwable("not success"))
             }
@@ -54,7 +54,7 @@ class RetrofitImpl {
         callback.onComplete()
     }
 
-    private fun getCall(commend: String): Call<BaseResp>? {
+    private fun getCall(commend: String?): Call<BaseResp>? {
 
         val client: CDApiClient = NetHelper.getRetrofit().create(CDApiClient::class.java)
 

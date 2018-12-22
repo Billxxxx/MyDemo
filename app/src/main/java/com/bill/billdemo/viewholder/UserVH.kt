@@ -16,7 +16,7 @@ class UserVH(var i: LayoutInflater, p: ViewGroup) : BaseDataBindingVH<VhUserBind
         itemView.setOnClickListener {
             ARouter.getInstance().build("/bill/base_list")
                     .withObject("vh_types", ViewHolderType.COMMUNITY_TYPE)
-                    .withObject("resp", RequestInfo.Community_List)
+                    .withObject("resp", RequestInfo.V3_COMMUNITY_LIST)
                     .navigation();
         }
     }
