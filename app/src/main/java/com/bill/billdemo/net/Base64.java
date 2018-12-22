@@ -1,4 +1,4 @@
-package com.bill.billdemo;
+package com.bill.billdemo.net;
 
 public final class Base64 {
 

@@ -5,6 +5,7 @@ import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.ArsenalApp
 import com.bill.billdemo.net.RetrofitImpl
+import com.bill.billdemo.util.UnCatchExceptionHandler
 
 class App : Application() {
     lateinit var context: Context

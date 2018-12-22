@@ -1,4 +1,7 @@
-package com.bill.billdemo;
+package com.bill.billdemo.net;
+
+import com.bill.billdemo.App;
+import com.bill.billdemo.R;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

@@ -1,6 +1,8 @@
-package com.bill.billdemo;
+package com.bill.billdemo.util;
 
 import android.util.Log;
+
+import com.bill.billdemo.App;
 
 
 public class UnCatchExceptionHandler implements Thread.UncaughtExceptionHandler {

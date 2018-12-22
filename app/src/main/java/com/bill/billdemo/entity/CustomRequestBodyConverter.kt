@@ -2,7 +2,7 @@ package com.bill.billdemo.entity
 
 import android.util.Log
 import com.bill.billdemo.App
-import com.bill.billdemo.DesEncrypt
+import com.bill.billdemo.net.DesEncrypt
 import com.bill.billdemo.R
 import com.bill.billdemo.page.RequestBaseJson
 import com.google.gson.Gson

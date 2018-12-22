@@ -2,7 +2,7 @@ package com.bill.billdemo.entity
 
 import com.arsenal.bill.net.BaseResp
 import com.arsenal.bill.util.MyLogger
-import com.bill.billdemo.DesEncrypt
+import com.bill.billdemo.net.DesEncrypt
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import okhttp3.ResponseBody

@@ -8,7 +8,6 @@ import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.retrofit.NetHelper
 import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig
-import com.bill.billdemo.DesEncrypt
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.CustomConverterFactory
 import com.google.gson.Gson

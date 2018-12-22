@@ -1,5 +1,8 @@
 package com.arsenal.bill.util
 
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
 import com.arsenal.bill.ArsenalApp
 
 
@@ -20,4 +23,14 @@ fun getScreenDensity(): Float {
         initScreenParameter()
     }
     return screenDensity
+}
+
+
+fun View.createView(layoutId: Int): View? {
+    return context.createView(layoutId)
+}
+
+fun Context.createView(layoutId: Int): View? {
+    if (layoutId == 0) return null
+    return LayoutInflater.from(this).inflate(layoutId, null)
 }
