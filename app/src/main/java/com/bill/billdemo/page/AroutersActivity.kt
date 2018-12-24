@@ -11,7 +11,7 @@ import com.arsenal.bill.util.setVHTypes
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.BaseListFragmentConfig
-import com.bill.billdemo.entity.ViewHolderType
+import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.RequestInfo
 import kotlinx.android.synthetic.main.ac_main.*
 
@@ -32,19 +32,19 @@ class AroutersActivity : AppCompatActivity() {
                     .withObject("fragment_data", arrayOf(
                             BaseListFragmentConfig(
                                     BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
-                                    RequestInfo.V3_COMMUNITY_LIST,
-                                    arrayOf(ViewHolderType.COMMUNITY_TYPE)),
+                                    RequestInfo.V4_TABLOID,
+                                    arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM)),
                             BaseListFragmentConfig(
                                     BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
                                     RequestInfo.V3_COMMUNITY_LIST,
-                                    arrayOf(ViewHolderType.COMMUNITY_TYPE))
+                                    arrayOf(VHType.COMMUNITY_TYPE))
                     ))
                     .navigation()
         }
         base_list_btn.setOnClickListener {
             try {
                 ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_ACTIVITY)
-                        .setVHTypes(ViewHolderType.COMMUNITY_TYPE)
+                        .setVHTypes(VHType.COMMUNITY_TYPE)
                         .setApi(RequestInfo.V3_COMMUNITY_LIST)
                         .setAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH)
                         .navigation();

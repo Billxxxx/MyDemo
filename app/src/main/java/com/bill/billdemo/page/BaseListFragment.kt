@@ -18,18 +18,6 @@ import com.bill.billdemo.entity.BaseListFragmentConfig
 @Route(path = RouterUtil.PAGE_BASE_LIST_FRAGMENT)
 class BaseListFragment() : ArsenalListFragment() {
 
-
-//    /**页面的功能，比如下拉刷新，上拉加载*/
-//    @Autowired(name = RouterUtil.VALUE_PAGE_AUTH)
-//    @JvmField
-//    var list_page_auth: Int = 0
-
-//    /**分割线逻辑*/
-//    @Autowired(name = "dividerBean")
-//    @JvmField
-//    var dividerBean: ListDividerBean? = null
-
-    /**分割线逻辑*/
     @Autowired(name = "baseListConfig")
     @JvmField
     var baseListConfig: BaseListFragmentConfig? = null

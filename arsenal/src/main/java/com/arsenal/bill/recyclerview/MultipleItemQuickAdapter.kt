@@ -30,6 +30,11 @@ class MultipleItemQuickAdapter(
                 return constructor.newInstance(mLayoutInflater, parent) as BaseVH<MultiItemEntity>
             }
         }
-        return super.onCreateDefViewHolder(parent, viewType)
+        try {
+            return super.onCreateDefViewHolder(parent, viewType)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return DefaultVH(mLayoutInflater)
+        }
     }
 }

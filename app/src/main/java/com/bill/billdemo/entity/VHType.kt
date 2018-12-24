@@ -3,23 +3,23 @@ package com.bill.billdemo.entity
 import com.arsenal.bill.recyclerview.BaseVH
 import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.R
-import com.bill.billdemo.viewholder.CommunityVH
-import com.bill.billdemo.viewholder.ImageTextVH
-import com.bill.billdemo.viewholder.UserVH
+import com.bill.billdemo.viewholder.*
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-enum class ViewHolderType(
+enum class VHType(
         var vhClass: Class<out BaseVH<out MultiItemEntity>>,
-        var sameVHType: ViewHolderType? = null)
+        var sameVHType: VHType? = null)
     : MultiItemEntity, IVHType {
     DEFAULT(R.layout.vh_default),
     TEXT(R.layout.vh_text_view),
     IMAGE(R.layout.item_image_view),
     IMAGE_TEXT(ImageTextVH::class.java),
     USER_TYPE(UserVH::class.java),
-    COMMUNITY_TYPE(CommunityVH::class.java)
+    COMMUNITY_TYPE(CommunityVH::class.java),
+    TIME_FILTER(TimeFilterVH::class.java),
+    TABLOID_ITEM(TabloidItemVH::class.java)
     ;
 
     var layout: Int = -1
@@ -27,7 +27,7 @@ enum class ViewHolderType(
     /**
      * 简单的ViewHolder 之传入布局进行初始化
      */
-    constructor(layout: Int, sameVHType: ViewHolderType? = null) {
+    constructor(layout: Int, sameVHType: VHType? = null) {
         this.layout = layout
         this.sameVHType = sameVHType
     }

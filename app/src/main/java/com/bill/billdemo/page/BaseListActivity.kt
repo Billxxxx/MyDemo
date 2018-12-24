@@ -12,7 +12,7 @@ import com.arsenal.bill.util.setApi
 import com.arsenal.bill.util.setAuth
 import com.arsenal.bill.util.setVHTypes
 import com.bill.billdemo.R
-import com.bill.billdemo.entity.ViewHolderType
+import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.RequestInfo
 
 @Route(path = RouterUtil.PAGE_BASE_LIST_ACTIVITY)
@@ -20,7 +20,7 @@ class BaseListActivity : ArsenalBaseActivity() {
 
     @Autowired(name = RouterUtil.VALUE_VH_TYPES)
     @JvmField
-    var vh_types: Array<ViewHolderType>? = null
+    var vh_types: Array<VHType>? = null
 
     @Autowired(name = RouterUtil.VALUE_API_INFO)
     @JvmField
@@ -35,7 +35,7 @@ class BaseListActivity : ArsenalBaseActivity() {
         ARouter.getInstance().inject(this);
         setContentView(R.layout.activity_fragment)
         val result = ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                .setVHTypes(ViewHolderType.COMMUNITY_TYPE)
+                .setVHTypes(VHType.COMMUNITY_TYPE)
                 .setApi(resp)
                 .setAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH)
                 .navigation();

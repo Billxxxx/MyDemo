@@ -6,7 +6,7 @@ class CommunityBean : MultiItemEntity {
     var children: ArrayList<CommunityGroupBean>? = null
 
     override fun getItemType(): Int {
-        return ViewHolderType.COMMUNITY_TYPE.itemType
+        return VHType.COMMUNITY_TYPE.itemType
     }
 
     var name: String? = null

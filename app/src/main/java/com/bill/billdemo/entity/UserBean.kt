@@ -4,7 +4,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 
 class UserBean : MultiItemEntity {
     override fun getItemType(): Int {
-        return ViewHolderType.USER_TYPE.itemType
+        return VHType.USER_TYPE.itemType
     }
 
     var name: String? = null
