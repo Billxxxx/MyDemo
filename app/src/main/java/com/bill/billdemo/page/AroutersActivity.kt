@@ -10,6 +10,7 @@ import com.arsenal.bill.util.setAuth
 import com.arsenal.bill.util.setVHTypes
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
+import com.bill.billdemo.entity.BaseListFragmentConfig
 import com.bill.billdemo.entity.ViewHolderType
 import com.bill.billdemo.net.RequestInfo
 import kotlinx.android.synthetic.main.ac_main.*
@@ -19,12 +20,26 @@ class AroutersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ac_main)
 
-        if (BuildConfig.DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (BuildConfig.DEBUG) {   // 这两行必须写在init之前，否则这些配置在init过程中将无效
             ARouter.openLog();     // 打印日志
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
 
         sample_list_btn.setOnClickListener {
+
+            ARouter.getInstance().build(ARouterPageUtil.PAGE_VIEW_PAGER_ACTIVITY)
+                    .withObject("names", arrayOf(RouterUtil.PAGE_BASE_LIST_FRAGMENT, RouterUtil.PAGE_BASE_LIST_FRAGMENT))
+                    .withObject("fragment_data", arrayOf(
+                            BaseListFragmentConfig(
+                                    BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                                    RequestInfo.V3_COMMUNITY_LIST,
+                                    arrayOf(ViewHolderType.COMMUNITY_TYPE)),
+                            BaseListFragmentConfig(
+                                    BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                                    RequestInfo.V3_COMMUNITY_LIST,
+                                    arrayOf(ViewHolderType.COMMUNITY_TYPE))
+                    ))
+                    .navigation()
         }
         base_list_btn.setOnClickListener {
             try {

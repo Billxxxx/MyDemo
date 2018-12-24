@@ -45,8 +45,8 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     private fun initView() {
         mRecyclerView = mRootView.findViewById(R.id.rv_list)
         mSwipeRefreshLayout = mRootView.findViewById(R.id.swipe_layout)
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout!!.isEnabled = !mIBaseListControl.getListPageAuthority().checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
+        if (mSwipeRefreshLayout != null && mIBaseListControl.getListPageAuthority() != null) {
+            mSwipeRefreshLayout!!.isEnabled = !mIBaseListControl.getListPageAuthority()!!.checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
             mSwipeRefreshLayout!!.setOnRefreshListener {
                 setRefresh()
             }
@@ -132,9 +132,9 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     /**
      * 是否自动初始化,默认：true
      */
-    open fun isAutoInit(): Boolean {
-        return !mIBaseListControl.getListPageAuthority().checkAuth(BaseListAuth.DISABLE_AUTO_INIT.authInt)
-    }
+//    open fun isAutoInit(): Boolean {
+//        return mIBaseListControl.getListPageAuthority()?.checkAuth(BaseListAuth.DISABLE_AUTO_INIT.authInt)
+//    }
 }
 
 interface IBaseListControl {
@@ -144,7 +144,7 @@ interface IBaseListControl {
      */
     fun getVHTypes(): List<IVHType?>?
 
-    fun getListPageAuthority(): Int
+    fun getListPageAuthority(): Int?
     /**
      * 默认布局
      */

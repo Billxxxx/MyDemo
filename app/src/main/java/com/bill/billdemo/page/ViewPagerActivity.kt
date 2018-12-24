@@ -8,21 +8,36 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.activity.ArsenalBaseActivity
 import com.bill.billdemo.R
+import com.bill.billdemo.entity.BaseListFragmentConfig
 
 @Route(path = ARouterPageUtil.PAGE_VIEW_PAGER_ACTIVITY)
 class ViewPagerActivity : ArsenalBaseActivity() {
 
-    @Autowired(name = "urls")
+    /**需要启动的fragment列表*/
+    @Autowired(name = "names")
     @JvmField
-    var urls: Array<String>? = null
+    var names: Array<String>? = null
+
+    @Autowired(name = "fragment_data")
+    @JvmField
+    var fragment_data: Array<BaseListFragmentConfig>? = null
+
+
+    @Autowired(name = "index")
+    @JvmField
+    var index: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this);
         setContentView(R.layout.activity_fragment)
 
-        if (urls != null) {
-            val result = ARouter.getInstance().build(Uri.parse(urls!![0]))
+        if (names != null) {
+            val result = ARouter.getInstance().build(Uri.parse(ARouterPageUtil.PAGE_VIEW_PAGER_FRAGMENT))
+                    .withInt("index", index)
+                    .withObject("names", names)
+                    .withObject("fragment_data", fragment_data)
                     .navigation();
             if (result is Fragment)
                 supportFragmentManager.beginTransaction().apply {
@@ -32,4 +47,3 @@ class ViewPagerActivity : ArsenalBaseActivity() {
         }
     }
 }
-

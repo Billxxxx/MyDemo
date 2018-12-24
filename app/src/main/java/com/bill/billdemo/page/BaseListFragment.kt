@@ -12,54 +12,50 @@ import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.util.RouterUtil
-import com.bill.billdemo.entity.ViewHolderType
-import com.bill.billdemo.net.RequestInfo
+import com.bill.billdemo.entity.BaseListFragmentConfig
 
 /**通用的列表fragment，列表数据均由此列表实现，可以由Activity包装PAGE_BASE_LIST_ACTIVITY*/
 @Route(path = RouterUtil.PAGE_BASE_LIST_FRAGMENT)
 class BaseListFragment() : ArsenalListFragment() {
 
-    /**当前页面中启用的view holder*/
-    @Autowired(name = RouterUtil.VALUE_VH_TYPES)
-    @JvmField
-    var vh_types: Array<ViewHolderType>? = null
 
-    /**请求接口*/
-    @Autowired(name = RouterUtil.VALUE_API_INFO)
-    @JvmField
-    var resp: RequestInfo? = null
+//    /**页面的功能，比如下拉刷新，上拉加载*/
+//    @Autowired(name = RouterUtil.VALUE_PAGE_AUTH)
+//    @JvmField
+//    var list_page_auth: Int = 0
 
-    /**页面的功能，比如下拉刷新，上拉加载*/
-    @Autowired(name = RouterUtil.VALUE_PAGE_AUTH)
-    @JvmField
-    var list_page_auth: Int = 0
+//    /**分割线逻辑*/
+//    @Autowired(name = "dividerBean")
+//    @JvmField
+//    var dividerBean: ListDividerBean? = null
 
     /**分割线逻辑*/
-    @Autowired(name = "dividerBean")
+    @Autowired(name = "baseListConfig")
     @JvmField
-    var dividerBean: ListDividerBean? = null
+    var baseListConfig: BaseListFragmentConfig? = null
+
 
     override fun getVHTypes(): List<IVHType?>? {
         return ArrayList<IVHType>().apply {
-            vh_types?.forEach {
+            baseListConfig?.vhTypes?.forEach {
                 this.add(it)
             }
         }
     }
 
     override fun getRequestInfo(): BaseRequestInfo? {
-        return resp
+        return baseListConfig?.apiInfo
     }
 
-    override fun getListPageAuthority(): Int {
-        return list_page_auth
+    override fun getListPageAuthority(): Int? {
+        return baseListConfig?.pageAuth
     }
 
     override fun getListDividerBean(): ListDividerBean {
-        if (dividerBean == null)
+        if (baseListConfig?.listDividerBean == null)
             return super.getListDividerBean()
         else
-            return dividerBean!!
+            return baseListConfig?.listDividerBean!!
     }
 
     companion object {
