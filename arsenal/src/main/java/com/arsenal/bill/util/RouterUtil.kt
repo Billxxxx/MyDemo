@@ -15,8 +15,8 @@ class RouterUtil {
         const val VALUE_API_INFO = "api_info"
         const val VALUE_PAGE_AUTH = "page_auth"
         const val VIEWPAGER_FRAGMENTS_URL = "viewpager_fragments_url"
-        const val PAGE_BASE_LIST_ACTIVITY = "/bill/base_list_activity"
-        const val PAGE_BASE_LIST_FRAGMENT = "/bill/base_list_fragment"
+        const val PAGE_BASE_LIST_ACTIVITY = "/bill/activity_base_list"
+        const val PAGE_BASE_LIST_FRAGMENT = "/bill/fragment_base_list"
     }
 }
 
@@ -54,19 +54,20 @@ fun Postcard.setAuth(totalAuth: Int): Postcard {
 fun getCommonListURL(target: String, auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
     val gson = Gson()
     var url = "r://a.b" + target + "?"
-//    url += RouterUtil.VALUE_VH_TYPES + "=" + gson.toJson(vhTypes)
+    url += RouterUtil.VALUE_VH_TYPES + "=" + gson.toJson(vhTypes)
     var totalAuth = 0
     auths.forEach {
         totalAuth += it.authInt
     }
-//    url += "&" + RouterUtil.VALUE_API_INFO + "=" + gson.toJson(api)
-    url +=  RouterUtil.VALUE_PAGE_AUTH + "=" + gson.toJson(totalAuth)
+    url += "&" + RouterUtil.VALUE_API_INFO + "=" + gson.toJson(api)
+    url += "&" + RouterUtil.VALUE_PAGE_AUTH + "=" + gson.toJson(totalAuth)
     return url
 }
 
 fun getCommonListFragmentURL(auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
     return getCommonListURL(PAGE_BASE_LIST_FRAGMENT, auths, vhTypes, api)
 }
+
 fun getCommonListActivityURL(auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
     return getCommonListURL(PAGE_BASE_LIST_ACTIVITY, auths, vhTypes, api)
 }
@@ -74,6 +75,7 @@ fun getCommonListActivityURL(auths: Array<BaseListAuth>, vhTypes: Array<IVHType?
 fun getCommonListFragmentURL(auths: BaseListAuth, vhTypes: IVHType?, api: BaseRequestInfo): String {
     return getCommonListFragmentURL(arrayOf(auths), arrayOf(vhTypes), api)
 }
+
 fun getCommonListActivityURL(auths: BaseListAuth, vhTypes: IVHType?, api: BaseRequestInfo): String {
     return getCommonListActivityURL(arrayOf(auths), arrayOf(vhTypes), api)
 }

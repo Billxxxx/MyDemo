@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".page.FragmentWrapperActivity"/>
+        <activity android:name=".page.BaseListActivity"/>
         <activity android:name=".page.RetrofitActivity"/>
         <activity android:name=".page.ViewPagerActivity"/>
     </application>
