@@ -54,13 +54,13 @@ fun Postcard.setAuth(totalAuth: Int): Postcard {
 fun getCommonListURL(target: String, auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
     val gson = Gson()
     var url = "r://a.b" + target + "?"
-    url += RouterUtil.VALUE_VH_TYPES + "=" + gson.toJson(vhTypes)
+//    url += RouterUtil.VALUE_VH_TYPES + "=" + gson.toJson(vhTypes)
     var totalAuth = 0
     auths.forEach {
         totalAuth += it.authInt
     }
-    url += "&" + RouterUtil.VALUE_API_INFO + "=" + gson.toJson(api)
-    url += "&" + RouterUtil.VALUE_PAGE_AUTH + "=" + gson.toJson(totalAuth)
+//    url += "&" + RouterUtil.VALUE_API_INFO + "=" + gson.toJson(api)
+    url +=  RouterUtil.VALUE_PAGE_AUTH + "=" + gson.toJson(totalAuth)
     return url
 }
 
