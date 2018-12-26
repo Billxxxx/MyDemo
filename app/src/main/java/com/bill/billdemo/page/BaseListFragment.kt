@@ -11,8 +11,10 @@ import com.arsenal.bill.activity.ArsenalListFragment
 import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
+import com.arsenal.bill.util.MyLogger
 import com.arsenal.bill.util.RouterUtil
 import com.bill.billdemo.entity.BaseListFragmentConfig
+import com.orhanobut.logger.Logger
 
 /**通用的列表fragment，列表数据均由此列表实现，可以由Activity包装PAGE_BASE_LIST_ACTIVITY*/
 @Route(path = RouterUtil.PAGE_BASE_LIST_FRAGMENT)
@@ -55,9 +57,11 @@ class BaseListFragment() : ArsenalListFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        MyLogger.d("ViewPagerFragment inject")
         if (arguments != null) {
             ARouter.getInstance().inject(this)
         }
+        Logger.d("ViewPagerFragment injected")
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }

@@ -1,10 +1,27 @@
 <resources>
 
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/state_bar_navigation_bar_color</item>
+    </style>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="BaseTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Start" parent="BaseTheme">
+        <item name="android:windowBackground">@drawable/android_welcome</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="ContentTV">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textColor">@color/vh_content_deep_gray</item>
+    </style>
+
+    <style name="TitleTV">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/black_text</item>
     </style>
 </resources>

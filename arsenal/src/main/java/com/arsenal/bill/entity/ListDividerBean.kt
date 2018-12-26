@@ -2,9 +2,9 @@ package com.arsenal.bill.entity
 
 import android.graphics.Color
 
-class ListDividerBean() {
-    var left = 0f
-    var right = 0f
-    var height = 0.5f
-    var color = Color.LTGRAY
-}
+data class ListDividerBean(
+        var left: Float = 0f,
+        var right: Float = 0f,
+        var height: Float = 0.5f,
+        var color: Int = Color.LTGRAY
+)

@@ -3,11 +3,9 @@ package com.bill.billdemo.page
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
+import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.recyclerview.BaseListAuth
-import com.arsenal.bill.util.RouterUtil
-import com.arsenal.bill.util.setApi
-import com.arsenal.bill.util.setAuth
-import com.arsenal.bill.util.setVHTypes
+import com.arsenal.bill.util.*
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.BaseListFragmentConfig
@@ -33,7 +31,9 @@ class AroutersActivity : AppCompatActivity() {
                             BaseListFragmentConfig(
                                     BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
                                     RequestInfo.V4_TABLOID,
-                                    arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM)),
+                                    arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
+                                    ListDividerBean(resources.getDimension(R.dimen.common_left_right), resources.getDimension(R.dimen.common_left_right), color = getColorById(R.color.line_color))
+                            ),
                             BaseListFragmentConfig(
                                     BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
                                     RequestInfo.V3_COMMUNITY_LIST,

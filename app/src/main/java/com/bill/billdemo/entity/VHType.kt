@@ -13,9 +13,6 @@ enum class VHType(
         var sameVHType: VHType? = null)
     : MultiItemEntity, IVHType {
     DEFAULT(R.layout.vh_default),
-    TEXT(R.layout.vh_text_view),
-    IMAGE(R.layout.item_image_view),
-    IMAGE_TEXT(ImageTextVH::class.java),
     USER_TYPE(UserVH::class.java),
     COMMUNITY_TYPE(CommunityVH::class.java),
     TIME_FILTER(TimeFilterVH::class.java),

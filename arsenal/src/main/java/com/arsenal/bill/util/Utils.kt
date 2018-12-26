@@ -1,6 +1,9 @@
 package com.arsenal.bill.util
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import com.arsenal.bill.ArsenalApp
@@ -33,4 +36,39 @@ fun View.createView(layoutId: Int): View? {
 fun Context.createView(layoutId: Int): View? {
     if (layoutId == 0) return null
     return LayoutInflater.from(this).inflate(layoutId, null)
+}
+
+fun Context.getColorById(colorId: Int): Int {
+    return ContextCompat.getColor(this, colorId)
+}
+
+fun View.getColorById(colorId: Int): Int {
+    return ContextCompat.getColor(this.context, colorId)
+}
+
+
+fun Context.getDrawableById(colorId: Int): Drawable {
+    return ContextCompat.getDrawable(this, colorId)!!
+}
+
+fun View.getDrawableById(colorId: Int): Drawable {
+    return ContextCompat.getDrawable(this.context, colorId)!!
+}
+
+
+fun Context.getDimensionById(colorId: Int): Float {
+    return resources.getDimension(colorId)
+}
+
+fun View.getDimensionById(colorId: Int): Float {
+
+    return resources.getDimension(colorId)
+}
+
+
+fun isNotEmpty(text: String?): Boolean {
+    return !TextUtils.isEmpty(text)
+}
+fun isEmpty(text: String?): Boolean {
+    return TextUtils.isEmpty(text)
 }

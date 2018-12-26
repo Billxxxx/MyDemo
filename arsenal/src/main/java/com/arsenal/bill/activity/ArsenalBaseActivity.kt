@@ -2,13 +2,15 @@ package com.arsenal.bill.activity
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.gyf.barlibrary.ImmersionBar
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.Utils
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
-abstract class ArsenalBaseActivity : FragmentActivity(), SwipeBackActivityBase{
+abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase{
     private var mHelper: SwipeBackActivityHelper? = null
     private var mSwipeBackLayout: SwipeBackLayout? = null
 
@@ -23,6 +25,9 @@ abstract class ArsenalBaseActivity : FragmentActivity(), SwipeBackActivityBase{
             mHelper!!.onActivityCreate()
             swpieBackInit()
         }
+
+        ImmersionBar.with(this).statusBarDarkFont(true).statusBarColor("#f2f2f2").init()
+
     }
 
     private fun swpieBackInit() {

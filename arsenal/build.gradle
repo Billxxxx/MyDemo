@@ -84,6 +84,8 @@ dependencies {
     /* 弹出框  */
     api 'com.orhanobut:dialogplus:1.11@aar'
     implementation files('libs/jcc-bate-0.7.3.jar')
+    /*沉浸式状态栏*/
+    api 'com.gyf.barlibrary:barlibrary:2.3.0'
 }
 repositories {
     mavenCentral()

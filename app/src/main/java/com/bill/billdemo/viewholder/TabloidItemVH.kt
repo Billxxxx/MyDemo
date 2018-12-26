@@ -1,17 +1,14 @@
 package com.bill.billdemo.viewholder
 
-import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.arsenal.bill.recyclerview.BaseDataBindingVH
+import com.arsenal.bill.recyclerview.BaseBindingVH
 import com.bill.billdemo.R
-import com.bill.billdemo.databinding.VhCommunityBinding
+import com.bill.billdemo.databinding.VhTabloidItemBinding
 import com.bill.billdemo.entity.NewsItemBean
 
-class TabloidItemVH(
-        i: LayoutInflater,
-        p: ViewGroup)
-    : BaseDataBindingVH<VhCommunityBinding, NewsItemBean>(DataBindingUtil.inflate(i, R.layout.vh_tabloid_item, p, false)) {
+class TabloidItemVH(i: LayoutInflater, p: ViewGroup)
+    : BaseBindingVH<VhTabloidItemBinding, NewsItemBean>(R.layout.vh_tabloid_item, i, p) {
     init {
         itemView.setOnClickListener {
 
@@ -20,5 +17,6 @@ class TabloidItemVH(
 
     override fun setData(data: NewsItemBean) {
         super.setData(data)
+        binding.newsItem = data
     }
 }

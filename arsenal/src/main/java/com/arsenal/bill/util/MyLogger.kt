@@ -4,12 +4,12 @@ import android.text.TextUtils
 import com.arsenal.bill.BuildConfig
 import com.orhanobut.logger.Logger
 
-var ignoreBuildConfig = true
+var ignoreBuildConfig = false
 
 class MyLogger {
 
     companion object Factory {
-        fun d(tag: String? = null, vararg text: Object) {
+        fun d(tag: String? = null, vararg text: Any) {
             if (ignoreBuildConfig && !BuildConfig.DEBUG) return
             if (TextUtils.isEmpty(tag))
                 Logger.d(text)
