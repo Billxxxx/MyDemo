@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.arsenal.bill.activity.ArsenalBaseActivity
+import com.arsenal.bill.page.ArsenalBaseActivity
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.BaseListFragmentConfig
 

@@ -26,8 +26,8 @@ class AroutersActivity : AppCompatActivity() {
         sample_list_btn.setOnClickListener {
 
             ARouter.getInstance().build(ARouterPageUtil.PAGE_VIEW_PAGER_ACTIVITY)
-                    .withObject("names", arrayOf(RouterUtil.PAGE_BASE_LIST_FRAGMENT, RouterUtil.PAGE_BASE_LIST_FRAGMENT))
-                    .withObject("fragment_data", arrayOf(
+                    .withObject(RouterUtil.VALUE_NAMES, arrayOf(RouterUtil.PAGE_BASE_LIST_FRAGMENT, RouterUtil.PAGE_BASE_LIST_FRAGMENT))
+                    .withObject(RouterUtil.VALUE_FRAGMENT_DATA, arrayOf(
                             BaseListFragmentConfig(
                                     BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
                                     RequestInfo.V4_TABLOID,

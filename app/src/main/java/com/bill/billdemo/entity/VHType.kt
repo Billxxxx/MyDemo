@@ -3,7 +3,10 @@ package com.bill.billdemo.entity
 import com.arsenal.bill.recyclerview.BaseVH
 import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.R
-import com.bill.billdemo.viewholder.*
+import com.bill.billdemo.viewholder.CommunityVH
+import com.bill.billdemo.viewholder.TabloidItemVH
+import com.bill.billdemo.viewholder.TimeFilterVH
+import com.bill.billdemo.viewholder.UserVH
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import kotlinx.android.parcel.Parcelize
 

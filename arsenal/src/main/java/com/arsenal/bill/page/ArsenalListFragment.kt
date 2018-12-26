@@ -1,4 +1,4 @@
-package com.arsenal.bill.activity
+package com.arsenal.bill.page
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

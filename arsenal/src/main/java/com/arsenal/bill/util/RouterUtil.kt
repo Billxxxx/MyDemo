@@ -19,6 +19,7 @@ class RouterUtil {
         const val VALUE_NAMES = "names"
         const val VALUE_FRAGMENT_DATA = "fragment_data"
         const val VALUE_INDICATOR_TYPE = "indicator_type"
+        const val VALUE_BASE_LIST_CONFIG = "base_list_config"
         const val VIEWPAGER_FRAGMENTS_URL = "viewpager_fragments_url"
         const val PAGE_BASE_LIST_ACTIVITY = "/bill/activity_base_list"
         const val PAGE_BASE_LIST_FRAGMENT = "/bill/fragment_base_list"

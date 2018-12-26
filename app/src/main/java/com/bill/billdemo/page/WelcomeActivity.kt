@@ -2,7 +2,7 @@ package com.bill.billdemo.page
 
 import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
-import com.arsenal.bill.activity.ArsenalBaseActivity
+import com.arsenal.bill.page.ArsenalBaseActivity
 
 class WelcomeActivity : ArsenalBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,5 +10,9 @@ class WelcomeActivity : ArsenalBaseActivity() {
 
         ARouter.getInstance().build(ARouterPageUtil.PAGE_MAIN_ACTIVITY).navigation()
         finish()
+    }
+
+    override fun enableSwipeBack(): Boolean {
+        return false
     }
 }
