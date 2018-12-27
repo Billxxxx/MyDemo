@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- shape如果不声明形状则默认为正方形 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 隐藏下面边框 -->
+    <item>
+
+        <shape>
+            <!-- 边框 -->
+            <!--<stroke android:width="2px" android:color="@color/hjs_main"/>-->
+            <!-- 形状的填充色 -->
+            <solid android:color="@android:color/black"/>
+            <!-- 圆角，你也可以对不同的角设置不同的数值 -->
+            <corners android:radius="5dp"/>
+            <!--<corners android:topLeftRadius="5dp"-->
+            <!--android:topRightRadius="5dp"/>-->
+
+        </shape>
+    </item>
+</layer-list>

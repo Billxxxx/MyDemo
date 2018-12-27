@@ -5,7 +5,15 @@ import android.view.View
 
 abstract class BaseViewPagerIndicatorController(view: View, viewPager: ViewPager, currentIndex: Int = 0, var selectCB: ((Int) -> Unit)) {
     var currentIndex = 0
-    abstract fun select(index: Int)
+
+    abstract fun setViewEnable(currentIndex: Int, b: Boolean)
+
+    inner class TabOnClickListener(var index: Int) : View.OnClickListener {
+        override fun onClick(p0: View?) {
+            select(index)
+            selectCB.invoke(index)
+        }
+    }
 
     init {
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -21,10 +29,12 @@ abstract class BaseViewPagerIndicatorController(view: View, viewPager: ViewPager
         })
     }
 
-    inner class TabOnClickListener(var index: Int) : View.OnClickListener {
-        override fun onClick(p0: View?) {
-            select(index)
-            selectCB.invoke(index)
+
+    fun select(index: Int) {
+        if (index != currentIndex) {
+            setViewEnable(currentIndex, false)
+            setViewEnable(index, true)
+            currentIndex = index
         }
     }
 }
