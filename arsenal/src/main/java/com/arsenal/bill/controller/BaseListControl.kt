@@ -5,7 +5,6 @@ import android.graphics.Paint
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import com.arsenal.bill.R
 import com.arsenal.bill.entity.ListDividerBean
@@ -32,6 +31,7 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     open lateinit var mAdapter: MultipleItemQuickAdapter
     var mSwipeRefreshLayout: SwipeRefreshLayout? = null
     var mRootView: View
+    var isFirst = true
 
     init {
         mRootView = activity.layoutInflater.inflate(mIBaseListControl.getLayoutID(), null)
@@ -48,7 +48,7 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
         if (mSwipeRefreshLayout != null && mIBaseListControl.getListPageAuthority() != null) {
             mSwipeRefreshLayout!!.isEnabled = !mIBaseListControl.getListPageAuthority()!!.checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
             mSwipeRefreshLayout!!.setOnRefreshListener {
-                setRefresh()
+                startRefresh()
             }
         }
     }
@@ -74,23 +74,24 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
                 .marginProvider(this)
                 .build())
 
-        setRefresh()
+        if (isAutoRefresh())
+            startRefresh()
     }
 
-    private fun setRefresh() {
+    private fun startRefresh() {
         mSwipeRefreshLayout?.isRefreshing = true
         NetHelper.helper?.startRequest(mIBaseListControl.getRequestInfo(), object : CaidouApiCallBack<IResp> {
             override fun onFailure(t: Throwable) {
-                Log.d("TAG", "onFailure")
+//                Log.d("TAG", "onFailure")
             }
 
             override fun onComplete() {
-                Log.d("TAG", "onComplete")
+//                Log.d("TAG", "onComplete")
                 mSwipeRefreshLayout?.isRefreshing = false
             }
 
             override fun onSuccess(data: IResp?) {
-                Log.d("TAG", "onSuccess")
+//                Log.d("TAG", "onSuccess")
                 if (data is IListResp)
                     mAdapter.setNewData(data.getList())
 
@@ -132,9 +133,17 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     /**
      * 是否自动初始化,默认：true
      */
-//    open fun isAutoInit(): Boolean {
-//        return mIBaseListControl.getListPageAuthority()?.checkAuth(BaseListAuth.DISABLE_AUTO_INIT.authInt)
-//    }
+    open fun isAutoRefresh(): Boolean {
+        val result = mIBaseListControl.getListPageAuthority()?.checkAuth(BaseListAuth.DISABLE_AUTO_REFRESH.authInt)
+        if (result == null) return true else return !result
+    }
+
+    fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        if (isVisibleToUser && !isAutoRefresh() && isFirst) {
+            isFirst = false
+            startRefresh()
+        }
+    }
 }
 
 interface IBaseListControl {

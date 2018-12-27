@@ -45,4 +45,6 @@ class MainActivity : ArsenalBaseActivity() {
                 3,
                 ViewPagerIndicatorType.MAIN.ordinal)
     }
+
+
 }

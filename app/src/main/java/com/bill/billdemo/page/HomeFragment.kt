@@ -2,6 +2,7 @@ package com.bill.billdemo.page
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,43 +32,45 @@ class HomeFragment() : Fragment() {
             val fragments = arrayListOf<Fragment>()
 
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
                             arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
                             ListDividerBean(resources.getDimension(R.dimen.common_left_right), resources.getDimension(R.dimen.common_left_right), color = activity!!.getColorById(R.color.line_color))))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(null,
                             RequestInfo.V4_TABLOID,
                             arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
                             ListDividerBean(resources.getDimension(R.dimen.common_left_right), resources.getDimension(R.dimen.common_left_right), color = activity!!.getColorById(R.color.line_color))))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
                             arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
                             ListDividerBean(resources.getDimension(R.dimen.common_left_right), resources.getDimension(R.dimen.common_left_right), color = activity!!.getColorById(R.color.line_color))))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
                             arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
                             ListDividerBean(resources.getDimension(R.dimen.common_left_right), resources.getDimension(R.dimen.common_left_right), color = activity!!.getColorById(R.color.line_color))))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt,
+                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
                             arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
                             ListDividerBean(resources.getDimension(R.dimen.common_left_right), resources.getDimension(R.dimen.common_left_right), color = activity!!.getColorById(R.color.line_color))))
                     .navigation() as Fragment)
+            val viewPager = mView!!.findViewById<ViewPager>(R.id.view_pager)
 
             ViewPagerController(
                     mView!!,
-                    mView!!.findViewById(R.id.view_pager),
+                    viewPager,
                     fragments,
                     childFragmentManager,
                     3,
                     ViewPagerIndicatorType.HOME.ordinal)
+//            viewPager.currentItem = 1
         }
         return mView
     }

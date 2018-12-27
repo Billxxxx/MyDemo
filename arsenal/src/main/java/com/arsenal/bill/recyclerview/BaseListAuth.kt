@@ -19,8 +19,6 @@ enum class BaseListAuth : Serializable {
     /**是否禁用自动刷新*/
     DISABLE_AUTO_REFRESH,
 
-    /**是否自动初始化*/
-    DISABLE_AUTO_INIT,
     ;
 
     var authInt: Int

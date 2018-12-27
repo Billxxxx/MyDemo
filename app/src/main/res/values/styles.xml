@@ -9,19 +9,30 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
-    <style name="Theme.Start" parent="BaseTheme">
+    <style name="WlcomeTheme" parent="BaseTheme">
         <item name="android:windowBackground">@drawable/android_welcome</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/notAnimation</item>
     </style>
 
-    <style name="ContentTV">
-        <item name="android:includeFontPadding">false</item>
-        <item name="android:maxLines">3</item>
-        <item name="android:textColor">@color/vh_content_deep_gray</item>
+    <style name="MainTheme" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/notAnimation</item>
     </style>
 
-    <style name="TitleTV">
-        <item name="android:includeFontPadding">false</item>
-        <item name="android:textColor">@color/black_text</item>
+    <style name="notAnimation">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
     </style>
+
+
 </resources>

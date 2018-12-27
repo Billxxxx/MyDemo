@@ -29,21 +29,9 @@ class ViewPagerController(
     var mAdapter: PagerAdapter? = null
 
     init {
-        when (indicatorType) {
-            ViewPagerIndicatorType.HOME.ordinal -> {
-                HomeVPIndicatorController(rootView, viewPager, titles = arrayOf("新闻", "阅读", "图说", "热榜", "行家")) {
-                    viewPager.currentItem = it
-                }
-            }
-            ViewPagerIndicatorType.MAIN.ordinal -> {
-                MainVPIndicatorController(rootView, viewPager) {
-                    viewPager.currentItem = it
-                }
-            }
-            else -> {
 
-            }
-        }
+
+
         mAdapter = object : FragmentPagerAdapter(fragmentManager) {
             override fun getItem(position: Int): Fragment? {
                 return if (position < fragments.size) {
@@ -60,11 +48,22 @@ class ViewPagerController(
             this.offscreenPageLimit = offscreenPageLimit
             adapter = mAdapter
         }
+        when (indicatorType) {
+            ViewPagerIndicatorType.HOME.ordinal -> {
+                HomeVPIndicatorController(rootView, viewPager, 1, arrayOf("新闻", "阅读", "图说", "热榜", "行家")) {}
+            }
+            ViewPagerIndicatorType.MAIN.ordinal -> {
+                MainVPIndicatorController(rootView, viewPager) {}
+            }
+            else -> {
+
+            }
+        }
     }
 }
 
 class HomeVPIndicatorController(view: View, viewPager: ViewPager, currentIndex: Int = 0, titles: Array<String>, selectCB: (Int) -> Unit)
-    : BaseViewPagerIndicatorController(view, viewPager, currentIndex, selectCB) {
+    : BaseViewPagerIndicatorController(viewPager, currentIndex, selectCB) {
 
 
     /**问字标签*/
@@ -74,10 +73,6 @@ class HomeVPIndicatorController(view: View, viewPager: ViewPager, currentIndex: 
     var imageViews = arrayListOf<ImageView>()
 
     init {
-
-
-        textViews.clear()
-
         view.findViewById<ViewGroup>(R.id.view_pager_fragment_root_view).addView(
                 LinearLayout(view.context).apply {
                     orientation = LinearLayout.HORIZONTAL
@@ -128,7 +123,7 @@ class HomeVPIndicatorController(view: View, viewPager: ViewPager, currentIndex: 
 }
 
 class MainVPIndicatorController(view: View, viewPager: ViewPager, currentIndex: Int = 0, selectCB: (Int) -> Unit)
-    : BaseViewPagerIndicatorController(view, viewPager, currentIndex, selectCB) {
+    : BaseViewPagerIndicatorController(viewPager, currentIndex, selectCB) {
 
     /**问字标签*/
     var textViews = arrayListOf<TextView>()
@@ -137,13 +132,11 @@ class MainVPIndicatorController(view: View, viewPager: ViewPager, currentIndex: 
     var imageViews = arrayListOf<ImageView>()
 
     init {
-        textViews.clear()
         textViews.add(view.tab_tv_1)
         textViews.add(view.tab_tv_2)
         textViews.add(view.tab_tv_3)
         textViews.add(view.tab_tv_4)
 
-        imageViews.clear()
         imageViews.add(view.tab_iv_1)
         imageViews.add(view.tab_iv_2)
         imageViews.add(view.tab_iv_3)
