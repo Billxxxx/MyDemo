@@ -11,13 +11,13 @@ enum class ViewPagerIndicatorType {
         fun getLayoutByType(type: Int): Int {
             return when (type) {
                 ViewPagerIndicatorType.HOME.ordinal -> {
-                    R.layout.view_pager_fragment
+                    R.layout.fragment_view_pager
                 }
                 ViewPagerIndicatorType.MAIN.ordinal -> {
                     R.layout.activity_main
                 }
                 else ->
-                    R.layout.view_pager_fragment
+                    R.layout.fragment_view_pager
             }
         }
     }

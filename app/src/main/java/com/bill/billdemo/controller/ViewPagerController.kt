@@ -31,7 +31,6 @@ class ViewPagerController(
     init {
 
 
-
         mAdapter = object : FragmentPagerAdapter(fragmentManager) {
             override fun getItem(position: Int): Fragment? {
                 return if (position < fragments.size) {
@@ -73,39 +72,41 @@ class HomeVPIndicatorController(view: View, viewPager: ViewPager, currentIndex: 
     var imageViews = arrayListOf<ImageView>()
 
     init {
-        view.findViewById<ViewGroup>(R.id.view_pager_fragment_root_view).addView(
-                LinearLayout(view.context).apply {
-                    orientation = LinearLayout.HORIZONTAL
-                    titles.forEachIndexed { index, s ->
+        view.findViewById<ViewGroup>(R.id.view_pager_fragment_root_view).apply {
+            addView(LinearLayout(view.context).apply {
+                orientation = LinearLayout.HORIZONTAL
+                titles.forEachIndexed { index, s ->
 
-                        addView(
-                                createView(R.layout.item_top_tab)?.apply {
+                    addView(
+                            createView(R.layout.item_top_tab)?.apply {
 
-                                    setOnClickListener(TabOnClickListener(index))
+                                setOnClickListener(TabOnClickListener(index))
 
-                                    textViews.add(this.text_view)
-                                    imageViews.add(this.line_iv)
+                                textViews.add(this.text_view)
+                                imageViews.add(this.line_iv)
 
-                                    this.text_view.text = s
-                                    this.text_view.isEnabled = index == currentIndex
+                                this.text_view.text = s
+                                this.text_view.isEnabled = index == currentIndex
 
-                                    if (index == currentIndex) {
-                                        this.line_iv.visible()
-                                    } else {
-                                        this.line_iv.invisible()
-                                    }
-                                },
-                                LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT).apply {
-                                    weight = 1f
+                                if (index == currentIndex) {
+                                    this.line_iv.visible()
+                                } else {
+                                    this.line_iv.invisible()
                                 }
-                        )
-                    }
-                },
-                0,
-                ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                    height = 49.dpToPx()
+                            },
+                            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT).apply {
+                                weight = 1f
+                            }
+                    )
                 }
-        )
+            },
+                    0,
+                    ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                        height = 49.dpToPx()
+                    }
+            )
+            addView(view.context.createView(R.layout.horizontal_line), 1)
+        }
     }
 
     override fun setViewEnable(currentIndex: Int, b: Boolean) {

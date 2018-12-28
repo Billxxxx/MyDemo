@@ -69,6 +69,7 @@ fun View.getDimensionById(colorId: Int): Float {
 fun isNotEmpty(text: String?): Boolean {
     return !TextUtils.isEmpty(text)
 }
+
 fun isEmpty(text: String?): Boolean {
     return TextUtils.isEmpty(text)
 }
