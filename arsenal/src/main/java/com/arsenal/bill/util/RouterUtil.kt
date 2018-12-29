@@ -1,12 +1,10 @@
 package com.arsenal.bill.util
 
 import com.alibaba.android.arouter.facade.Postcard
+import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.recyclerview.BaseListAuth
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
-import com.arsenal.bill.util.RouterUtil.Companion.PAGE_BASE_LIST_ACTIVITY
-import com.arsenal.bill.util.RouterUtil.Companion.PAGE_BASE_LIST_FRAGMENT
-import com.google.gson.Gson
 
 /**跳转参数*/
 class RouterUtil {
@@ -55,33 +53,4 @@ fun Postcard.setAuth(vararg auths: BaseListAuth): Postcard {
 fun Postcard.setAuth(totalAuth: Int): Postcard {
     withInt(RouterUtil.VALUE_PAGE_AUTH, totalAuth)
     return this
-}
-
-fun getCommonListURL(target: String, auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
-    val gson = Gson()
-    var url = "r://a.b" + target + "?"
-    url += RouterUtil.VALUE_VH_TYPES + "=" + gson.toJson(vhTypes)
-    var totalAuth = 0
-    auths.forEach {
-        totalAuth += it.authInt
-    }
-    url += "&" + RouterUtil.VALUE_API_INFO + "=" + gson.toJson(api)
-    url += "&" + RouterUtil.VALUE_PAGE_AUTH + "=" + gson.toJson(totalAuth)
-    return url
-}
-
-fun getCommonListFragmentURL(auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
-    return getCommonListURL(PAGE_BASE_LIST_FRAGMENT, auths, vhTypes, api)
-}
-
-fun getCommonListActivityURL(auths: Array<BaseListAuth>, vhTypes: Array<IVHType?>?, api: BaseRequestInfo): String {
-    return getCommonListURL(PAGE_BASE_LIST_ACTIVITY, auths, vhTypes, api)
-}
-
-fun getCommonListFragmentURL(auths: BaseListAuth, vhTypes: IVHType?, api: BaseRequestInfo): String {
-    return getCommonListFragmentURL(arrayOf(auths), arrayOf(vhTypes), api)
-}
-
-fun getCommonListActivityURL(auths: BaseListAuth, vhTypes: IVHType?, api: BaseRequestInfo): String {
-    return getCommonListActivityURL(arrayOf(auths), arrayOf(vhTypes), api)
 }

@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.bill.billdemo.net.resp.PostBean"/>
+        <import type="com.bill.billdemo.entity.PostBean"/>
 
         <variable
             name="postBean"
-            type="com.bill.billdemo.net.resp.PostBean"/>
+            type="PostBean"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

@@ -7,19 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.arsenal.bill.recyclerview.BaseVH
+import com.arsenal.bill.util.RouterUtil
+import com.arsenal.bill.util.gone
 import com.arsenal.bill.util.loadUrl
+import com.arsenal.bill.util.visible
 import com.arsenal.bill.views.BannerBaseAdapter
 import com.arsenal.bill.views.SimpleGridRecyclerView
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.AdInfoBean
 import com.bill.billdemo.entity.CommunityBean
+import com.bill.billdemo.entity.ListDividerMode
+import com.bill.billdemo.entity.VHType
+import com.bill.billdemo.net.RequestInfo
 import com.bill.billdemo.net.resp.ReadHeader
+import com.bill.billdemo.page.putListConfig
 import kotlinx.android.synthetic.main.item_read_community_grid.view.*
 import kotlinx.android.synthetic.main.vh_banners.view.*
 import java.io.Serializable
 
-class BannersItemVH(i: LayoutInflater, p: ViewGroup)
+class ReadHeadVH(i: LayoutInflater, p: ViewGroup)
     : BaseVH<ReadHeader>(R.layout.vh_banners, i, p) {
     var mBannerView: BannerView? = null
 
@@ -34,6 +42,12 @@ class BannersItemVH(i: LayoutInflater, p: ViewGroup)
         super.setData(data)
         mBannerView?.setData(data.banners, data.communities)
 
+        if (data.news != null) {
+            itemView.tabloid_layout.visible()
+            itemView.marquee_view.startWithList(data.news?.newsTitles, R.anim.anim_bottom_in, R.anim.anim_top_out)
+        } else {
+            itemView.tabloid_layout.gone()
+        }
     }
 
     inner class BannerView(var rootView: View) {
@@ -76,13 +90,15 @@ class BannersItemVH(i: LayoutInflater, p: ViewGroup)
                             }
                             view.setOnClickListener {
 
-                                //                                if (position != getCount() - 1) {
-//                                    if (communities != null && mData!!.size > position) {
+                                if (position != getCount() - 1) {
+                                    if (communities != null && mData!!.size > position) {
 //                                        PanelForm.startDetail(mData!![position].id, false)
-//                                    }
-//                                } else {
-//                                    CommonActivity.startActivity(CommonActivity.ALL_COMMUNITY)
-//                                }
+                                    }
+                                } else {
+                                    ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_ACTIVITY)
+                                            .putListConfig(RequestInfo.V3_COMMUNITY_LIST, null, ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider, arrayOf(VHType.COMMUNITY_TYPE))
+                                            .navigation()
+                                }
                             }
                         }
                     }.apply { simpleGridRecyclerView = this }.mRootView)

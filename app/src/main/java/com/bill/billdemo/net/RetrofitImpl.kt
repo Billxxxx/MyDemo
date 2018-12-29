@@ -12,6 +12,7 @@ import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.CustomConverterFactory
+import com.bill.billdemo.util.SystemParameter
 import com.google.gson.Gson
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -33,11 +34,6 @@ class RetrofitImpl {
 
 //        正式环境下只读取第一个
         url = App.getContext().resources.getStringArray(R.array.service_url)[if (!BuildConfig.DEBUG) 0 else surrentServiceIndex]
-//        if (BuildConfig.DEBUG) {
-//            url = App.getContext().getString(R.string.debug_url)
-//        } else {
-//            url = App.getContext().getString(R.string.release_url)
-//        }
 
 
         NetHelper.init(url, CustomConverterFactory.create(), ::getCall, ::onRequestResponse)

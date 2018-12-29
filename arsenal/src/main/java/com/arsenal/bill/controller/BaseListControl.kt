@@ -45,12 +45,12 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
     private fun initView() {
         mRecyclerView = mRootView.findViewById(R.id.rv_list)
         mSwipeRefreshLayout = mRootView.findViewById(R.id.swipe_layout)
-        if (mSwipeRefreshLayout != null && mIBaseListControl.getListPageAuthority() != null) {
-            mSwipeRefreshLayout!!.isEnabled = !mIBaseListControl.getListPageAuthority()!!.checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
-            mSwipeRefreshLayout!!.setOnRefreshListener {
+        val enable = if (mIBaseListControl.getListPageAuthority() == null) true else !mIBaseListControl.getListPageAuthority()!!.checkAuth(BaseListAuth.DISABLE_PULL_TO_REFRESH.authInt)
+        if (enable)
+            mSwipeRefreshLayout?.setOnRefreshListener {
                 startRefresh()
             }
-        }
+        mSwipeRefreshLayout?.isEnabled = enable
     }
 
     private fun initData() {

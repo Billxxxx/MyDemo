@@ -31,16 +31,10 @@ class HomeFragment() : Fragment() {
             val fragments = arrayListOf<Fragment>()
 
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
-                            RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
-                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
+                    .putListConfig(RequestInfo.V4_TABLOID, BaseListAuth.DISABLE_AUTO_REFRESH.authInt, ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider, arrayOf(VHType.TIME_FILTER, VHType.NEWS))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(null,
-                            RequestInfo.HOME_READ_LIST,
-                            arrayOf(VHType.POST, VHType.BANNERS),
-                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
+                    .putListConfig(RequestInfo.HOME_READ_LIST, null, ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider, arrayOf(VHType.POST, VHType.ReadHead))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,

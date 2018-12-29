@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <com.arsenal.bill.views.RatioLayout
         android:layout_width="match_parent"
@@ -29,4 +30,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"/>
-</android.support.constraint.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/tabloid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_left_right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/common_left_right"
+        android:background="@drawable/bg_gray_stroke_5"
+        android:gravity="center|left"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/common_left_right"
+        android:paddingRight="@dimen/common_left_right">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_left_right"
+            android:layout_marginBottom="@dimen/common_left_right"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_cyxw_black_50"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:includeFontPadding="false"
+                android:text="产业新闻"
+                android:textColor="@color/black_text"
+                android:textSize="12sp"/>
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/VerticalLine"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="@dimen/common_left_right"
+            android:layout_marginBottom="@dimen/common_left_right"/>
+
+        <com.arsenal.bill.views.MarqueeView
+            android:id="@+id/marquee_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:mvAnimDuration="1000"
+            app:mvDirection="bottom_to_top"
+            app:mvInterval="5000"
+            app:mvTextColor="@color/black_text"
+            app:mvTextLineHeight="8dp"
+            app:mvTextMaxLine="2"
+            app:mvTextSize="15sp"/>
+    </LinearLayout>
+</LinearLayout>

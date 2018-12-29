@@ -4,10 +4,7 @@ import com.arsenal.bill.net.IListResp
 import com.arsenal.bill.net.IResp
 import com.arsenal.bill.net.VHItemEntity
 import com.arsenal.bill.recyclerview.IVHType
-import com.bill.billdemo.entity.AdInfoBean
-import com.bill.billdemo.entity.CommunityBean
-import com.bill.billdemo.entity.UserBean
-import com.bill.billdemo.entity.VHType
+import com.bill.billdemo.entity.*
 
 data class ReadResp(
         var topics: ArrayList<PostTimeBean>? = null,
@@ -37,17 +34,12 @@ data class PostTimeBean(
 
 }
 
-class TabloidBean {}
+class TabloidBean {
+    var newsTitles: ArrayList<String>? = null
+}
 
 /**帖子结构，包含问答文章等多种类型*/
 
-data class PostBean(
-        var type: Int = 0
-) : VHItemEntity() {
-    override fun getVHType(): IVHType {
-        return VHType.POST
-    }
-}
 
 class DocPostBean {}
 
@@ -56,6 +48,6 @@ class ReadHeader(
         var banners: ArrayList<AdInfoBean>? = null,
         var communities: ArrayList<CommunityBean>? = null) : VHItemEntity() {
     override fun getVHType(): IVHType {
-        return VHType.BANNERS
+        return VHType.ReadHead
     }
 }

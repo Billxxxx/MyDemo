@@ -79,7 +79,7 @@ abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase 
         }
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (event?.getRepeatCount() == 0 && !onPanelKeyDown(keyCode, event)) {
-//                returnBack()
+                finish()
             }
             return true
         } else if (event != null && BuildConfig.DEBUG && event.getRepeatCount() > 0 && keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
@@ -118,5 +118,3 @@ abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase 
 
     }
 }
-
-fun save() {}

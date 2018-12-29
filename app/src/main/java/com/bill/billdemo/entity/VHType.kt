@@ -13,7 +13,6 @@ enum class VHType(
         var sameVHType: VHType? = null)
     : MultiItemEntity, IVHType {
     DEFAULT(R.layout.vh_default),
-    USER_TYPE(UserVH::class.java),
     /**圈子详情*/
     COMMUNITY_TYPE(CommunityVH::class.java),
     /**时间*/
@@ -22,7 +21,7 @@ enum class VHType(
     NEWS(NewsVH::class.java),
     POST(PostVH::class.java),
     /**阅读的banner广告*/
-    BANNERS(BannersItemVH::class.java),
+    ReadHead(ReadHeadVH::class.java),
     ;
 
     var layout: Int = -1
