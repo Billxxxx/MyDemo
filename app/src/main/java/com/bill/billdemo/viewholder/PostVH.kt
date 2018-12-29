@@ -6,6 +6,7 @@ import com.arsenal.bill.recyclerview.BaseBindingVH
 import com.bill.billdemo.R
 import com.bill.billdemo.databinding.VhPostBinding
 import com.bill.billdemo.entity.PostBean
+import kotlinx.android.synthetic.main.vh_post.view.*
 
 class PostVH(i: LayoutInflater, p: ViewGroup)
     : BaseBindingVH<VhPostBinding, PostBean>(R.layout.vh_post, i, p) {
@@ -17,5 +18,7 @@ class PostVH(i: LayoutInflater, p: ViewGroup)
 
     override fun setData(data: PostBean) {
         super.setData(data)
+        binding.postBean = data
+        itemView.title_tv.text = data.title
     }
 }

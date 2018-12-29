@@ -4,7 +4,11 @@ import com.arsenal.bill.net.VHItemEntity
 import com.arsenal.bill.recyclerview.IVHType
 
 data class PostBean(
-        var type: Int = 0
+        var type: Int = 0,
+        var user: UserBean? = null,
+        var answer: QABean? = null,
+        var article: ArticlesBean? = null
+
 ) : VHItemEntity() {
     override fun getVHType(): IVHType {
         return when (type) {
@@ -12,7 +16,40 @@ data class PostBean(
             else -> VHType.POST
         }
     }
+
+    val title: String?
+        get() {
+            return when (type) {
+                PostType.TYPE_ARTICLE.ordinal -> article?.title
+                else -> null
+            }
+        }
+    val content: String?
+        get() {
+            return when (type) {
+                PostType.TYPE_ARTICLE.ordinal -> article?.shortContent
+                else -> null
+            }
+        }
+
+    val userByType: UserBean?
+        get() {
+            return when (type) {
+                PostType.TYPE_QA.ordinal -> answer?.huidaUser
+                else -> user
+            }
+        }
 }
+
+data class QABean(
+        var huidaUser: UserBean? = null
+
+)
+
+data class ArticlesBean(
+        var title: String? = null,
+        var shortContent: String? = null
+)
 
 enum class PostType {
 
