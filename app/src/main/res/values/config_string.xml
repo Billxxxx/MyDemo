@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="IS_ENCRYPTION_VALUE">"EN02"</string>
+    <string name="KEY">"x9kDGT7P"</string>
+    <string name="debug_url">"http://testapi.caidoukeji.com/"</string>
+    <string name="release_url">"https://caidoukeji.com/"</string>
+    <string name="en_key">EN02</string>
+
+    <!--正式环境必须卸载第一个-->
+    <string-array name="service_url">
+        <item>"http://caidoukeji.com/"</item>
+        <item>"http://testapi.caidoukeji.com/"</item>
+    </string-array>
+    <!--正式环境必须卸载第一个-->
+    <string-array name="service_name">
+        <item>正式</item>
+        <item>测试</item>
+    </string-array>
+</resources>

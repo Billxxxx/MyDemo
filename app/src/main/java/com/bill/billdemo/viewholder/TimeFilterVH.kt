@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.arsenal.bill.recyclerview.BaseBindingVH
 import com.bill.billdemo.R
 import com.bill.billdemo.databinding.VhTimeFilterBinding
-import com.bill.billdemo.entity.HomeTimeBean
+import com.bill.billdemo.net.resp.HomeTimeBean
 
 class TimeFilterVH(
         i: LayoutInflater,

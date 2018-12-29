@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.arsenal.bill.views.RatioLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:height_to_width_ratio="0.414">
+
+        <com.arsenal.bill.views.BannerView
+            android:id="@+id/bannerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bannerAnimDuration="1500"
+            app:bannerAnimScroll="true"
+            app:bannerAutoScroll="true"
+            app:bannerPageAlpha="1.0"
+            app:bannerPageMargin="0dp"
+            app:bannerPagePercent="1"
+            app:bannerPageScale="1"
+            app:bannerScrollDuration="4000"/>
+    </com.arsenal.bill.views.RatioLayout>
+
+    <RelativeLayout
+        android:id="@+id/category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"/>
+</android.support.constraint.ConstraintLayout>

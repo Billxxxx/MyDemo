@@ -6,6 +6,8 @@ import com.arsenal.bill.net.CaidouApiCallBack
 import com.arsenal.bill.net.IResp
 import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.retrofit.NetHelper
+import com.arsenal.bill.util.getIntSharedPreferencesValue
+import com.arsenal.bill.util.putIntToSharedPreferencesValue
 import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
@@ -21,14 +23,21 @@ class RetrofitImpl {
 
     init {
         val url: String
-        if (BuildConfig.DEBUG) {
-            // 这两行必须写在init之前，否则这些配置在init过程中将无效
-            ARouter.openLog()     // 打印日志
-            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-            url = App.getContext().getString(R.string.debug_url)
-        } else {
-            url = App.getContext().getString(R.string.release_url)
-        }
+
+        if (BuildConfig.DEBUG)
+            if (surrentServiceIndex == 1) {
+                // 这两行必须写在init之前，否则这些配置在init过程中将无效
+                ARouter.openLog()     // 打印日志
+                ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+            }
+
+//        正式环境下只读取第一个
+        url = App.getContext().resources.getStringArray(R.array.service_url)[if (!BuildConfig.DEBUG) 0 else surrentServiceIndex]
+//        if (BuildConfig.DEBUG) {
+//            url = App.getContext().getString(R.string.debug_url)
+//        } else {
+//            url = App.getContext().getString(R.string.release_url)
+//        }
 
 
         NetHelper.init(url, CustomConverterFactory.create(), ::getCall, ::onRequestResponse)
@@ -69,4 +78,14 @@ class RetrofitImpl {
         return client.home_recommendForm(encrypt, App.getContext().getString(R.string.en_key))
     }
 
+    companion object {
+        /**环境配置*/
+        var surrentServiceIndex: Int = App.getContext().getIntSharedPreferencesValue("RetrofitImpl", "service_index")
+            set(value) {
+                if (field != value) {
+                    App.getContext().putIntToSharedPreferencesValue("RetrofitImpl", "service_index", value)
+                    field = value
+                }
+            }
+    }
 }

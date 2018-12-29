@@ -1,9 +1,9 @@
 package com.arsenal.bill.recyclerview
 
-import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.arsenal.bill.net.VHItemEntity
 
-class MultipleItem(var type: IVHType, var spanSize: Int = 0, var content: String? = null) : MultiItemEntity {
-    override fun getItemType(): Int {
-        return type.getItemType()
+class MultipleItem(var type: IVHType, var spanSize: Int = 0, var content: String? = null) : VHItemEntity() {
+    override fun getVHType(): IVHType {
+        return type
     }
 }

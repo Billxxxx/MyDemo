@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.arsenal.bill.page.ArsenalBaseActivity
 import com.bill.billdemo.R
 import com.bill.billdemo.controller.ViewPagerController
 import com.bill.billdemo.controller.ViewPagerIndicatorType
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 @Route(path = ARouterPageUtil.PAGE_MAIN_ACTIVITY)
-class MainActivity : ArsenalBaseActivity() {
+class MainActivity : BaseActivity() {
     override fun enableSwipeBack(): Boolean {
         return false
     }

@@ -1,14 +1,15 @@
-package com.bill.billdemo.entity
+package com.bill.billdemo.net.resp
 
 import com.arsenal.bill.net.IListResp
 import com.arsenal.bill.net.IResp
-import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.arsenal.bill.net.VHItemEntity
+import com.bill.billdemo.entity.CommunityGroupBean
 
 class CommunityListResp : IResp(), IListResp {
     var datas: ArrayList<CommunityGroupBean>? = null
 
-    override fun getList(): ArrayList<MultiItemEntity> {
-        val list = ArrayList<MultiItemEntity>()
+    override fun getList(): ArrayList<VHItemEntity> {
+        val list = ArrayList<VHItemEntity>()
         datas?.forEach {
             list.addAll(it.children!!)
         }

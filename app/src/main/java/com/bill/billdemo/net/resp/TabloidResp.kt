@@ -1,15 +1,19 @@
-package com.bill.billdemo.entity
+package com.bill.billdemo.net.resp
 
+import com.arsenal.bill.controller.ItemDividerDecoration
 import com.arsenal.bill.net.IListResp
 import com.arsenal.bill.net.IResp
-import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.arsenal.bill.net.VHItemEntity
+import com.arsenal.bill.recyclerview.IVHType
+import com.bill.billdemo.entity.VHType
 
 class TabloidResp : IResp(), IListResp {
 
-    override fun getList(): ArrayList<MultiItemEntity>? {
-        val result = ArrayList<MultiItemEntity>()
+    override fun getList(): ArrayList<VHItemEntity>? {
+        val result = ArrayList<VHItemEntity>()
         news?.forEachIndexed { index, newsGroupBean ->
             result.add(HomeTimeBean(newsGroupBean.time))
+            newsGroupBean.news?.last()?.hideDivider = true
             newsGroupBean.news?.forEach {
                 //                if (it.adInfo != null)
 //                    result.add(it.adInfo!!)
@@ -46,9 +50,14 @@ class NewsItemBean(var author: String? = null,
                    var type: Int? = null
 //                   var adInfo: AdInfoBean? = null
 
-) : MultiItemEntity {
-    override fun getItemType(): Int {
-        return VHType.TABLOID_ITEM.itemType
+) : VHItemEntity(), ItemDividerDecoration {
+    var hideDivider = false
+    override fun shouldHideDivider(): Boolean {
+        return hideDivider
+    }
+
+    override fun getVHType(): IVHType {
+        return VHType.NEWS
     }
 
     fun getUrl(): String {
@@ -58,14 +67,15 @@ class NewsItemBean(var author: String? = null,
 
 class CategoryBeen(var name: String = "", var type: Int = 0)
 
-
 /**type :0阅读 1新闻*/
-data class HomeTimeBean(var time: String?, var categories: ArrayList<CategoryBeen>? = null, var type: Int = 0) : MultiItemEntity {
-    override fun getItemType(): Int {
-        return VHType.TIME_FILTER.itemType
-    }
-
-    fun enableAddShowFooter(): Boolean {
+data class HomeTimeBean(var time: String?, var categories: ArrayList<CategoryBeen>? = null, var type: Int = 0)
+    : VHItemEntity(), ItemDividerDecoration {
+    override fun shouldHideDivider(): Boolean {
         return true
     }
+
+    override fun getVHType(): IVHType {
+        return VHType.TIME_FILTER
+    }
+
 }

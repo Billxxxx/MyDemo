@@ -1,12 +1,4 @@
 <resources>
     <string name="app_name">BillDemo</string>
-    <string name="IS_ENCRYPTION_VALUE">"EN02"</string>
-    <string name="KEY">"x9kDGT7P"</string>
-    <string name="debug_url">"http://testapi.caidoukeji.com/"</string>
-    <string name="release_url">"https://caidoukeji.com/"</string>
-    <string name="en_key">EN02</string>
-    <string name="home_tab1">tab1</string>
-    <string name="home_tab2">tab2</string>
-    <string name="home_tab3">tab3</string>
-    <string name="home_tab4">tab4</string>
+
 </resources>

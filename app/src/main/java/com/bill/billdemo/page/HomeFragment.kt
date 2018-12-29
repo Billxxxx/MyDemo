@@ -33,31 +33,31 @@ class HomeFragment() : Fragment() {
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
                             ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(null,
-                            RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
+                            RequestInfo.HOME_READ_LIST,
+                            arrayOf(VHType.POST, VHType.BANNERS),
                             ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
                             ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
                             ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
                             RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.TABLOID_ITEM),
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
                             ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
                     .navigation() as Fragment)
             val viewPager = mView!!.findViewById<ViewPager>(R.id.view_pager)

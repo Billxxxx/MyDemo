@@ -3,10 +3,7 @@ package com.bill.billdemo.entity
 import com.arsenal.bill.recyclerview.BaseVH
 import com.arsenal.bill.recyclerview.IVHType
 import com.bill.billdemo.R
-import com.bill.billdemo.viewholder.CommunityVH
-import com.bill.billdemo.viewholder.TabloidItemVH
-import com.bill.billdemo.viewholder.TimeFilterVH
-import com.bill.billdemo.viewholder.UserVH
+import com.bill.billdemo.viewholder.*
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import kotlinx.android.parcel.Parcelize
 
@@ -17,9 +14,15 @@ enum class VHType(
     : MultiItemEntity, IVHType {
     DEFAULT(R.layout.vh_default),
     USER_TYPE(UserVH::class.java),
+    /**圈子详情*/
     COMMUNITY_TYPE(CommunityVH::class.java),
+    /**时间*/
     TIME_FILTER(TimeFilterVH::class.java),
-    TABLOID_ITEM(TabloidItemVH::class.java)
+    /**新闻*/
+    NEWS(NewsVH::class.java),
+    POST(PostVH::class.java),
+    /**阅读的banner广告*/
+    BANNERS(BannersItemVH::class.java),
     ;
 
     var layout: Int = -1

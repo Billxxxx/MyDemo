@@ -6,11 +6,11 @@
 
     <data>
 
-        <import type="com.bill.billdemo.entity.HomeTimeBean"/>
+        <import type="com.bill.billdemo.net.resp.HomeTimeBean"/>
 
         <variable
             name="timeBean"
-            type="HomeTimeBean"/>
+            type="com.bill.billdemo.net.resp.HomeTimeBean"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

@@ -16,7 +16,7 @@ import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.RequestInfo
 
 @Route(path = RouterUtil.PAGE_BASE_LIST_ACTIVITY)
-class BaseListActivity : ArsenalBaseActivity() {
+class BaseListActivity : BaseActivity() {
 
     @Autowired(name = RouterUtil.VALUE_VH_TYPES)
     @JvmField

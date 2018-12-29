@@ -11,7 +11,7 @@ import com.bill.billdemo.R
 import com.bill.billdemo.entity.BaseListFragmentConfig
 
 @Route(path = ARouterPageUtil.PAGE_VIEW_PAGER_ACTIVITY)
-class ViewPagerActivity : ArsenalBaseActivity() {
+class ViewPagerActivity : BaseActivity() {
 
     /**需要启动的fragment列表*/
     @Autowired(name = "names")

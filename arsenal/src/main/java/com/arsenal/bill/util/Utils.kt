@@ -73,3 +73,19 @@ fun isNotEmpty(text: String?): Boolean {
 fun isEmpty(text: String?): Boolean {
     return TextUtils.isEmpty(text)
 }
+
+fun Context.putIntToSharedPreferencesValue(sharedPreferencesKey: String, valueKey: String, value: Int?) {
+    if (value == null) return
+    getSharedPreferences(sharedPreferencesKey, 0).apply {
+        edit().apply {
+            putInt(valueKey, value)
+            apply()
+        }
+    }
+}
+
+fun Context.getIntSharedPreferencesValue(sharedPreferencesKey: String, valueKey: String, defaultValue: Int = 0): Int {
+    getSharedPreferences(sharedPreferencesKey, 0).apply {
+        return getInt(valueKey, defaultValue)
+    }
+}

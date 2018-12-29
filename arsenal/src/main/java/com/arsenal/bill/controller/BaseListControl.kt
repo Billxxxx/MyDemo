@@ -36,41 +36,6 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
 
     val mDividerDecoration = MyDividerDecoration()
 
-    inner class MyDividerDecoration() : FlexibleDividerDecoration.PaintProvider,//分割线的画笔
-            FlexibleDividerDecoration.VisibilityProvider,//分割线是否显示
-            HorizontalDividerItemDecoration.MarginProvider //分割线左右间距
-    {
-        /**
-         * 设置分割线画笔
-         */
-        override fun dividerPaint(position: Int, parent: RecyclerView?): Paint {
-            val paint = Paint()
-            paint.setColor(mIBaseListControl.getListDividerBean().color)
-            paint.setStrokeWidth(mIBaseListControl.getListDividerBean().height.dpToPx())
-            return paint
-        }
-
-        /**
-         * 分割线左间距
-         */
-        override fun dividerLeftMargin(position: Int, parent: RecyclerView?): Int {
-            return mIBaseListControl.getListDividerBean().left.toInt()
-        }
-
-        /**
-         * 分割线右间距
-         */
-        override fun dividerRightMargin(position: Int, parent: RecyclerView?): Int {
-            return mIBaseListControl.getListDividerBean().right.toInt()
-        }
-
-        /**
-         * 是否需要隐藏分割线
-         */
-        override fun shouldHideDivider(position: Int, parent: RecyclerView?): Boolean {
-            return false
-        }
-    }
 
     public fun init() {
         initView()
@@ -95,7 +60,7 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
         val manager = GridLayoutManager(activity, 4)
         mRecyclerView.layoutManager = manager
         mAdapter.setSpanSizeLookup { _, position ->
-            val data = mAdapter.data.get(position);
+            val data = mAdapter.getItem(position)
             if (data is MultipleItem) {
                 data.spanSize
             } else {
@@ -149,6 +114,46 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
             startRefresh()
         }
     }
+
+    inner class MyDividerDecoration() : FlexibleDividerDecoration.PaintProvider,//分割线的画笔
+            FlexibleDividerDecoration.VisibilityProvider,//分割线是否显示
+            HorizontalDividerItemDecoration.MarginProvider //分割线左右间距
+    {
+        /**
+         * 设置分割线画笔
+         */
+        override fun dividerPaint(position: Int, parent: RecyclerView?): Paint {
+            val paint = Paint()
+            paint.setColor(mIBaseListControl.getListDividerBean().color)
+            paint.setStrokeWidth(mIBaseListControl.getListDividerBean().height.dpToPx())
+            return paint
+        }
+
+        /**
+         * 分割线左间距
+         */
+        override fun dividerLeftMargin(position: Int, parent: RecyclerView?): Int {
+            return mIBaseListControl.getListDividerBean().left.toInt()
+        }
+
+        /**
+         * 分割线右间距
+         */
+        override fun dividerRightMargin(position: Int, parent: RecyclerView?): Int {
+            return mIBaseListControl.getListDividerBean().right.toInt()
+        }
+
+        /**
+         * 是否需要隐藏分割线
+         */
+        override fun shouldHideDivider(position: Int, parent: RecyclerView?): Boolean {
+            val item = mAdapter.getItem(position)
+            if (item is ItemDividerDecoration) {
+                return item.shouldHideDivider()
+            }
+            return false
+        }
+    }
 }
 
 interface IBaseListControl {
@@ -173,4 +178,8 @@ interface IBaseListControl {
     fun getRequestInfo(): BaseRequestInfo? {
         return null
     }
+}
+
+interface ItemDividerDecoration {
+    fun shouldHideDivider(): Boolean
 }

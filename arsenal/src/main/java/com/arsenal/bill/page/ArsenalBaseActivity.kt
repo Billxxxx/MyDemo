@@ -1,15 +1,23 @@
 package com.arsenal.bill.page
 
+import android.app.ActivityManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.KeyEvent
 import android.view.View
+import com.arsenal.bill.BuildConfig
+import com.arsenal.bill.util.showListDialog
 import com.gyf.barlibrary.ImmersionBar
+import com.orhanobut.dialogplus.DialogPlus
+import com.orhanobut.dialogplus.OnItemClickListener
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.Utils
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 
-abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase{
+abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase {
     private var mHelper: SwipeBackActivityHelper? = null
     private var mSwipeBackLayout: SwipeBackLayout? = null
 
@@ -63,4 +71,52 @@ abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase{
         Utils.convertActivityToTranslucent(this)
         swipeBackLayout.scrollToFinishActivity()
     }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+
+        if (isFinishing) {
+            return true
+        }
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (event?.getRepeatCount() == 0 && !onPanelKeyDown(keyCode, event)) {
+//                returnBack()
+            }
+            return true
+        } else if (event != null && BuildConfig.DEBUG && event.getRepeatCount() > 0 && keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            // 如果当前是 debug 模式，则长按音量 - 键呼出 debug 工具面板
+            showDebugControlDialog()
+            return true
+        } else {
+            return super.onKeyDown(keyCode, event)
+        }
+    }
+
+    /**
+     * 替代原本重载的onKeyDown函数，各activity实例自己实现
+     *
+     * @return 不处理返回false 处理返回true
+     */
+    protected fun onPanelKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return false
+    }
+
+    fun showDebugControlDialog() {
+        if (getServiceNames().size > 0)
+            showListDialog(this, getServiceNames().toList(), object : OnItemClickListener {
+                override fun onItemClick(dialog: DialogPlus?, item: Any?, view: View?, position: Int) {
+                    saveServiceIndex(position)
+                    dialog?.dismiss()
+                }
+            })
+    }
+
+    open fun getServiceNames(): Array<String> {
+        return arrayOf()
+    }
+
+    open fun saveServiceIndex(index: Int) {
+
+    }
 }
+
+fun save() {}

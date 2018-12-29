@@ -3,13 +3,13 @@ package com.arsenal.bill.recyclerview
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.arsenal.bill.net.VHItemEntity
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.entity.MultiItemEntity
 
 class MultipleItemQuickAdapter(
         val context: Context,
-        data: MutableList<MultiItemEntity>?,
-        var enableVHTypes: List<IVHType?>?) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseVH<MultiItemEntity>>(data) {
+        data: MutableList<VHItemEntity>?,
+        var enableVHTypes: List<IVHType?>?) : BaseMultiItemQuickAdapter<VHItemEntity, BaseVH<VHItemEntity>>(data) {
 
     init {
         enableVHTypes?.forEach {
@@ -18,16 +18,16 @@ class MultipleItemQuickAdapter(
         }
     }
 
-    override fun convert(helper: BaseVH<MultiItemEntity>, item: MultiItemEntity) {
+    override fun convert(helper: BaseVH<VHItemEntity>, item: VHItemEntity) {
         helper.setData(item)
     }
 
-    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseVH<MultiItemEntity> {
+    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseVH<VHItemEntity> {
         enableVHTypes?.forEach {
             if (it != null && it.getItemType() == viewType && it.getLayoutId() <= 0) {
                 val constructor = Class.forName(it.getVHClass().name).getDeclaredConstructor(LayoutInflater::class.java, ViewGroup::class.java)
                 //根据构造函数，传入值生成实例
-                return constructor.newInstance(mLayoutInflater, parent) as BaseVH<MultiItemEntity>
+                return constructor.newInstance(mLayoutInflater, parent) as BaseVH<VHItemEntity>
             }
         }
         try {

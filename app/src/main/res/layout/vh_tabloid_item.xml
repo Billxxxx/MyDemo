@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="com.bill.billdemo.entity.NewsItemBean"/>
+        <import type="com.bill.billdemo.net.resp.NewsItemBean"/>
 
         <variable
             name="newsItem"
-            type="NewsItemBean"/>
+            type="com.bill.billdemo.net.resp.NewsItemBean"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

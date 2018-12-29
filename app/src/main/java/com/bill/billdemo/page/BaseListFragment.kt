@@ -11,7 +11,6 @@ import com.arsenal.bill.entity.ListDividerBean
 import com.arsenal.bill.page.ArsenalListFragment
 import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
-import com.arsenal.bill.util.MyLogger
 import com.arsenal.bill.util.RouterUtil
 import com.bill.billdemo.entity.BaseListFragmentConfig
 
@@ -55,7 +54,6 @@ class BaseListFragment() : ArsenalListFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        MyLogger.d("ViewPagerFragment inject")
         if (arguments != null) {
             ARouter.getInstance().inject(this)
         }
