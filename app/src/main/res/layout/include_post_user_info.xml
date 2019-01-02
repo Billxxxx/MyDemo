@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="postBean"
+            type="com.bill.billdemo.entity.PostBean"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/user_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="13dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/content_tv"
+        tools:visibility="visible">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/user_type_icon_iv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            app:iconImageUrl="@{postBean.userByType.icon}"
+            tools:background="@drawable/icon_face_space"/>
+
+        <TextView
+            android:id="@+id/user_type_small_title_tv"
+            style="@style/ContentTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_left_right"
+            android:layout_toRightOf="@id/user_type_icon_iv"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="@{postBean.userByType.name}"
+            android:textSize="12sp"
+            tools:text="用户名"/>
+
+        <TextView
+            android:id="@+id/ad_bottom_tv"
+            style="@style/ContentTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@{postBean.readCommentNum}"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:lineSpacingExtra="0dp"
+            android:maxLines="1"
+            tools:text="time"/>
+    </LinearLayout>
+</layout>

@@ -19,7 +19,8 @@ enum class VHType(
     TIME_FILTER(TimeFilterVH::class.java),
     /**新闻*/
     NEWS(NewsVH::class.java),
-    POST(PostVH::class.java),
+    POST_TEST_BASE(PostTestBaseVH::class.java),
+    POST_ARTICLE(PostArticleVH::class.java),
     /**阅读的banner广告*/
     ReadHead(ReadHeadVH::class.java),
     ;

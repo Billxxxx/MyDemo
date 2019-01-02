@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="postBean"
+            type="com.bill.billdemo.entity.PostBean"/>
+    </data>
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        android:id="@+id/three_image_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <com.arsenal.bill.views.RatioLayout
+            android:layout_width="@dimen/post_iamge_width_height"
+            android:layout_height="@dimen/post_iamge_width_height"
+            app:height_to_width_ratio="1">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image_1"
+                style="@style/GrayLineImageBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/app_logo"/>
+
+            <TextView
+                android:id="@+id/tag_tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="#008de1"
+                android:text="动图"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </com.arsenal.bill.views.RatioLayout>
+
+        <View
+            android:id="@+id/space_1"
+            android:layout_width="10dp"
+            android:layout_height="0dp"/>
+
+
+        <com.arsenal.bill.views.RatioLayout
+            android:layout_width="@dimen/post_iamge_width_height"
+            android:layout_height="@dimen/post_iamge_width_height"
+            app:height_to_width_ratio="1">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image_2"
+                style="@style/GrayLineImageBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/app_logo"/>
+
+            <TextView
+                android:id="@+id/tag_tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="#008de1"
+                android:text="动图"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </com.arsenal.bill.views.RatioLayout>
+
+
+        <View
+            android:id="@+id/space_2"
+            android:layout_width="10dp"
+            android:layout_height="0dp"/>
+
+
+        <com.arsenal.bill.views.RatioLayout
+            android:layout_width="@dimen/post_iamge_width_height"
+            android:layout_height="@dimen/post_iamge_width_height"
+            app:height_to_width_ratio="1">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image_3"
+                style="@style/GrayLineImageBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/app_logo"/>
+
+            <TextView
+                android:id="@+id/tag_tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="#008de1"
+                android:text="动图"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </com.arsenal.bill.views.RatioLayout>
+    </LinearLayout>
+</layout>

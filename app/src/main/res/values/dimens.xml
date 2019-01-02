@@ -3,4 +3,5 @@
     <dimen name="common_left_right">15dp</dimen>
     <dimen name="main_bottom_bar_height">49dp</dimen>
     <dimen name="main_bottom_icon_w_h">22dp</dimen>
+    <dimen name="post_iamge_width_height">64dp</dimen>
 </resources>

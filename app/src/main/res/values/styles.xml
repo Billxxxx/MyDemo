@@ -34,5 +34,10 @@
         <item name="android:taskToBackExitAnimation">@null</item>
     </style>
 
+    <style name="GrayLineImageBorder">
+        <item name="com.bill.billdemo:riv_border_width">0.5dp</item>
+        <item name="com.bill.billdemo:riv_corner_radius">5dp</item>
+        <item name="com.bill.billdemo:riv_border_color">@color/line_color</item>
+    </style>
 
 </resources>

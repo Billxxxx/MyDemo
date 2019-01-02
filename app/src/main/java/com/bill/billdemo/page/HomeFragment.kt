@@ -34,7 +34,7 @@ class HomeFragment() : Fragment() {
                     .putListConfig(RequestInfo.V4_TABLOID, BaseListAuth.DISABLE_AUTO_REFRESH.authInt, ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider, arrayOf(VHType.TIME_FILTER, VHType.NEWS))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .putListConfig(RequestInfo.HOME_READ_LIST, null, ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider, arrayOf(VHType.POST, VHType.ReadHead))
+                    .putListConfig(RequestInfo.HOME_READ_LIST, null, ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider, arrayOf(VHType.POST_TEST_BASE, VHType.POST_ARTICLE, VHType.ReadHead))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
                     .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
