@@ -11,4 +11,6 @@
     <color name="line_color">#dddddd</color>
     <!--状态栏与底部虚拟键背景颜色-->
     <color name="state_bar_navigation_bar_color">#f2f2f2</color>
+    <color name="encourage_pay_dialog">#F26C4F</color>
+    <color name="video_tag_background">#353535</color>
 </resources>

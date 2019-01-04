@@ -4,9 +4,12 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import android.text.style.ReplacementSpan
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import com.arsenal.bill.ArsenalApp
+import com.arsenal.bill.views.IconTextSpan
 
 
 private var screenDensity: Float = 0.toFloat()
@@ -88,4 +91,23 @@ fun Context.getIntSharedPreferencesValue(sharedPreferencesKey: String, valueKey:
     getSharedPreferences(sharedPreferencesKey, 0).apply {
         return getInt(valueKey, defaultValue)
     }
+}
+
+
+fun TextView.setLeftTagText(tagStr: String, tagBackgroundColor: Int, text: String) {
+    val spans = kotlin.collections.arrayListOf<ReplacementSpan>()
+    val stringBuilder = StringBuilder()
+    //第一个Span
+    stringBuilder.append(" ")
+    val hotSpan = IconTextSpan(context, tagBackgroundColor, tagStr)
+    hotSpan.setRightMarginDpValue(5)
+    spans.add(hotSpan)
+
+    stringBuilder.append(text)
+    val spannableString = android.text.SpannableString(stringBuilder.toString())
+    //循环遍历设置Span
+    for (i in spans.indices) {
+        spannableString.setSpan(spans.get(i), i, i + 1, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    }
+    setText(spannableString)
 }

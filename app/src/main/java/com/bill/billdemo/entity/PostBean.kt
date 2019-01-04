@@ -5,7 +5,7 @@ import com.arsenal.bill.net.VHItemEntity
 import com.arsenal.bill.recyclerview.IVHType
 
 data class PostBean(
-        var type: Int = 0,
+        var type: Int = PostType.AD.ordinal,
         var user: UserBean? = null,
         var answer: QABean? = null,
         var article: ArticlesBean? = null,
@@ -90,17 +90,17 @@ data class PostBean(
 
 enum class PostType {
     /**0 广告*/
-    AD,//0
+    AD,
     /**1 文章*/
-    ARTICLE,//1
+    ARTICLE,
     /**2 文章评论[分享出来的], 帖子格式[没有title], 正常帖子, 有title,content, 图文帖子*/
     TWITTER,//2//twitter
     /**3 问答帖子. 可能没有title*/
     QA,//3//answer
     /**4 视频帖子*/
-    VIDEO,//4//video
+    VIDEO,
     /**5 专题*/
-    SPECIAL,//5//专题
+    SPECIAL,
     /**6 链接*/
     LINK,
     /**7 文件*/
@@ -138,6 +138,4 @@ data class ArticlesBean(
 )
 
 data class TwitterBean(var imgInfos: ArrayList<ImageInfoBean>? = null) {
-
-
 }
