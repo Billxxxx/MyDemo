@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.bill.billdemo.entity.PostBean"/>
+
+        <variable
+            name="postBean"
+            type="PostBean"/>
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/common_left_right"
+        android:paddingRight="@dimen/common_left_right">
+
+        <include
+            layout="@layout/include_post_title_content"
+            app:postBean="@{postBean}"/>
+
+        <include
+            layout="@layout/include_post_images"
+            app:postBean="@{postBean}"/>
+
+        <include
+            layout="@layout/include_post_user_info"
+            app:postBean="@{postBean}"/>
+
+    </LinearLayout>
+</layout>

@@ -9,6 +9,7 @@ data class PostBean(
         var user: UserBean? = null,
         var answer: QABean? = null,
         var article: ArticlesBean? = null,
+        var twitter: TwitterBean? = null,
         /**点赞数量*/
         var likeNum: Int = 0,
         /**评论数量*/
@@ -17,7 +18,11 @@ data class PostBean(
 ) : VHItemEntity() {
     override fun getVHType(): IVHType {
         return when (type) {
-            PostType.ARTICLE.ordinal -> VHType.POST_ARTICLE
+            PostType.ARTICLE.ordinal ->
+                if (images != null && images!!.size > 2)
+                    VHType.POST_ARTICLE_IMAGES
+                else
+                    VHType.POST_ARTICLE
             else -> VHType.POST_TEST_BASE
         }
     }
@@ -45,7 +50,7 @@ data class PostBean(
     /**信息流中的点赞与评论数*/
     val readCommentNum: String?
         get() {
-            var result: String? = null
+            var result = ""
             if (likeNum > 0) {
                 result = "赞 " + likeNum
             }
@@ -54,6 +59,29 @@ data class PostBean(
                     result += " · "
                 }
                 result += "评论 " + commentNum
+            }
+            return result
+        }
+
+
+    val images: List<ImageInfoBean>?
+        get() {
+            var result: ArrayList<ImageInfoBean>? = null
+
+            when (type) {
+                PostType.TWITTER.ordinal -> if (twitter != null && twitter!!.imgInfos != null && twitter!!.imgInfos!!.size > 0)
+                    result = twitter!!.imgInfos
+                PostType.ARTICLE.ordinal -> {
+                    val articlesBean = article
+                    if (articlesBean != null && articlesBean.imgs != null && articlesBean.imgs!!.size > 0) {
+                        result = ArrayList()
+                        articlesBean.imgs?.forEach {
+                            val imageInfoBean = ImageInfoBean()
+                            imageInfoBean.smallImageurl = it
+                            result.add(imageInfoBean)
+                        }
+                    }
+                }
             }
             return result
         }
@@ -105,5 +133,11 @@ data class QABean(
 
 data class ArticlesBean(
         var title: String? = null,
-        var shortContent: String? = null
+        var shortContent: String? = null,
+        var imgs: ArrayList<String>? = null
 )
+
+data class TwitterBean(var imgInfos: ArrayList<ImageInfoBean>? = null) {
+
+
+}

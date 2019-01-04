@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="postBean"
             type="com.bill.billdemo.entity.PostBean"/>
@@ -15,19 +17,21 @@
         android:id="@+id/user_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="13dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/content_tv"
         tools:visibility="visible">
 
-        <com.makeramen.roundedimageview.RoundedImageView
+        <ImageView
             android:id="@+id/user_type_icon_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginRight="10dp"
-            app:iconImageUrl="@{postBean.userByType.icon}"
+            android:scaleType="centerCrop"
+            android:visibility="@{postBean.userByType.showIcon?View.VISIBLE:View.GONE}"
+            app:iconImageUrl="@{postBean.userByType.iconUrl}"
             tools:background="@drawable/icon_face_space"/>
 
         <TextView
@@ -51,12 +55,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@{postBean.readCommentNum}"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
             android:gravity="center"
             android:lineSpacingExtra="0dp"
             android:maxLines="1"
+            android:text="@{postBean.readCommentNum}"
             tools:text="time"/>
     </LinearLayout>
 </layout>

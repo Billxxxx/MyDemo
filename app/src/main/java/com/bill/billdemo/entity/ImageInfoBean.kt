@@ -30,6 +30,11 @@ class ImageInfoBean : Serializable {
         else
             imageUrl
 
+    val smallUrl: String?
+        get() = getImageUrl()
+
+    val bigUrl: String?
+        get() = getImageUrl(true)
 
     fun getImageUrl(big: Boolean = false): String? {
         return if (big) {

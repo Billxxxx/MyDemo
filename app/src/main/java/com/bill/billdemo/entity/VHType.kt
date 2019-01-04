@@ -21,8 +21,10 @@ enum class VHType(
     NEWS(NewsVH::class.java),
     POST_TEST_BASE(PostTestBaseVH::class.java),
     POST_ARTICLE(PostArticleVH::class.java),
+    /**有三张图片的样式*/
+    POST_ARTICLE_IMAGES(PostArticleImagesVH::class.java),
     /**阅读的banner广告*/
-    ReadHead(ReadHeadVH::class.java),
+    READ_HEAD(ReadHeadVH::class.java),
     ;
 
     var layout: Int = -1

@@ -48,6 +48,6 @@ class ReadHeader(
         var banners: ArrayList<AdInfoBean>? = null,
         var communities: ArrayList<CommunityBean>? = null) : VHItemEntity() {
     override fun getVHType(): IVHType {
-        return VHType.ReadHead
+        return VHType.READ_HEAD
     }
 }

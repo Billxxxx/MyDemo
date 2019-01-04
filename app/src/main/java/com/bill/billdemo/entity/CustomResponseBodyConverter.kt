@@ -23,8 +23,9 @@ internal class CustomResponseBodyConverter<T : BaseResp>(private val type: Type)
                 //加密过的字符串
                 val enjsonStr = jsonParser.parse(response).asJsonObject.get("json").asString
                 val desString = DesEncrypt.getDesString(enjsonStr)
+                //TODO：网络请求返回
                 MyLogger.json(desString)
-                val jsonObject = jsonParser.parse(desString).asJsonObject
+//                val jsonObject = jsonParser.parse(desString).asJsonObject
                 val result = Gson().fromJson<BaseResp>(desString, type)
                 return result
             } catch (e: Exception) {
