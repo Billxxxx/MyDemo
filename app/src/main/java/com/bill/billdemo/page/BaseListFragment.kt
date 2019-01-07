@@ -13,6 +13,11 @@ import com.arsenal.bill.recyclerview.IVHType
 import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.util.RouterUtil
 import com.bill.billdemo.entity.BaseListFragmentConfig
+import com.bill.billdemo.entity.ILoadMoreDate
+import com.bill.billdemo.util.DATE
+import com.bill.billdemo.util.LIMIT
+import com.bill.billdemo.util.LOAD_TYPE
+import java.util.*
 
 /**通用的列表fragment，列表数据均由此列表实现，可以由Activity包装PAGE_BASE_LIST_ACTIVITY*/
 @Route(path = RouterUtil.PAGE_BASE_LIST_FRAGMENT)
@@ -32,6 +37,10 @@ class BaseListFragment() : ArsenalListFragment() {
 
     override fun getRequestInfo(): BaseRequestInfo? {
         return baseListConfig?.apiInfo
+    }
+
+    override fun getParam(): HashMap<String, Any>? {
+        return baseListConfig?.apiParam
     }
 
     override fun getListPageAuthority(): Int? {
@@ -58,5 +67,31 @@ class BaseListFragment() : ArsenalListFragment() {
             ARouter.getInstance().inject(this)
         }
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun getLoadMoreParam(param: HashMap<String, Any>?): HashMap<String, Any>? {
+        val p: HashMap<String, Any> = hashMapOf()
+        if (param != null)
+            p.putAll(param)
+
+        val data = baseListControl?.mAdapter?.data
+
+        if (data != null) {
+
+            var date: String? = null
+            for (i in data.size - 1 downTo 0) {
+                val item = data[i]
+                if (item is ILoadMoreDate) {
+                    date = item.getLoadMoreDate()
+                    break
+                }
+            }
+            if (date != null)
+                p.put(DATE, date)
+            p.put(LOAD_TYPE, "1")
+            p.put(LIMIT, "20")
+        }
+
+        return super.getLoadMoreParam(p)
     }
 }

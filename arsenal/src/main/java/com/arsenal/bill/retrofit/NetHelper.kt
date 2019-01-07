@@ -6,10 +6,11 @@ import com.arsenal.bill.net.IResp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
+import java.util.*
 
 class NetHelper(url: String,
                 converter: Converter.Factory,
-                var getCall: (String?) -> Call<BaseResp>?,
+                var getCall: (String?, HashMap<String, Any>?) -> Call<BaseResp>?,
                 var onRequestResponse: (requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) -> Unit
 ) {
     var retrofit: Retrofit
@@ -22,7 +23,7 @@ class NetHelper(url: String,
 
         fun init(url: String,
                  converter: Converter.Factory,
-                 getCall: (String?) -> Call<BaseResp>?,
+                 getCall: (String?, HashMap<String, Any>?) -> Call<BaseResp>?,
                  onRequestResponse: (requestInfo: BaseRequestInfo, response: Response<BaseResp>?, callback: CaidouApiCallBack<IResp>) -> Unit
         ): NetHelper {
             if (helper == null) {
@@ -38,12 +39,12 @@ class NetHelper(url: String,
 
     }
 
-    fun startRequest(requestInfo: BaseRequestInfo?, callback: CaidouApiCallBack<IResp>) {
+    fun startRequest(requestInfo: BaseRequestInfo?, param: HashMap<String, Any>?, callback: CaidouApiCallBack<IResp>) {
         if (requestInfo == null) {
             callback.onComplete()
             return
         }
-        val call = getCall(requestInfo.getApiCommand())
+        val call = getCall(requestInfo.getApiCommand(), param)
         if (call == null) return
         call.enqueue(object : Callback<BaseResp> {
             override fun onResponse(call: Call<BaseResp>, response: Response<BaseResp>?) {

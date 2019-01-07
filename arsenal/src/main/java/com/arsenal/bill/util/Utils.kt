@@ -1,6 +1,7 @@
 package com.arsenal.bill.util
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import com.arsenal.bill.ArsenalApp
 import com.arsenal.bill.views.IconTextSpan
+import java.io.IOException
 
 
 private var screenDensity: Float = 0.toFloat()
@@ -110,4 +112,43 @@ fun TextView.setLeftTagText(tagStr: String, tagBackgroundColor: Int, text: Strin
         spannableString.setSpan(spans.get(i), i, i + 1, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
     setText(spannableString)
+}
+
+fun SharedPreferences.saveStringList(key: String, list: List<String>?) {
+    try {
+        val edit = edit()
+        var strings = ""
+        if (list != null)
+            for (serializable in list) {
+                strings += serializable + ",;"
+            }
+        if (!TextUtils.isEmpty(strings) && !TextUtils.isEmpty(key)) {
+            edit.putString(key, strings)
+            edit.commit()
+        }
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+}
+
+fun SharedPreferences.getStringList(key: String): ArrayList<String>? {
+    val string = getString(key, null)
+    if (!TextUtils.isEmpty(string))
+        try {
+            val objects = ArrayList<String>()
+
+            val strings = string!!.split(",;".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            for (str in strings) {
+                if (!TextUtils.isEmpty(str)) {
+                    objects.add(str)
+                }
+            }
+            return objects
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: ClassNotFoundException) {
+            e.printStackTrace()
+        }
+
+    return null
 }

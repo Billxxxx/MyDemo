@@ -1,8 +1,17 @@
 package com.bill.billdemo.util;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.arsenal.bill.util.BaseActivityManager;
 import com.bill.billdemo.App;
+import com.bill.billdemo.R;
+import com.bill.billdemo.page.HomeFragment;
 
 
 public class UnCatchExceptionHandler implements Thread.UncaughtExceptionHandler {
@@ -30,15 +39,15 @@ public class UnCatchExceptionHandler implements Thread.UncaughtExceptionHandler 
             } catch (InterruptedException e) {
                 Log.e(TAG, "error : ", e);
             }
-//            Intent intent = new Intent(application.getApplicationContext(), HomeFragment.class);
-//            PendingIntent restartIntent = PendingIntent.getActivity(
-//                    application.getApplicationContext(), 0, intent,
-//                    PendingIntent.FLAG_ONE_SHOT);
-//            //退出程序
-//            AlarmManager mgr = (AlarmManager) application.getSystemService(Context.ALARM_SERVICE);
-//            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000,
-//                    restartIntent); // 1秒钟后重启应用
-//            BaseActivityManager.doAppExit();
+            Intent intent = new Intent(application.getApplicationContext(), HomeFragment.class);
+            PendingIntent restartIntent = PendingIntent.getActivity(
+                    application.getApplicationContext(), 0, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+            //退出程序
+            AlarmManager mgr = (AlarmManager) application.getSystemService(Context.ALARM_SERVICE);
+            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000,
+                    restartIntent); // 1秒钟后重启应用
+            BaseActivityManager.doAppExit();
         }
     }
 
@@ -53,15 +62,15 @@ public class UnCatchExceptionHandler implements Thread.UncaughtExceptionHandler 
             return false;
         }
         //使用Toast来显示异常信息    
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                Looper.prepare();
-//                Toast.makeText(application.getApplicationContext(), R.string.sorry_program_will_restart,
-//                        Toast.LENGTH_SHORT).show();
-//                Looper.loop();
-//            }
-//        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Toast.makeText(application.getApplicationContext(), R.string.sorry_program_will_restart,
+                        Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+        }.start();
         return true;
     }
 }  

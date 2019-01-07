@@ -12,7 +12,6 @@ import com.bill.billdemo.App
 import com.bill.billdemo.BuildConfig
 import com.bill.billdemo.R
 import com.bill.billdemo.entity.CustomConverterFactory
-import com.bill.billdemo.util.SystemParameter
 import com.google.gson.Gson
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -58,18 +57,28 @@ class RetrofitImpl {
         callback.onComplete()
     }
 
-    private fun getCall(commend: String?): Call<BaseResp>? {
+    private fun getCall(commend: String?, param: HashMap<String, Any>?): Call<BaseResp>? {
 
         val client: CDApiClient = NetHelper.getRetrofit().create(CDApiClient::class.java)
 
-        val encrypt = DesEncrypt.getEncString(
-                """{command:"${commend}",json:{
-                                |"clienttype":"android",
-                                |"imei":"9069635a-c252-48cb-8e3c-74f8be553ca11526866250425",
-                                |"userId":"14938006781030000",
-                                |"clientversion":"${BuildConfig.VERSION_CODE}",
-                                |"limit":"20",
-                                |"loadType":"0"}}""".trimMargin())
+        val map: HashMap<String, Any?> = hashMapOf()
+        map.put("command", commend)
+        map.put("json", hashMapOf<String, Any>().apply {
+            put("clienttype", "android")
+            put("imei", "9069635a-c252-48cb-8e3c-74f8be553ca11526866250425")
+            put("userId", "14938006781030000")
+            put("clientversion", BuildConfig.VERSION_CODE.toString())
+            put("limit", "20")
+
+            if (param == null)
+                put("loadType", "0")
+            else {
+                putAll(param)
+            }
+        })
+
+        val encrypt = DesEncrypt.getEncString(Gson().toJson(map))
+        ////todo 发起请求
 
         return client.home_recommendForm(encrypt, App.getContext().getString(R.string.en_key))
     }

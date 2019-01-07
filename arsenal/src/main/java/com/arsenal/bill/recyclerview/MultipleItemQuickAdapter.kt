@@ -16,6 +16,7 @@ class MultipleItemQuickAdapter(
             if (it != null)
                 addItemType(it.getItemType(), it.getLayoutId())
         }
+
     }
 
     override fun convert(helper: BaseVH<VHItemEntity>, item: VHItemEntity) {

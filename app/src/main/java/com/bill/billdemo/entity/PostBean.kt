@@ -13,18 +13,25 @@ data class PostBean(
         /**点赞数量*/
         var likeNum: Int = 0,
         /**评论数量*/
-        var commentNum: Int = 0
+        var commentNum: Int = 0,
+        var date: String? = null
 
-) : VHItemEntity() {
+) : VHItemEntity(), ILoadMoreDate {
     override fun getVHType(): IVHType {
         return when (type) {
+            PostType.QA.ordinal,
             PostType.ARTICLE.ordinal ->
                 if (images != null && images!!.size > 2)
                     VHType.POST_ARTICLE_IMAGES
                 else
                     VHType.POST_ARTICLE
+
             else -> VHType.POST_TEST_BASE
         }
+    }
+
+    override fun getLoadMoreDate(): String? {
+        return date
     }
 
     val title: String?
@@ -62,7 +69,18 @@ data class PostBean(
             }
             return result
         }
-
+    val strByType: String?
+        get() {
+            when (type) {
+                PostType.ARTICLE.ordinal -> return STR_ARTICLE
+                PostType.TWITTER.ordinal -> return STR_ARTICLE
+                PostType.QA.ordinal -> return STR_QA
+                PostType.VIDEO.ordinal -> return STR_VIDEO
+                PostType.LINK.ordinal -> return STR_LINK
+                PostType.DOC.ordinal -> return STR_DOC
+                else -> return null
+            }
+        }
 
     val images: List<ImageInfoBean>?
         get() {
@@ -115,9 +133,16 @@ enum class PostType {
     IMAGE_SAY,
     HOLD,
     /** 13 周报*/
-    WEELKLY,
+    WEELKLY, ;
+
 }
 
+val STR_ARTICLE = "文章"
+val STR_QA = "回答"
+val STR_VIDEO = "视频"
+val STR_LINK = "链接帖"
+val STR_DOC = "资料"
+val STR_SPECIAL = "专题"
 
 data class QABean(
         var huidaUser: UserBean? = null,

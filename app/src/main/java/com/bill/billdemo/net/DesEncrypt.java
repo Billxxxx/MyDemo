@@ -18,35 +18,6 @@ public class DesEncrypt {
 //    }
 
     /**
-     * 解密
-     *
-     * @param message
-     * @return
-     * @throws Exception
-     */
-    public static String getDesString(String message) throws Exception {
-
-        byte[] byteMing = null;
-        byte[] byteMi = null;
-        String strMing = "";
-        byteMi = Base64.decode(message);
-//        byteMi = base64De.decodeBuffer(message);
-
-        strMing = new String(byteMi, "UTF8");
-        Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-        DESKeySpec desKeySpec = new DESKeySpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-        SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
-        IvParameterSpec iv = new IvParameterSpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
-
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
-        byteMing = cipher.doFinal(byteMi);
-        strMing = new String(byteMing, "UTF8");
-        strMing = java.net.URLDecoder.decode(strMing, "utf-8");
-        return strMing;
-    }
-
-    /**
      * 加密
      *
      * @param message
@@ -73,6 +44,35 @@ public class DesEncrypt {
         strMi = Base64.encode(byteMi);
         strMi = filter(strMi);
         return strMi;
+    }
+
+    /**
+     * 解密
+     *
+     * @param message
+     * @return
+     * @throws Exception
+     */
+    public static String getDesString(String message) throws Exception {
+
+        byte[] byteMing = null;
+        byte[] byteMi = null;
+        String strMing = "";
+        byteMi = Base64.decode(message);
+//        byteMi = base64De.decodeBuffer(message);
+
+        strMing = new String(byteMi, "UTF8");
+        Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+        DESKeySpec desKeySpec = new DESKeySpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+        SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
+        IvParameterSpec iv = new IvParameterSpec(App.Companion.getInstance().getString(R.string.KEY).getBytes("UTF-8"));
+
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
+        byteMing = cipher.doFinal(byteMi);
+        strMing = new String(byteMing, "UTF8");
+        strMing = java.net.URLDecoder.decode(strMing, "utf-8");
+        return strMing;
     }
 
     public static String filter(String str) {

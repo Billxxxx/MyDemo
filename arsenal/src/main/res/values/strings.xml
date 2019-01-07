@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">lib</string>
     <string name="test">test</string>
+    <string name="sorry_program_will_restart">很抱歉,程序出现异常,即将退出.</string>
 </resources>

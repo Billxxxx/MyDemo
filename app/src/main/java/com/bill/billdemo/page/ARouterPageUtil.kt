@@ -6,6 +6,7 @@ import com.arsenal.bill.util.RouterUtil
 import com.bill.billdemo.entity.BaseListFragmentConfig
 import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.RequestInfo
+import java.util.*
 
 class ARouterPageUtil {
     companion object {
@@ -17,7 +18,7 @@ class ARouterPageUtil {
     }
 }
 
-fun Postcard.putListConfig(api: RequestInfo, pageAuth: Int? = null, listDividerBean: ListDividerBean? = null, vhTypes: Array<VHType>): Postcard {
-    withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(pageAuth, api, vhTypes, listDividerBean))
+fun Postcard.putListConfig(api: RequestInfo, pageAuth: Int? = null, listDividerBean: ListDividerBean? = null, vhTypes: Array<VHType>, apiParam: HashMap<String, Any>? = null): Postcard {
+    withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(pageAuth = pageAuth, apiInfo = api, apiParam = apiParam, vhTypes = vhTypes, listDividerBean = listDividerBean))
     return this
 }

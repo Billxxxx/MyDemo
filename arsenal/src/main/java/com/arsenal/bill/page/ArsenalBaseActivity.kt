@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.View
 import com.arsenal.bill.BuildConfig
+import com.arsenal.bill.util.BaseActivityManager
 import com.arsenal.bill.util.showListDialog
 import com.gyf.barlibrary.ImmersionBar
 import com.orhanobut.dialogplus.DialogPlus
@@ -33,6 +34,10 @@ abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase 
             swpieBackInit()
         }
 
+        BaseActivityManager.onAllActivityCreate(this)
+
+        BaseActivityManager.activeActivity = this
+
         ImmersionBar.with(this).statusBarDarkFont(true).statusBarColor("#f2f2f2").init()
 
     }
@@ -51,6 +56,16 @@ abstract class ArsenalBaseActivity : AppCompatActivity(), SwipeBackActivityBase 
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        BaseActivityManager.activeActivity = this
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        BaseActivityManager.onAllActivityDestroy(this)
+
+    }
     override fun <T : View?> findViewById(id: Int): T {
         if (enableSwipeBack()) {
             val v = super.findViewById<T>(id)

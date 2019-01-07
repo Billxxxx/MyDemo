@@ -19,8 +19,11 @@ import com.arsenal.bill.retrofit.BaseRequestInfo
 import com.arsenal.bill.retrofit.NetHelper
 import com.arsenal.bill.util.checkAuth
 import com.arsenal.bill.util.dpToPx
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.orhanobut.logger.Logger
 import com.yqritc.recyclerviewflexibledivider.FlexibleDividerDecoration
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
+import java.util.*
 
 open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseListControl) {
     lateinit var mRecyclerView: RecyclerView
@@ -57,6 +60,12 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
         mRecyclerView.setHasFixedSize(true)
 
         mAdapter = MultipleItemQuickAdapter(activity, null, mIBaseListControl.getVHTypes())
+        mAdapter.setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener {
+            override fun onLoadMoreRequested() {
+                Logger.d("开始加载更多")
+                startRefresh(true)
+            }
+        }, mRecyclerView)
         val manager = GridLayoutManager(activity, 4)
         mRecyclerView.layoutManager = manager
         mAdapter.setSpanSizeLookup { _, position ->
@@ -78,23 +87,43 @@ open class BaseListControl(var activity: Activity, var mIBaseListControl: IBaseL
             startRefresh()
     }
 
-    private fun startRefresh() {
-        mSwipeRefreshLayout?.isRefreshing = true
-        NetHelper.helper?.startRequest(mIBaseListControl.getRequestInfo(), object : CaidouApiCallBack<IResp> {
+    private fun startRefresh(loadMore: Boolean = false) {
+        if (!loadMore)
+            mSwipeRefreshLayout?.isRefreshing = true
+
+        val param =
+                if (!loadMore)
+                    mIBaseListControl.getParam()
+                else {
+                    mIBaseListControl.getLoadMoreParam(mIBaseListControl.getParam())
+                }
+
+        NetHelper.helper?.startRequest(mIBaseListControl.getRequestInfo(), param, object : CaidouApiCallBack<IResp> {
+            /**加载失败*/
             override fun onFailure(t: Throwable) {
-//                Log.d("TAG", "onFailure")
+                t.printStackTrace()
+                if (loadMore)
+                    mAdapter.loadMoreFail();
             }
 
-            override fun onComplete() {
-//                Log.d("TAG", "onComplete")
-                mSwipeRefreshLayout?.isRefreshing = false
-            }
-
+            /**加载成功*/
             override fun onSuccess(data: IResp?) {
 //                Log.d("TAG", "onSuccess")
-                if (data is IListResp)
-                    mAdapter.setNewData(data.getList())
+                if (data is IListResp) {
+                    val list = data.getList()
+                    if (!loadMore)
+                        mAdapter.setNewData(list)
+                    else if (list != null) mAdapter.addData(list)
+                }
+            }
 
+            /**加载完成*/
+            override fun onComplete() {
+//                Log.d("TAG", "onComplete")
+                if (!loadMore)
+                    mSwipeRefreshLayout?.isRefreshing = false
+                else
+                    mAdapter.loadMoreComplete();
             }
         })
     }
@@ -177,6 +206,14 @@ interface IBaseListControl {
 
     fun getRequestInfo(): BaseRequestInfo? {
         return null
+    }
+
+    fun getParam(): HashMap<String, Any>? {
+        return null
+    }
+
+    fun getLoadMoreParam(param: HashMap<String, Any>?): HashMap<String, Any>? {
+        return param
     }
 }
 

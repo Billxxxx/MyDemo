@@ -14,10 +14,11 @@ import com.arsenal.bill.util.createView
 import com.bill.billdemo.R
 import com.bill.billdemo.controller.ViewPagerController
 import com.bill.billdemo.controller.ViewPagerIndicatorType
-import com.bill.billdemo.entity.BaseListFragmentConfig
 import com.bill.billdemo.entity.ListDividerMode
 import com.bill.billdemo.entity.VHType
 import com.bill.billdemo.net.RequestInfo
+import com.bill.billdemo.util.LocalValue
+import com.google.gson.Gson
 
 @Route(path = ARouterPageUtil.PAGE_MAIN_FRAGMENT)
 class HomeFragment() : Fragment() {
@@ -38,25 +39,27 @@ class HomeFragment() : Fragment() {
                             arrayOf(VHType.POST_TEST_BASE,
                                     VHType.POST_ARTICLE,
                                     VHType.POST_ARTICLE_IMAGES,
-                                    VHType.READ_HEAD))
+                                    VHType.READ_HEAD),
+                            apiParam = hashMapOf("type" to LocalValue.instance.categoryIds)
+                    )
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
-                            RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
-                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
+                    .putListConfig(RequestInfo.V4_TABLOID,
+                            BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
+                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider,
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
-                            RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
-                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
+                    .putListConfig(RequestInfo.V4_TABLOID,
+                            BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
+                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider,
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS))
                     .navigation() as Fragment)
             fragments.add(ARouter.getInstance().build(RouterUtil.PAGE_BASE_LIST_FRAGMENT)
-                    .withObject(RouterUtil.VALUE_BASE_LIST_CONFIG, BaseListFragmentConfig(BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
-                            RequestInfo.V4_TABLOID,
-                            arrayOf(VHType.TIME_FILTER, VHType.NEWS),
-                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider))
+                    .putListConfig(RequestInfo.V4_TABLOID,
+                            BaseListAuth.DISABLE_AUTO_REFRESH.authInt,
+                            ListDividerMode.COMMON_PADDING_LEFT_RIGHT.listDivider,
+                            arrayOf(VHType.TIME_FILTER, VHType.NEWS))
                     .navigation() as Fragment)
             val viewPager = mView!!.findViewById<ViewPager>(R.id.view_pager)
 
@@ -67,7 +70,6 @@ class HomeFragment() : Fragment() {
                     childFragmentManager,
                     3,
                     ViewPagerIndicatorType.HOME.ordinal)
-//            viewPager.currentItem = 1
         }
         return mView
     }
